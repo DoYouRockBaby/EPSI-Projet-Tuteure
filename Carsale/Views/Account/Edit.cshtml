@@ -1,0 +1,64 @@
+﻿@using Carsale.DAO.Models
+@using Carsale.ViewModels
+
+@model CreateAccountViewModel
+
+@{
+    ViewBag.Title = "Modifier Compte";
+}
+
+<h2>Modifier Compte</h2>
+
+@using (Html.BeginForm("Edit"))
+{
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Account.FirstName)
+            @Html.TextBoxFor(model => model.Account.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Account.FirstName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Account.LastName)
+            @Html.TextBoxFor(model => model.Account.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Account.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Account.Email)
+            @Html.TextBoxFor(model => model.Account.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Account.Email, (string)ViewBag.EmailError, new { @class = "text-danger" })
+        </div>
+
+        @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
+        {
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Account.Type)
+                @Html.DropDownListFor(model => model.Account.Type, (Model.AccountTypes as IEnumerable<AccountType>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Account.Type, "", new { @class = "text-danger" })
+            </div>
+        }
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Account.Password)
+            @Html.PasswordFor(model => model.Account.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Account.Password, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.RepeatPassword)
+            @Html.PasswordFor(model => model.RepeatPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.RepeatPassword, (string)ViewBag.RepeatPassword, new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit" value="Modifier le compte" />
+        </div>
+    </div>
+}

@@ -1,0 +1,46 @@
+﻿@using Carsale.DAO.Models
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+@if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
+{
+    @Html.ActionLink("Ajouter un nouveau compte", "Create", null, new { @class="btn btn-default" })
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Email</th>
+            <th scope="col">Type</th>
+            <th scope="col"></th>
+            @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
+            {
+                <th scope="col"></th>
+                <th scope="col"></th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var account in (ViewBag.Accounts as IEnumerable<Account>))
+        {
+        <tr>
+            <td>@account.FirstName</td>
+            <td>@account.LastName</td>
+            <td>@account.Email</td>
+            <td>@account.Type.ToString()</td>
+            <td>@Html.ActionLink("Voir Plus", "Detail", new { id = account.Id })</td>
+            @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
+            {
+                <td>@Html.ActionLink("Editer", "Edit", new { id = account.Id })</td>
+                <td>@Html.ActionLink("Supprimer", "Delete", new { id = account.Id })</td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
