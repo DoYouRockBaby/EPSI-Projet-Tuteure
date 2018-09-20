@@ -281,6 +281,7 @@
     <Content Include="Views\Home\ShowAllSale.cshtml" />
     <Content Include="Views\Home\Sale.cshtml" />
     <Content Include="Views\Client\Detail.cshtml" />
+    <Content Include="Views\Vehicle\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

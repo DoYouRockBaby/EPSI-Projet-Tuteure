@@ -11,7 +11,6 @@ namespace Carsale.Controllers
 {
     public class VehicleController : Controller
     {
-
         private VechicleProvider vechicleProvider;
 
         public VehicleController(VechicleProvider vechicleProvider)
@@ -19,9 +18,9 @@ namespace Carsale.Controllers
             this.vechicleProvider = vechicleProvider;
         }
        
-        // GET: Vehicle
-        public ActionResult Index()
+        public ActionResult List()
         {
+            ViewBag.Vehicles = vechicleProvider.FindAll();
             return View();
         }
 
@@ -35,18 +34,15 @@ namespace Carsale.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Vehicle vehicle)
+        public ActionResult Create(CreateVehicleViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
-                vechicleProvider.Add(vehicle);
-                return Index();
+                vechicleProvider.Add(viewModel.Vehicle);
+                return RedirectToAction("List");
             }
 
-
-            return RedirectToAction("Index", "Home");
+            return View(viewModel);
         }
-
-          
     }
 }
