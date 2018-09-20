@@ -55,13 +55,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CarsaleContext.cs" />
+    <Compile Include="DataAnnotations\RequiredIfOtherEquals.cs" />
     <Compile Include="Migrations\201809182105103_Init.cs" />
     <Compile Include="Migrations\201809182105103_Init.Designer.cs">
       <DependentUpon>201809182105103_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809200959354_Client.cs" />
+    <Compile Include="Migrations\201809200959354_Client.Designer.cs">
+      <DependentUpon>201809200959354_Client.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
+    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\ClientType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\AccountProvider.cs" />
   </ItemGroup>
@@ -72,6 +79,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201809182105103_Init.resx">
       <DependentUpon>201809182105103_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809200959354_Client.resx">
+      <DependentUpon>201809200959354_Client.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

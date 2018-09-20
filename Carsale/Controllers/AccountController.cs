@@ -111,7 +111,7 @@ namespace Carsale.Controllers
             return View(viewModel);
         }
 
-        [HttpPost, LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director })]
+        [HttpPost, LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
         public ActionResult Edit(int id, CreateAccountViewModel viewModel)
         {
             //Check if the user exists

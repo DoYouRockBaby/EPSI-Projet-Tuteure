@@ -17,5 +17,6 @@ namespace Carsale.DAO
         }
 
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<Client> Clients { get; set; }
     }
 }
