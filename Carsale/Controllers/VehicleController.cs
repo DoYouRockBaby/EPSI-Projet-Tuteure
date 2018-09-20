@@ -37,7 +37,7 @@ namespace Carsale.Controllers
         [HttpPost]
         public ActionResult Create(Vehicle vehicle)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 vechicleProvider.Add(vehicle);
                 return Index();
