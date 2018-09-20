@@ -27,6 +27,9 @@ namespace Carsale.DAO.Models
         [StringLength(255)]
         [Display(Name = "Nom")]
         public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Type")]
         public AccountType Type { get; set; }
     }
 }
