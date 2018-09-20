@@ -17,6 +17,7 @@
             <th scope="col">Type</th>
             <th scope="col">Nom</th>
             <th scope="col">Pays</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -35,6 +36,7 @@
                     <td>@client.LastName @client.FirstName</td>
                 }
                 <td>@client.Country</td>
+                <td>@Html.ActionLink("Voir Plus", "Detail", new { id = client.Id })</td>
             </tr>
         }
     </tbody>

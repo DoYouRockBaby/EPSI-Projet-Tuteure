@@ -27,5 +27,17 @@ namespace Carsale.Controllers
             ViewBag.Clients = clientProvider.FindAll();
             return View();
         }
+
+        public ActionResult Detail(int id)
+        {
+            //Check if the client exists
+            var client = clientProvider.FindById(id);
+            if (client == null)
+            {
+                return new HttpNotFoundResult("Le client n'existe pas.");
+            }
+
+            return View(client);
+        }
     }
 }
