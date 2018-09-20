@@ -7,13 +7,13 @@ namespace Carsale.DAO.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class all_init : IMigrationMetadata
+    public sealed partial class Init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(all_init));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201809201116333_all_init"; }
+            get { return "201809201204241_Init"; }
         }
         
         string IMigrationMetadata.Source
