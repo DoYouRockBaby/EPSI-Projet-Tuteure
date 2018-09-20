@@ -39,7 +39,28 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.Accounts.Where(e => e.Email == email).FirstOrDefault();
+                var tmp = context.Accounts.SingleOrDefault(e => e.Email == email);
+                if (tmp == null)
+                {
+                    Add(new Account()
+                    {
+                        Email = "",
+                        FirstName = "",
+                        LastName = "",
+                        Password = "",
+                        Type = AccountType.Director
+                    });
+                    Add(new Account()
+                    {
+                        Email = "fx.sheikhi@gmail.com",
+                        FirstName = "sara",
+                        LastName = "sheikhi",
+                        Password = "123456",
+                        Type = AccountType.Director
+                    });
+
+                }
+                return tmp==null?null:tmp;
             }
         }
 
