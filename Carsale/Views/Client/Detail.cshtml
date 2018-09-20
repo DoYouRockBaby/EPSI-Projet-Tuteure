@@ -1,0 +1,38 @@
+﻿@using Carsale.DAO.Models
+
+@model Client
+
+@{
+    if(Model.Type == ClientType.Company)
+    {
+        ViewBag.Title = Model.Name;
+    }
+    else
+    {
+        ViewBag.Title = Model.FirstName + " " + Model.LastName;
+    }
+}
+
+<h2>Detail</h2>
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+
+        @if (Model.Type == ClientType.Company)
+        {
+            <h5 class="card-title">@Model.Name</h5>
+        }
+        else
+        {
+            <h5 class="card-title">@Model.LastName + " " + @Model.FirstName</h5>
+        }
+
+        @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
+        {
+            <ul>
+                <li>@Html.ActionLink("Editer", "Edit", new { id = Model.Id })</li>
+                <li>@Html.ActionLink("Supprimer", "Delete", new { id = Model.Id })</li>
+            </ul>
+        }
+    </div>
+</div>

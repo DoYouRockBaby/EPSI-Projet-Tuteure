@@ -39,6 +39,7 @@ namespace Carsale
         {
             container.RegisterType<AccountProvider, AccountProvider>();
             container.RegisterType<VechicleProvider, VechicleProvider>();
+            container.RegisterType<ClientProvider, ClientProvider>();
         }
     }
 }

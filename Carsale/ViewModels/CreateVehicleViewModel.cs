@@ -15,11 +15,11 @@ namespace Carsale.ViewModels
         public Vehicle Vehicle { get; set; }
 
         [Required]
-        public IEnumerable<Status> Status
+        public IEnumerable<StatusVehicle> Status
         {
             get
             {
-                return (Status[])Enum.GetValues(typeof(Status));
+                return (StatusVehicle[])Enum.GetValues(typeof(StatusVehicle));
             }
         }
 

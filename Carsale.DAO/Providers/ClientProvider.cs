@@ -8,46 +8,38 @@ using System.Threading.Tasks;
 
 namespace Carsale.DAO.Providers
 {
-    public class AccountProvider
+    public class ClientProvider
     {
-        public void Add(Account account)
+        public void Add(Client client)
         {
             using (var context = new CarsaleContext())
             {
-                context.Accounts.Add(account);
+                context.Clients.Add(client);
                 context.SaveChanges();
             }
         }
 
-        public IEnumerable<Account> FindAll()
+        public IEnumerable<Client> FindAll()
         {
             using (var context = new CarsaleContext())
             {
-                return context.Accounts.ToList();
+                return context.Clients.ToList();
             }
         }
 
-        public Account FindById(int id)
+        public Client FindById(int id)
         {
             using (var context = new CarsaleContext())
             {
-                return context.Accounts.Find(id);
+                return context.Clients.Find(id);
             }
         }
 
-        public Account FindByEmail(string email)
+        public void Update(Client client)
         {
             using (var context = new CarsaleContext())
             {
-                return context.Accounts.SingleOrDefault(e => e.Email == email);
-            }
-        }
-
-        public void Update(Account account)
-        {
-            using (var context = new CarsaleContext())
-            {
-                context.Entry(account).State = EntityState.Modified;
+                context.Entry(client).State = EntityState.Modified;
                 context.SaveChanges();
             }
         }

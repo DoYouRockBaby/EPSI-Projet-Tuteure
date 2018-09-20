@@ -182,6 +182,7 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Authorizations\LoggedAuthorizationAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Global.asax.cs">
@@ -276,6 +277,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Vehicle\Create.cshtml" />
     <Content Include="Views\Vehicle\Index.cshtml" />
+    <Content Include="Views\Client\List.cshtml" />
+    <Content Include="Views\Home\ShowAllSale.cshtml" />
+    <Content Include="Views\Home\Sale.cshtml" />
+    <Content Include="Views\Client\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

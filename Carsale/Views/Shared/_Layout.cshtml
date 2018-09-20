@@ -29,6 +29,26 @@
             </div>
         </div>
     </div>
+
+    @if (ViewBag.LoggedUser != null)
+    {
+        <div class="wrapper">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3>Navigation</h3>
+                </div>
+
+                <ul class="list-unstyled components">
+                    <p>Que voulez vous faire ?</p>
+                    <li>
+                        <a href="#">Voir les comptes utilisateurs</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    }
+
+
     <div class="container body-content">
         @RenderBody()
         <hr />

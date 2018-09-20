@@ -19,17 +19,11 @@ namespace Carsale.DAO.Models
         Beige ,
         Maroon
     }
-    public enum Status
-    {
-        New,
-        Used,
-        Rental
-    }
     
     public class Vehicle
     {
         [Key]
-        public String Matriculation { get; set; }
+        public string Matriculation { get; set; }
 
         [Required]
         [Display(Name = "Brand")]
@@ -47,10 +41,10 @@ namespace Carsale.DAO.Models
         [Required]
         [StringLength(255)]
         [Display(Name = "Model")]
-        public String Model { get; set; }
+        public string Model { get; set; }
 
         [Required]
         [Display(Name = "Status")]
-        public Status Status { get; set; }        
+        public StatusVehicle Status { get; set; }        
     }
 }
