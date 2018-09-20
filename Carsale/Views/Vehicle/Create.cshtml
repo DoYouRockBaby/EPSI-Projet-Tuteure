@@ -1,0 +1,50 @@
+﻿@using Carsale.DAO.Models
+@using Carsale.ViewModels
+
+@model CreateVehicleViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>
+    Vehicle
+</h2>
+
+@using (Html.BeginForm("Create", "Vehicle", FormMethod.Post, new { id = "create", @Class = "form-horizontal" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Vehicle.Matriculation)
+        @Html.TextBoxFor(m => m.Vehicle.Matriculation, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Vehicle.Matriculation)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Vehicle.Brand)
+        @Html.TextBoxFor(m => m.Vehicle.Brand, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Vehicle.Brand)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Vehicle.Power)
+        @Html.TextBoxFor(m => m.Vehicle.Power, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Vehicle.Power)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Vehicle.Model)
+        @Html.TextBoxFor(m => m.Vehicle.Model, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Vehicle.Model)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.VehicleColor)
+        @Html.DropDownListFor(m => m.VehicleColor, (Model.VehicleColor as IEnumerable<VehicleColor>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable(), new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.VehicleColor)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Status)
+        @Html.DropDownListFor(m => m.Status, (Model.Status as IEnumerable<StatusVehicle>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable(), new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Status)
+    </div>
+    <div class="col-md-4">
+        <button type="submit" class="btn btn-default">Validate</button>
+    </div>
+}
+
