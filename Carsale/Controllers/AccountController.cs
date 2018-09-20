@@ -13,6 +13,7 @@ namespace Carsale.Controllers
         public AccountController(AccountProvider accountProvider)
         {
             this.accountProvider = accountProvider;
+
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)

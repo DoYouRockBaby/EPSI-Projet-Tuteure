@@ -17,8 +17,13 @@ namespace Carsale.DAO
         }
 
         public DbSet<Account> Accounts { get; set; }
+<<<<<<< HEAD
         public DbSet<Sale> Sales { get; set; } // kelase sal publicesh ro yadam rafte bod
         //beben agr neaz basheh badan ham tagher bede rahat meshe ye partial ezafeh kard 
 
+=======
+        public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+>>>>>>> 805c7946d168554295a2f383d116760f2178db5f
     }
 }
