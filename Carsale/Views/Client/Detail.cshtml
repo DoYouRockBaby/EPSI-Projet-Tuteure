@@ -17,21 +17,39 @@
 
 <div class="card" style="width: 18rem;">
     <div class="card-body">
-
         @if (Model.Type == ClientType.Company)
         {
-            <h5 class="card-title">@Model.Name</h5>
+            <img class="card-img-top" src="~/Images/company.png" style="width: 128px; height: 128px;" alt="Company icon">
         }
         else
         {
-            <h5 class="card-title">@Model.LastName + " " + @Model.FirstName</h5>
+            <img class="card-img-top" src="~/Images/person.png" style="width: 128px; height: 128px;" alt="Person icon">
         }
+
+        @if (Model.Type == ClientType.Company)
+        {
+            <h5 class="card-title">@Model.Name (SIRET : @Model.SIRET)</h5>
+        }
+        else
+        {
+            <h5 class="card-title">@Model.LastName @Model.FirstName</h5>
+        }
+
+        @if (Model.Type == ClientType.Company)
+        {
+            <p class="card-subtitle">@Model.Description</p>
+        }
+
+        <p class="card-text">
+            @Model.Address1<br />
+            <small>@Model.Address2</small>
+        </p>
+        <p class="card-text">@Model.ZipCode @Model.Country</p>
 
         @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
         {
             <ul>
                 <li>@Html.ActionLink("Editer", "Edit", new { id = Model.Id })</li>
-                <li>@Html.ActionLink("Supprimer", "Delete", new { id = Model.Id })</li>
             </ul>
         }
     </div>
