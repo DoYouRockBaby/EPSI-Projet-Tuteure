@@ -8,7 +8,7 @@
 
 @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
 {
-    @Html.ActionLink("Ajouter un nouveau compte", "Create", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Ajouter un nouveau client", "Create", null, new { @class = "btn btn-default" })
 }
 
 <table class="table">
@@ -17,6 +17,7 @@
             <th scope="col">Type</th>
             <th scope="col">Nom</th>
             <th scope="col">Pays</th>
+            <th scope="col"></th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -27,16 +28,17 @@
                 @if (client.Type == ClientType.Company)
                 {
 
-                    <td><img class="glyphicon" src="~/Images/company.png" style="width: 32px; height: 32px;" /></td>
+                    <td><img class="glyphicon" src="~/Images/company.png" style="width: 32px; height: 32px;" alt="company" /></td>
                     <td>@client.Name</td>
                 }
                 else
                 {
-                    <td><img class="glyphicon" src="~/Images/person.png" style="width: 32px; height: 32px;" /></td>
+                    <td><img class="glyphicon" src="~/Images/person.png" style="width: 32px; height: 32px;" alt="person" /></td>
                     <td>@client.LastName @client.FirstName</td>
                 }
                 <td>@client.Country</td>
                 <td>@Html.ActionLink("Voir Plus", "Detail", new { id = client.Id })</td>
+                <td>@Html.ActionLink("Editer", "Edit", new { id = client.Id })</td>
             </tr>
         }
     </tbody>

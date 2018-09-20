@@ -22,14 +22,14 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.Vehicles.ToList();
+                return context.Vehicles.Include((v) => v.Brand).ToList();
             }
         }
         public Vehicle FindByMatriculation(string matriculation)
         {
             using (var context = new CarsaleContext())
             {
-                return context.Vehicles.Where(e => e.Matriculation == matriculation).FirstOrDefault();
+                return context.Vehicles.Include((v) => v.Brand).Where(e => e.Matriculation == matriculation).FirstOrDefault();
             }
         }
         public void Update(Vehicle vehicle)

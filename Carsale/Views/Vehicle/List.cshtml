@@ -1,0 +1,38 @@
+﻿@using Carsale.DAO.Models
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+@if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
+{
+    @Html.ActionLink("Ajouter un nouveau vehicule neuf", "Create", null, new { @class = "btn btn-default" })
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Immatriculation</th>
+            <th scope="col">Marque</th>
+            <th scope="col">Couleur</th>
+            <th scope="col">Puissance</th>
+            <th scope="col">Modèle</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var vehicle in (ViewBag.Vehicles as IEnumerable<Vehicle>))
+        {
+            <tr>
+                <td>@vehicle.Matriculation</td>
+                <td>@vehicle.Brand.Name</td>
+                <td>@vehicle.VehicleColor.ToString()</td>
+                <td>@vehicle.Power</td>
+                <td>@vehicle.Model</td>
+                <td>@vehicle.Status.ToString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
