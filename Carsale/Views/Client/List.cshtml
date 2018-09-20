@@ -1,0 +1,41 @@
+﻿@using Carsale.DAO.Models
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Clients</h2>
+
+@if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
+{
+    @Html.ActionLink("Ajouter un nouveau compte", "Create", null, new { @class = "btn btn-default" })
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Pays</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var client in (ViewBag.Clients as IEnumerable<Client>))
+        {
+            <tr>
+                @if (client.Type == ClientType.Company)
+                {
+
+                    <td><img class="glyphicon" src="~/Images/company.png" /></td>
+                    <td>@client.Name</td>
+                }
+                else
+                {
+                    <td><img class="glyphicon" src="~/Images/person.png" /></td>
+                    <td>@client.LastName @client.FirstName</td>
+                }
+                <td>@client.Country</td>
+            </tr>
+        }
+    </tbody>
+</table>
