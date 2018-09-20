@@ -39,7 +39,7 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.Accounts.Where(e => e.Email == email).FirstOrDefault();
+                return context.Accounts.SingleOrDefault(e => e.Email == email);
             }
         }
 

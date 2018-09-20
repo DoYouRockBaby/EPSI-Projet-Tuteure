@@ -17,7 +17,5 @@ namespace Carsale.DAO.Models
         [StringLength(255)]
         [Display(Name = "Name")]
         public String Name { get; set; }
-
-
     }
 }

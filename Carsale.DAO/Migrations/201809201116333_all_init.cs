@@ -3,7 +3,7 @@ namespace Carsale.DAO.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Init : DbMigration
+    public partial class all_init : DbMigration
     {
         public override void Up()
         {
@@ -20,10 +20,21 @@ namespace Carsale.DAO.Migrations
                     })
                 .PrimaryKey(t => t.Id);
             
+            CreateTable(
+                "dbo.Sales",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        SaleDate = c.DateTime(nullable: false),
+                        SalePrice = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
         }
         
         public override void Down()
         {
+            DropTable("dbo.Sales");
             DropTable("dbo.Accounts");
         }
     }

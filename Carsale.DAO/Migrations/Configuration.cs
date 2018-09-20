@@ -14,19 +14,10 @@ namespace Carsale.DAO.Migrations
 
         protected override void Seed(Carsale.DAO.CarsaleContext context)
         {
-            if(context.Accounts.Count() == 0)
-            {
-                context.Accounts.Add(new Models.Account()
-                {
-                    FirstName = "Hugo",
-                    LastName = "Boss",
-                    Email = "admin@carsale.com",
-                    Type = Models.AccountType.Director,
-                    Password = "admin"
-                });
+            //  This method will be called after migrating to the latest version.
 
-                context.SaveChanges();
-            }
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data.
         }
     }
 }
