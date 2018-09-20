@@ -26,12 +26,12 @@
                 @if (client.Type == ClientType.Company)
                 {
 
-                    <td><img class="glyphicon" src="~/Images/company.png" /></td>
+                    <td><img class="glyphicon" src="~/Images/company.png" style="width: 32px; height: 32px;" /></td>
                     <td>@client.Name</td>
                 }
                 else
                 {
-                    <td><img class="glyphicon" src="~/Images/person.png" /></td>
+                    <td><img class="glyphicon" src="~/Images/person.png" style="width: 32px; height: 32px;" /></td>
                     <td>@client.LastName @client.FirstName</td>
                 }
                 <td>@client.Country</td>
