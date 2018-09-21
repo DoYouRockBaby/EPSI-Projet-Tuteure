@@ -1,0 +1,44 @@
+﻿using Carsale.DAO.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+
+namespace Carsale.ViewModels
+{
+    public class CreateVehicleViewModel
+    {
+
+
+        [Required (ErrorMessage = "Vehicle doit être renseignée")]
+        [Display(Name = "Vehicle")]
+        public Vehicle Vehicle { get; set; }
+
+        [Required(ErrorMessage = "La Marque doit être renseignée")]
+        [Display(Name = "Marque")]
+        public Brand Brand { get; set; }
+
+        [Required(ErrorMessage = "Brand doit être renseignée")]
+        [Display(Name = "Brand")]
+        public IEnumerable<Brand> Brands { get; set; }
+
+        [Required]
+        public IEnumerable<StatusVehicle> Status
+        {
+            get
+            {
+                return (StatusVehicle[])Enum.GetValues(typeof(StatusVehicle));
+            }
+        }
+
+        [Required]
+        public IEnumerable<VehicleColor> VehicleColor
+        {
+            get
+            {
+                return (VehicleColor[])Enum.GetValues(typeof(VehicleColor));
+            }
+        }
+    }
+}

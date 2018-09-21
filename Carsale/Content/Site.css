@@ -5,7 +5,7 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
+    padding-left: 236px;
     padding-right: 15px;
 }
 
@@ -61,10 +61,10 @@ textarea {
     display: block;
 }
 
-    #sidebar ul li a:hover {
-        color: #7386D5;
-        background: #fff;
-    }
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+}
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;

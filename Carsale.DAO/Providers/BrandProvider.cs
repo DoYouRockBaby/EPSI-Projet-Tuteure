@@ -8,48 +8,47 @@ using System.Threading.Tasks;
 
 namespace Carsale.DAO.Providers
 {
-   public class VechicleProvider
+   public class BrandProvider
     {
-        public void Add(Vehicle vehicle)
+        public void Add(Brand brand)
         {
             using (var carsaleContext = new CarsaleContext())
             {
-                carsaleContext.Vehicles.Add(vehicle);
+                carsaleContext.Brands.Add(brand);
                 carsaleContext.SaveChanges();
             }
         }
-        public IEnumerable<Vehicle> FindAll()
+        public IEnumerable<Brand> FindAll()
         {
             using (var context = new CarsaleContext())
             {
-                return context.Vehicles.Include((v) => v.Brand).ToList();
+                return context.Brands.ToList();
             }
         }
-        public Vehicle FindByMatriculation(string matriculation)
+        public Brand FindById(int id)
         {
             using (var context = new CarsaleContext())
             {
-                return context.Vehicles.Include((v) => v.Brand).Where(e => e.Matriculation == matriculation).FirstOrDefault();
+                return context.Brands.Where(e => e.Id == id).FirstOrDefault();
             }
         }
-        public void Update(Vehicle vehicle)
+        public void Update(Brand brand)
         {
             using (var context = new CarsaleContext())
             {
-                context.Entry(vehicle).State = EntityState.Modified;
+                context.Entry(brand).State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
 
-        public void Delete(String matriculation)
+        public void Delete(int id)
         {
             using (var context = new CarsaleContext())
             {
-                context.Entry(FindByMatriculation(matriculation)).State = EntityState.Deleted;
+                context.Entry(FindById(id)).State = EntityState.Deleted;
                 context.SaveChanges();
             }
         }
-
 
     }
 }

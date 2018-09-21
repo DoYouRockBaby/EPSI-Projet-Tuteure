@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Carsale.DAO.Models
 {
-  public  enum VehicleColor
+    public enum VehicleColor
     {
         Red,
         Yellow,
@@ -23,24 +17,29 @@ namespace Carsale.DAO.Models
     public class Vehicle
     {
         [Key]
+        [Display(Name = "Immatriculation")]
         public string Matriculation { get; set; }
 
         [Required]
-        [Display(Name = "Brand")]
+        [Display(Name = "Marque")]
         public Brand Brand { get; set; }
 
         [Required]
-        [Display(Name = "Vehicle Color")]
+        [Display(Name = "Marque")]
+        public int BrandId { get; set; }
+
+        
+        [Display(Name = "Couleur")]
         public VehicleColor VehicleColor { get; set; }
 
         [Required]
-        [Display(Name = "Power")]
+        [Display(Name = "Puissance")]
         [Range(0, int.MaxValue)]
         public int Power { get; set; }
 
         [Required]
         [StringLength(255)]
-        [Display(Name = "Model")]
+        [Display(Name = "Modèle")]
         public string Model { get; set; }
 
         [Required]
