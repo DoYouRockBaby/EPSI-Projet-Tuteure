@@ -12,12 +12,13 @@ namespace Carsale.Controllers
     public class VehicleController : Controller
     {
         private VechicleProvider vechicleProvider;
-
-        public VehicleController(VechicleProvider vechicleProvider)
+        private BrandProvider brandProvider;
+        public VehicleController(VechicleProvider vechicleProvider, BrandProvider brandProvider)
         {
             this.vechicleProvider = vechicleProvider;
+            this.brandProvider = brandProvider;
         }
-       
+
         public ActionResult List()
         {
             ViewBag.Vehicles = vechicleProvider.FindAll();
@@ -26,9 +27,11 @@ namespace Carsale.Controllers
 
         public ActionResult Create()
         {
+            IEnumerable<Brand> brands = brandProvider.FindAll();
             var viewModel = new CreateVehicleViewModel();
             Vehicle vehicle = new Vehicle();
             viewModel.Vehicle = vehicle;
+            viewModel.Brands = brands;
 
             return View(viewModel);
         }
@@ -44,5 +47,16 @@ namespace Carsale.Controllers
 
             return View(viewModel);
         }
+        public ActionResult Index()
+        {
+            IEnumerable<Brand> brands = brandProvider.FindAll();
+            var viewModel = new CreateVehicleViewModel();
+            Vehicle vehicle = new Vehicle();
+            viewModel.Vehicle = vehicle;
+            viewModel.Brands = brands;
+
+            return View(viewModel);
+        }
+
     }
 }
