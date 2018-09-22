@@ -15,6 +15,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             @Html.LabelFor(m => m.Brands)
+            @Html.HiddenFor(m => m.Vehicle.Matriculation, new { @class = "form-control" })
             @Html.HiddenFor(m => m.Vehicle.BrandId, new { @class = "form-control" })
             @Html.DropDownListFor(m => m.Vehicle.BrandId, Model.Brands.Select(brand => new SelectListItem
        {
@@ -38,7 +39,7 @@
         <div class="form-group col-md-6">
             @Html.LabelFor(m => m.VehicleColor)
             @Html.DropDownListFor(m => m.VehicleColor, (Model.VehicleColor as IEnumerable<VehicleColor>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable(), new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.VehicleColor)
+            @Html.ValidationMessageFor(m => m.VehicleColor, "", new { @class = "text-danger" })
         </div>
         <div class="form-group col-md-6">
             @Html.LabelFor(m => m.Status)

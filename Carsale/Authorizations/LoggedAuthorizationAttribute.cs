@@ -25,6 +25,7 @@ namespace English_Battle_MVC.Attributes
         }
 
         public void OnAuthenticationChallenge(AuthenticationChallengeContext filterContext)
+
         {
         }
     }

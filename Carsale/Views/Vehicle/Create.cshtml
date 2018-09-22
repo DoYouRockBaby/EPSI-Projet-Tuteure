@@ -19,56 +19,6 @@
     </div>
     
     <div class="form-group">
-<<<<<<< HEAD
-        @Html.LabelFor(m => m.Brands)
-        @Html.HiddenFor(m => m.Vehicle.BrandId, new { @class = "form-control" })
-        @Html.DropDownListFor(m => m.Vehicle.BrandId, Model.Brands.Select(brand => new SelectListItem
-        {
-            Value = brand.Id.ToString(),
-            Text = brand.Name
-        }), new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Brands)
-        @using (Html.BeginForm("CreateBrand", "Vehicle", FormMethod.Post, new { id = "create", @Class = "form-horizontal" }))
-        {
-
-            <div class="container">
-                <div class="row">
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#createBrand" aria-expanded="false">
-                        New Brand
-                    </button>
-                    <div class="modal" id="createBrand" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    @Html.LabelFor(m => m.Brand)
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="form-group">
-
-                                            @Html.LabelFor(m => m.Brand.Name)
-                                            @Html.TextBoxFor(m => m.Brand.Name, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(m => m.Brand.Name)
-
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default">Validate</button>
-                                    <button value="Close" data-dismiss="modal" id="close">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-            <script src="~/Scripts/bootstrap.js"></script>
-
-        }
-
-=======
-
         <div class="collapse-brand-form collapse show" aria-expanded="true">
             <div class="form-group">
                 @Html.LabelFor(m => m.SelectedBrandId)
@@ -95,7 +45,7 @@
                 <span class="if-not-collapsed">Utiliser une marque existante</span>
             </button>
         </div>
->>>>>>> 896860845754e4e2c4fb39027aec9ad3023615fc
+
     </div>
 
     

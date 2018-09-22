@@ -93,18 +93,19 @@ namespace Carsale.Controllers
             IEnumerable<Brand> brands = brandProvider.FindAll();
             var viewModel = new CreateVehicleViewModel();            
             viewModel.Vehicle = vehicle;
-            viewModel.Brands = brands;   
-           
+            viewModel.Brands = brands;
 
+            
             return View(viewModel);
         }
 
 
 
         [HttpPost, LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
-        public ActionResult Edit(String matriculation, CreateVehicleViewModel viewModel)
+        public ActionResult Edit( CreateVehicleViewModel viewModel)
         {
             //Check if the user exists
+            String matriculation = viewModel.Vehicle.Matriculation;
             if (vechicleProvider.FindByMatriculation(matriculation) == null)
             {
                 return new HttpNotFoundResult("Le véhicule n'existe pas.");
@@ -114,7 +115,7 @@ namespace Carsale.Controllers
             {
                 vechicleProvider.Update(viewModel.Vehicle);
             }
-            return View(viewModel);
+            return RedirectToAction("List", "Vehicle");
         }
 
 

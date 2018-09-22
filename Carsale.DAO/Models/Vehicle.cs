@@ -17,7 +17,7 @@ namespace Carsale.DAO.Models
     public class Vehicle
     {
         [Key]
-        [Display(Name = "Immatriculation")]
+
         public string Matriculation { get; set; }
 
         [Display(Name = "Marque")]
