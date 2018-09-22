@@ -19,6 +19,7 @@
     </div>
     
     <div class="form-group">
+<<<<<<< HEAD
         @Html.LabelFor(m => m.Brands)
         @Html.HiddenFor(m => m.Vehicle.BrandId, new { @class = "form-control" })
         @Html.DropDownListFor(m => m.Vehicle.BrandId, Model.Brands.Select(brand => new SelectListItem
@@ -66,6 +67,35 @@
 
         }
 
+=======
+
+        <div class="collapse-brand-form collapse show" aria-expanded="true">
+            <div class="form-group">
+                @Html.LabelFor(m => m.SelectedBrandId)
+                @Html.DropDownListFor(m => m.SelectedBrandId, Model.Brands.Select(brand => new SelectListItem
+                {
+                    Value = brand.Id.ToString(),
+                    Text = brand.Name
+                }), new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.SelectedBrandId)
+            </div>
+        </div>
+
+        <div class="collapse-brand-form collapse" aria-expanded="false">
+            <div class="form-group">
+                @Html.LabelFor(m => m.BrandName)
+                @Html.TextBoxFor(m => m.BrandName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.BrandName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target=".collapse-brand-form" aria-expanded="false" aria-controls="collapse-brand-form">
+                <span class="if-collapsed">Créer une nouvelle marque</span>
+                <span class="if-not-collapsed">Utiliser une marque existante</span>
+            </button>
+        </div>
+>>>>>>> 896860845754e4e2c4fb39027aec9ad3023615fc
     </div>
 
     
@@ -91,8 +121,7 @@
         @Html.ValidationMessageFor(m => m.Status)
     </div>
     <div class="col-md-4">
-        <button type="submit" class="btn btn-default">Validate</button>
+        <input type="submit" class="btn btn-default" value="Validate" />
     </div>
 }
     
-
