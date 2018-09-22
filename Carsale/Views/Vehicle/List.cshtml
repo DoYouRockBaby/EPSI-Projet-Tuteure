@@ -14,25 +14,35 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Immatriculation</th>
+            
             <th scope="col">Marque</th>
             <th scope="col">Couleur</th>
             <th scope="col">Puissance</th>
             <th scope="col">Modèle</th>
             <th scope="col">Status</th>
+            @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
+            {
+                <th scope="col"></th>
+                <th scope="col"></th>
+            }
         </tr>
     </thead>
     <tbody>
         @foreach (var vehicle in (ViewBag.Vehicles as IEnumerable<Vehicle>))
         {
-            <tr>
-                <td>@vehicle.Matriculation</td>
-                <td>@vehicle.Brand.Name</td>
-                <td>@vehicle.VehicleColor.ToString()</td>
-                <td>@vehicle.Power</td>
-                <td>@vehicle.Model</td>
-                <td>@vehicle.Status.ToString()</td>
-            </tr>
+        <tr>
+           
+            <td>@vehicle.Brand.Name</td>
+            <td>@vehicle.VehicleColor.ToString()</td>
+            <td>@vehicle.Power</td>
+            <td>@vehicle.Model</td>
+            <td>@vehicle.Status.ToString()</td>
+            @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
+            {
+                <td>@Html.ActionLink("Editer", "Edit", new { matriculation = vehicle.Matriculation })</td>
+                <td>@Html.ActionLink("Supprimer", "Delete", new { matriculation = vehicle.Matriculation })</td>
+            }
+        </tr>
         }
     </tbody>
 </table>

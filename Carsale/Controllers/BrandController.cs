@@ -18,6 +18,13 @@ namespace Carsale.Controllers
             this.brandProvider = brandProvider;
         }
 
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            //Add the current logged user in the ViewBag so it can be accessed in all actions
+            ViewBag.LoggedUser = Session["User"];
+            base.OnActionExecuting(filterContext);
+        }
+
         public ActionResult Create()
         {
             Brand brand = new Brand();
