@@ -1,31 +1,131 @@
 ﻿body {
-    padding-top: 50px;
+    width: 100%;
+    height: 100%;
+    padding-top: 0px;
     padding-bottom: 20px;
+    background: #c94b4b;
+    background: -webkit-linear-gradient(to bottom, #c94b4b, #4b134f);
+    background: linear-gradient(135deg, #4b134f, #c94b4b);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-/* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 236px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.body-content a {
+    color: purple;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.3s;
+}
+
+.body-content a:hover {
+    color: rebeccapurple;
+}
+
+.body-content a:hover::after {
+    height: calc(100% + 8px)
+}
+
+.card,
+.jumbotron {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #4b134f;
+    border-radius: 0;
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+    box-shadow: inset 0 0 1em #212529, 0 0 1em #212529;
+    border: #212529 solid 2px;
+    font-weight: 700;
+    font-size: 2em;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+    color: #ffffff;
+    background-color: #212529;
+}
+
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+    background-image: none;
+}
+
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+    background-color: #4B134F;
+    border-color: #3A123D;
+}
+
+.btn-primary .badge {
+    color: #4B134F;
+    background-color: #ffffff;
+}
+
+.wrapper>.container {
+    padding-left: 260px;
+}
+
+.body-content {
+    padding-left: 15px;
     padding-right: 15px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.text-danger {
+    color: #8b0000 !important;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.navbar {
+    margin-bottom: 20px;
+}
+
+.navbar-header {
+    float: left;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+.navbar-brand {
+    font-size: 32px;
+    float: none;
+    color: #0b0d0e;
+    text-transform: uppercase;
+}
+
+.dl-horizontal dt {
+    white-space: normal;
 }
 
 .wrapper {
     display: flex;
     width: 100%;
+    align-items: stretch;
 }
 
 #sidebar {
@@ -35,46 +135,171 @@ textarea {
     left: 0;
     height: 100vh;
     z-index: 999;
-    background: #7386D5;
+    background: rgb(24, 5, 18);
     color: #fff;
     transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
 }
 
 #sidebar .sidebar-header {
     padding: 20px;
     background: #6d7fcc;
+    background: rgb(24, 5, 18);
+}
+
+#sidebar .sidebar-contents {
+    overflow-y: auto;
+    heig
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
 }
 
-#sidebar ul p {
-    color: #fff;
-    padding: 10px;
+#hamburger-menu-contents ul li,
+#sidebar ul li {
+    position: relative;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 5px 20px;
+    transition: all 250ms;
 }
 
+#hamburger-menu-contents ul li:hover,
+#sidebar ul li:hover {
+    padding: 5px 35px;
+    background-color: rgba(52, 56, 56, 0.2);
+}
+
+#hamburger-menu-contents li a,
 #sidebar ul li a {
     padding: 10px;
     font-size: 1.1em;
     display: block;
+    color: white;
 }
 
+#hamburger-menu-contents li a:hover,
 #sidebar ul li a:hover {
-    color: #7386D5;
-    background: #fff;
+    text-decoration: none;
 }
 
-#sidebar ul li.active > a, a[aria-expanded="true"] {
+
+#sidebar ul li.active > a,
+a[aria-expanded="true"] {
     color: #fff;
     background: #6d7fcc;
 }
 
-ul ul a {
-    font-size: 0.9em !important;
-    padding-left: 30px !important;
-    background: #6d7fcc;
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+
+    #sidebar.active {
+        margin-left: 0;
+    }
+
+    #sidebarCollapse span {
+        display: none;
+    }
+
+    .wrapper > .container {
+        padding-left: 15px;
+    }
+}
+
+input.form-control::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+input.form-control:-moz-placeholder { /* Firefox 18- */
+    color: rgba(0, 0, 0, 0.4);
+}
+
+input.form-control::-moz-placeholder { /* Firefox 19+ */
+    color: rgba(0, 0, 0, 0.4);
+}
+
+input.form-control:-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+input.form-control[type="email"],
+input.form-control[type="text"],
+input.form-control[type="password"],
+input.form-control[type="checkbox"]:focus,
+input.form-control[type="submit"]:focus {
+    outline: 0;
+}
+
+input.form-control[type="email"],
+input.form-control[type="text"],
+input.form-control[type="password"] {
+    font-weight: 700;
+    font-size: 2em;
+    padding: 30px;
+    border-width: 2px;
+    border-color: #212529;
+    border-style: solid;
+    background: url('transparent');
+    border-radius: 0;
+    color: #212529;
+}
+
+select.form-control {
+    font-weight: 700;
+    font-size: 2em;
+    height: 2em;
+    border-width: 2px;
+    border-color: #212529;
+    border-style: solid;
+    background: url('transparent');
+    border-radius: 0;
+    color: #212529;
+}
+
+.form-row input[type="submit"] {
+    width: 100%;
+}
+
+select:focus.form-control,
+input.form-control[type="email"]:focus,
+input.form-control[type="text"]:focus,
+input.form-control[type="password"]:focus {
+    background: white;
+    transition: all 0.3s ease;
+    color: #222;
+}
+
+select.form-control:invalid {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+select.form-control option[value=""] {
+    display: none;
+}
+
+select.form-control option {
+    color: #000;
+}
+
+.fa-1x {
+    font-size: 1.5rem;
+}
+
+.navbar-toggler {
+    cursor: pointer;
+    width: 64px;
+    height: 64px;
+    background-size: contain;
+    background-image: url('../Images/hamburger-icon.png');
+    position: fixed;
+    top: 5px;
+    right: 12px;
 }
 
 [data-toggle="collapse"].collapsed .if-not-collapsed {

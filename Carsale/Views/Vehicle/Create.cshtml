@@ -1,5 +1,6 @@
 ﻿@using Carsale.DAO.Models
 @using Carsale.ViewModels
+@using Carsale.Extensions
 
 @model CreateVehicleViewModel
 @{
@@ -13,64 +14,69 @@
 @using (Html.BeginForm("Create", "Vehicle", FormMethod.Post, new { id = "create", @Class = "form-horizontal" }))
 {
     <div class="form-group">
-        @Html.LabelFor(m => m.Vehicle.Matriculation)
-        @Html.TextBoxFor(m => m.Vehicle.Matriculation, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Vehicle.Matriculation, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Vehicle.Matriculation).ToHtmlString()) })
         @Html.ValidationMessageFor(m => m.Vehicle.Matriculation)
     </div>
-    
-    <div class="form-group">
 
+    <div class="form-group">
         <div class="collapse-brand-form collapse show" aria-expanded="true">
             <div class="form-group">
-                @Html.LabelFor(m => m.SelectedBrandId)
                 @Html.DropDownListFor(m => m.SelectedBrandId, Model.Brands.Select(brand => new SelectListItem
                 {
                     Value = brand.Id.ToString(),
                     Text = brand.Name
-                }), new { @class = "form-control" })
+                }).AddFirst(new SelectListItem() { Text = "Marque", Value = "", Selected = true }), new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.SelectedBrandId)
             </div>
         </div>
 
         <div class="collapse-brand-form collapse" aria-expanded="false">
             <div class="form-group">
-                @Html.LabelFor(m => m.BrandName)
-                @Html.TextBoxFor(m => m.BrandName, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.BrandName, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.BrandName).ToHtmlString()) })
                 @Html.ValidationMessageFor(m => m.BrandName)
             </div>
         </div>
 
         <div class="form-group">
-            <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target=".collapse-brand-form" aria-expanded="false" aria-controls="collapse-brand-form">
+            <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target=".collapse-brand-form" aria-expanded="false" aria-controls="collapse-brand-form">
                 <span class="if-collapsed">Créer une nouvelle marque</span>
                 <span class="if-not-collapsed">Utiliser une marque existante</span>
             </button>
         </div>
     </div>
-    
-    <div class="form-group">
-        @Html.LabelFor(m => m.Vehicle.Power)
-        @Html.TextBoxFor(m => m.Vehicle.Power, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Vehicle.Power)
+
+    <div class="form-row">
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Vehicle.Power, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Vehicle.Power).ToHtmlString()) })
+            @Html.ValidationMessageFor(m => m.Vehicle.Power)
+        </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Vehicle.Model)
-        @Html.TextBoxFor(m => m.Vehicle.Model, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Vehicle.Model)
+    <div class="form-row">
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Vehicle.Model, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Vehicle.Model).ToHtmlString()) })
+            @Html.ValidationMessageFor(m => m.Vehicle.Model)
+        </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.VehicleColor)
-        @Html.DropDownListFor(m => m.VehicleColor, (Model.VehicleColor as IEnumerable<VehicleColor>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable(), new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.VehicleColor)
+
+    <div class="form-row">
+        <div class="form-group">
+            @Html.DropDownListFor(m => m.VehicleColor, (Model.VehicleColor as IEnumerable<VehicleColor>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AddFirst(new SelectListItem() { Text = "Couleur", Value = "", Selected = true }).AsEnumerable(), new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.VehicleColor)
+        </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Status)
-        @Html.DropDownListFor(m => m.Status, (Model.Status as IEnumerable<StatusVehicle>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable(), new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Status)
+
+    <div class="form-row">
+        <div class="form-group">
+            @Html.DropDownListFor(m => m.Status, (Model.Status as IEnumerable<StatusVehicle>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AddFirst(new SelectListItem() { Text = "Statut", Value = "", Selected = true }).AsEnumerable(), new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Status)
+        </div>
     </div>
-    <div class="col-md-4">
-        <input type="submit" class="btn btn-default" value="Validate" />
+
+    <div class="form-row">
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Créer le vehicule" />
+        </div>
     </div>
 }
-    
+

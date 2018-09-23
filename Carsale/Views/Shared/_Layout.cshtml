@@ -9,52 +9,74 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Carsale", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                    <li>@Html.ActionLink("À propos de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Vehicle", "Create", "Vehicle")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <div class="wrapper">
+        @if (ViewBag.LoggedUser != null)
+        {
+            <nav id="sidebar" class="sidebar hidden-md-down">
+                <div class="sidebar-contents ">
+                    <div class="sidebar-header">
+                        <h3>Navigation</h3>
+                    </div>
 
-    @if (ViewBag.LoggedUser != null)
-    {
-        <div class="wrapper">
-            <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h3>Navigation</h3>
+                    <ul class="list-unstyled components">
+                        <li><a href="#">Element du menu</a></li>
+                        <li><a href="#">Element du menu</a></li>
+                        <li><a href="#">Element du menu</a></li>
+                        <li><a href="#">Element du menu</a></li>
+                        <li><a href="#">Element du menu</a></li>
+                        <li><a href="#">Element du menu</a></li>
+                        <li><a href="#">Element du menu</a></li>
+                        <li><a href="#">Element du menu</a></li>
+                        <li><a href="#">Element du menu</a></li>
+                        <li><a href="#">Element du menu</a></li>
+                        <li><a href="#">Element du menu</a></li>
+                        <li><a href="#">Element du menu</a></li>
+                        <li><a href="#">Element du menu</a></li>
+                        <li><a href="#">Element du menu</a></li>
+                    </ul>
+                </div>
+            </nav>
+        }
+
+        <div class="container" >
+            <div class="navbar navbar-fixed-top">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        <img src="~/Images/head-icon.png" height="64" class="d-inline-block align-top" alt="Carsale icon"><br />
+                        Carsale
+                    </a>
                 </div>
 
-                <ul class="list-unstyled components">
-                    <p>Que voulez vous faire ?</p>
-                    <li>
-                        <a href="#">Voir les comptes utilisateurs</a>
-                    </li>
-                </ul>
-            </nav>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#hamburger-menu-contents" aria-controls="hamburger-menu-contents"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="dark-blue-text"><i class="fa fa-bars fa-1x"></i></span>
+                </button>
+
+                <!-- Collapsible content -->
+                <div class="collapse navbar-collapse" id="hamburger-menu-contents">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="container body-content">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - Carsale</p>
+                </footer>
+            </div>
         </div>
-    }
-
-
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

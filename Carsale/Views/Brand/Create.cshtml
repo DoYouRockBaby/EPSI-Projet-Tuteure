@@ -8,12 +8,11 @@
 {
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Name)
-        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Name).ToHtmlString()) })
         @Html.ValidationMessageFor(m => m.Name)
     </div>
     <div class="col-md-4">
-        <button type="submit" class="btn btn-default">Validate</button>
+        <button type="submit" class="btn btn-default">Créer ma marque</button>
     </div>
 }
 
