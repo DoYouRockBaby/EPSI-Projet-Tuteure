@@ -21,6 +21,13 @@ namespace Carsale.Controllers
             this.brandProvider = brandProvider;
         }
 
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            //Add the current logged user in the ViewBag so it can be accessed in all actions
+            ViewBag.LoggedUser = Session["User"];
+            base.OnActionExecuting(filterContext);
+        }
+
         public ActionResult List()
         {
             ViewBag.Vehicles = vechicleProvider.FindAll();
@@ -63,22 +70,69 @@ namespace Carsale.Controllers
             if (ModelState.IsValid)
             {
                 vechicleProvider.Add(viewModel.Vehicle);
-                return RedirectToAction("List");
+                return RedirectToAction("List","Vehicle");
             }
 
             viewModel.Brands = brandProvider.FindAll();
             return View(viewModel);
         }
 
-        public ActionResult Index()
+
+        [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
+        public ActionResult Edit(String matriculation)
+
         {
+            //Check if the vehicle exists
+            var vehicle = vechicleProvider.FindByMatriculation(matriculation);
+            if (vehicle == null)
+            {
+                return new HttpNotFoundResult("Le véhicule n'existe pas.");
+            }
+
+             //Create default view model
             IEnumerable<Brand> brands = brandProvider.FindAll();
-            var viewModel = new CreateVehicleViewModel();
-            Vehicle vehicle = new Vehicle();
+            var viewModel = new CreateVehicleViewModel();            
             viewModel.Vehicle = vehicle;
             viewModel.Brands = brands;
 
+            
             return View(viewModel);
         }
+
+
+
+        [HttpPost, LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
+        public ActionResult Edit( CreateVehicleViewModel viewModel)
+        {
+            //Check if the user exists
+            String matriculation = viewModel.Vehicle.Matriculation;
+            if (vechicleProvider.FindByMatriculation(matriculation) == null)
+            {
+                return new HttpNotFoundResult("Le véhicule n'existe pas.");
+            }
+           /// viewModel.Vehicle.Matriculation = matriculation;
+            if (ModelState.IsValid)
+            {
+                vechicleProvider.Update(viewModel.Vehicle);
+            }
+            return RedirectToAction("List", "Vehicle");
+        }
+
+
+        [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director })]
+        public ActionResult Delete(String matriculation)
+        {
+            //Check if the user exists
+            if (vechicleProvider.FindByMatriculation(matriculation) == null)
+            {
+                return new HttpNotFoundResult("Le compte n'existe pas.");
+            }
+
+            vechicleProvider.Delete(matriculation);
+
+            return RedirectToAction("List", "Vehicle");
+        }
+
     }
+
 }

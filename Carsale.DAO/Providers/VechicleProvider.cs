@@ -29,7 +29,7 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.Vehicles.Include((v) => v.Brand).Where(e => e.Matriculation == matriculation).FirstOrDefault();
+                return context.Vehicles.SingleOrDefault(m => m.Matriculation == matriculation);
             }
         }
         public void Update(Vehicle vehicle)
