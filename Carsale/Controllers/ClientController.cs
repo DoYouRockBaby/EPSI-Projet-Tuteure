@@ -3,6 +3,7 @@ using Carsale.DAO.Models;
 using Carsale.DAO.Providers;
 using English_Battle_MVC.Attributes;
 using System.Web.Mvc;
+//in commentaire ro bardaram
 
 namespace Carsale.Controllers
 {
@@ -64,30 +65,6 @@ namespace Carsale.Controllers
             ViewBag.Error = "Error Data Is Not Match!";
             return View();
         }
-        ////If the post informations are valid, insert the user in the database
-        //    if (ModelState.IsValid)
-        //    {
-        //        var errorOccured = false;
-        //        if (viewModel.RepeatPassword != viewModel.Account.Password)
-        //        {
-        //            ViewBag.RepeatPasswordError = "Les mots de passes ne correspondent pas.";
-        //            errorOccured = true;
-        //        }
-
-        //        if (accountProvider.FindByEmail(viewModel.Account.Email) != null)
-        //        {
-        //            ViewBag.EmailError = "L'email renseigné existe déjà dans la base de donnée";
-        //            errorOccured = true;
-        //        }
-
-        //        if (!errorOccured)
-        //        {
-        //            accountProvider.Add(viewModel.Account);
-        //            return RedirectToAction("List");
-        //        }
-        //    }
-
-        //    return View(viewModel);
         public ActionResult Detail(int id)
         {
             //Check if the client exists

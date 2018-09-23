@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Carsale.DAO.Models
 {
@@ -17,7 +18,12 @@ namespace Carsale.DAO.Models
     public class Vehicle
     {
         [Key]
-        [Display(Name = "Immatriculation")]
+        public int Id { get; set; }
+
+        public int SaleId { get; set; }
+
+        [Required]
+        [Display(Name = "Immatriculation")] 
         public string Matriculation { get; set; }
 
         [Required]
@@ -44,6 +50,9 @@ namespace Carsale.DAO.Models
 
         [Required]
         [Display(Name = "Status")]
-        public StatusVehicle Status { get; set; }        
+        public StatusVehicle Status { get; set; }
+
+        [ForeignKey("SaleId")]
+        public virtual Sale Sale { get; set; }
     }
 }

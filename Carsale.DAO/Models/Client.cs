@@ -1,4 +1,6 @@
 ﻿using Carsale.DAO.DataAnnotations;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Carsale.DAO.Models
@@ -57,5 +59,7 @@ namespace Carsale.DAO.Models
         [StringLength(255)]
         [Display(Name = "Pays")]
         public string Country { get; set; }
+
+        public ICollection<Sale> Sales { get; set; }
     }
 }
