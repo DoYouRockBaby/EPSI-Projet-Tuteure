@@ -2,6 +2,8 @@
 using Carsale.DAO.Models;
 using Carsale.DAO.Providers;
 using English_Battle_MVC.Attributes;
+using System.Data.Entity;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Carsale.Controllers
@@ -52,6 +54,34 @@ namespace Carsale.Controllers
                 return new HttpNotFoundResult("Le client n'existe pas.");
             }
 
+            return View(client);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Type,FirstName,LastName,SIRET,Name,Description,Address1,Address2,ZipCode,Country")] Client client)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(client).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(client);
+        }
+
+        // GET: Clients/Delete
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Client client = db.Clients.Find(id);
+            if (client == null)
+            {
+                return HttpNotFound();
+            }
             return View(client);
         }
     }
