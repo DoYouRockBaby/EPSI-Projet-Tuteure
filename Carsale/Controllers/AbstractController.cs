@@ -44,6 +44,13 @@ namespace Carsale.Controllers
                             Action = "List"
                         });
 
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Historique des ventes",
+                            Controller = "Sales",
+                            Action = "List"
+                        });
+
                         break;
                     case AccountType.NewVehicleTrader:
                         menuItems.Add(new ControllerActionLink()
@@ -60,6 +67,13 @@ namespace Carsale.Controllers
                             Action = "List"
                         });
 
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Historique des ventes",
+                            Controller = "Sale",
+                            Action = "List"
+                        });
+
                         break;
                     case AccountType.OldVehicleTrader:
                         menuItems.Add(new ControllerActionLink()
@@ -73,6 +87,13 @@ namespace Carsale.Controllers
                         {
                             Text = "Gérer les véhicules",
                             Controller = "Vehicle",
+                            Action = "List"
+                        });
+
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Historique des ventes",
+                            Controller = "Sale",
                             Action = "List"
                         });
 
