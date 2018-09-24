@@ -18,7 +18,7 @@ namespace Carsale.DAO.Models
     public class Vehicle
     {
         [Key]
-        [Required]
+        [Required(ErrorMessage = "Vous devez renseigner l'immatriculation de la voiture")]
         [Display(Name = "Immatriculation")] 
         public string Matriculation { get; set; }
 
@@ -28,20 +28,21 @@ namespace Carsale.DAO.Models
         [Display(Name = "Marque")]
         public int BrandId { get; set; }
         
+        [Required(ErrorMessage = "Vous devez choisir une couleur de voiture")]
         [Display(Name = "Couleur")]
         public VehicleColor VehicleColor { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Vous devez renseigner une puissance de moteur")]
         [Display(Name = "Puissance")]
-        [Range(0, int.MaxValue)]
+        [Range(1, int.MaxValue)]
         public int Power { get; set; }
 
-        [Required]
-        [StringLength(255)]
+        [Required(ErrorMessage = "Vous devez renseigner un modèle de vehicule")]
+        [StringLength(255, ErrorMessage = "La taille maximale du modèle est de 255 caractères")]
         [Display(Name = "Modèle")]
         public string Model { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Vous devez choisir le statut vehicule")]
         [Display(Name = "Status")]
         public StatusVehicle Status { get; set; }
     }

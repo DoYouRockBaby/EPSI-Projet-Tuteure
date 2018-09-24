@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Carsale.DAO.Models
 {
@@ -20,10 +14,11 @@ namespace Carsale.DAO.Models
         #endregion
 
         #region Properties
-        [Required(ErrorMessage = "Date Is Required!")]
+        [Required(ErrorMessage = "Vous devez renseigner une date de vente")]
         public DateTime Date { get; set; }
 
-        [Required(ErrorMessage = "Price Is Required")]
+        [Required(ErrorMessage = "Vous devez renseigner un prix de vente")]
+        [Range(0, double.MaxValue)]
         public double Price { get; set; }
         #endregion
 
