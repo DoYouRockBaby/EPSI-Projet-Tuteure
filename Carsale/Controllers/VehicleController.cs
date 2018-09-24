@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace Carsale.Controllers
 {
     [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.NewVehicleTrader, AccountType.OldVehicleTrader })]
-    public class VehicleController : Controller
+    public class VehicleController : AbstractController
     {
         private VechicleProvider vechicleProvider;
         private BrandProvider brandProvider;
@@ -19,13 +19,6 @@ namespace Carsale.Controllers
         {
             this.vechicleProvider = vechicleProvider;
             this.brandProvider = brandProvider;
-        }
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            //Add the current logged user in the ViewBag so it can be accessed in all actions
-            ViewBag.LoggedUser = Session["User"];
-            base.OnActionExecuting(filterContext);
         }
 
         public ActionResult List()

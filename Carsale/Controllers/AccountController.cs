@@ -6,20 +6,13 @@ using System.Web.Mvc;
 
 namespace Carsale.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : AbstractController
     {
         AccountProvider accountProvider;
 
         public AccountController(AccountProvider accountProvider)
         {
             this.accountProvider = accountProvider;
-        }
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            //Add the current logged user in the ViewBag so it can be accessed in all actions
-            ViewBag.LoggedUser = Session["User"];
-            base.OnActionExecuting(filterContext);
         }
 
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director })]

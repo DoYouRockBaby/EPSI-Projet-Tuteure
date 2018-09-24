@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Carsale.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : AbstractController
     {
         AccountProvider accountProvider;
         CarsaleContext db = new CarsaleContext();
