@@ -14,7 +14,7 @@
     <div class="wrapper">
         @if (ViewBag.LoggedUser != null)
         {
-            <nav id="sidebar" class="sidebar hidden-md-down">
+            <nav id="sidebar" class="sidebar">
                 <div class="sidebar-contents ">
                     <div class="sidebar-header">
                         <h3>Navigation</h3>
@@ -43,7 +43,7 @@
 
                 @if (ViewBag.LoggedUser != null)
                 {
-                    <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#hamburger-menu-contents" aria-controls="hamburger-menu-contents"
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#hamburger-menu-contents" aria-controls="hamburger-menu-contents"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="dark-blue-text"><i class="fa fa-bars fa-1x"></i></span>
                     </button>
