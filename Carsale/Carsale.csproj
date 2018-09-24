@@ -185,7 +185,9 @@
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
+    <Compile Include="Extensions\EnumerableExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -207,6 +209,10 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\company.png" />
+    <Content Include="Images\hamburger-icon.png" />
+    <Content Include="Images\head-icon.png" />
+    <Content Include="Images\person.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -281,10 +287,19 @@
     <Content Include="Views\Client\List.cshtml" />
     <Content Include="Views\Home\ShowAllSale.cshtml" />
     <Content Include="Views\Home\Sale.cshtml" />
+    <Content Include="Views\Client\AddClient.cshtml" />
     <Content Include="Views\Client\Detail.cshtml" />
     <Content Include="Views\Brand\Create.cshtml" />
     <Content Include="Views\Vehicle\List.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Views\Sales\Create.cshtml" />
+    <Content Include="Views\Sales\Delete.cshtml" />
+    <Content Include="Views\Sales\Details.cshtml" />
+    <Content Include="Views\Sales\Edit.cshtml" />
+    <Content Include="Views\Sales\Index.cshtml" />
+=======
     <Content Include="Views\Vehicle\Edit.cshtml" />
+>>>>>>> 0bc519b9d121f162f05bb4568d073f7a7bbdc752
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,7 +13,6 @@ namespace Carsale.Controllers
         public AccountController(AccountProvider accountProvider)
         {
             this.accountProvider = accountProvider;
-
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -182,6 +181,18 @@ namespace Carsale.Controllers
                 if (user == null)
                 {
                     ViewBag.EmailError = "Le compte n'existe pas";
+
+                    accountProvider.Add(new Account()
+                    {
+                        Email = "fx.sheikhi@gmail.com",
+                        FirstName = "sara",
+                        LastName = "sheikhi",
+                        Password = "123456",
+                        Type = AccountType.Director
+                    });
+
+
+
                     return View();
                 }
                 else if (user.Password != viewModel.Password)

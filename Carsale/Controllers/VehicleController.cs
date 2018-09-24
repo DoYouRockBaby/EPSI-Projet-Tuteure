@@ -1,4 +1,5 @@
-﻿using Carsale.DAO.Models;
+﻿using Carsale.DAO;
+using Carsale.DAO.Models;
 using Carsale.DAO.Providers;
 using Carsale.ViewModels;
 using English_Battle_MVC.Attributes;
@@ -14,6 +15,7 @@ namespace Carsale.Controllers
     public class VehicleController : Controller
     {
         private VechicleProvider vechicleProvider;
+        private CarsaleContext db = new CarsaleContext();
         private BrandProvider brandProvider;
         public VehicleController(VechicleProvider vechicleProvider, BrandProvider brandProvider)
         {
@@ -104,6 +106,22 @@ namespace Carsale.Controllers
             return View(viewModel);
         }
 
+        //Delete a new vehicle
+        public ActionResult DeleteNewVehicle(String matriculation)
+
+        {
+            Vehicle vehicle = vechicleProvider.FindByMatriculation(matriculation);
+            if(vehicle == null)
+                {
+                return new HttpNotFoundResult("There are not this vehicle in database!");
+                }
+            if (vehicle.Status == 0 )
+            {
+                vechicleProvider.Delete(matriculation);
+            }
+            return RedirectToAction("List");
+            
+        }
 
 
         [HttpPost, LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
