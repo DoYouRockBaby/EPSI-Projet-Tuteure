@@ -62,15 +62,15 @@
 
     <div class="form-row">
         <div class="form-group">
-            @Html.DropDownListFor(m => m.VehicleColor, (Model.VehicleColor as IEnumerable<VehicleColor>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AddFirst(new SelectListItem() { Text = "Couleur", Value = "", Selected = true }).AsEnumerable(), new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.SelectedVehicleColor, (Model.VehicleColor as IEnumerable<VehicleColor>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AddFirst(new SelectListItem() { Text = "Couleur", Value = "", Selected = true }).AsEnumerable(), new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.VehicleColor)
         </div>
     </div>
 
     <div class="form-row">
         <div class="form-group">
-            @Html.DropDownListFor(m => m.Status, (Model.Status as IEnumerable<StatusVehicle>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AddFirst(new SelectListItem() { Text = "Statut", Value = "", Selected = true }).AsEnumerable(), new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Status)
+            @Html.DropDownListFor(m => m.SelectedStatus, (Model.Status as IEnumerable<StatusVehicle>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AddFirst(new SelectListItem() { Text = "Statut", Value = "", Selected = true }).AsEnumerable(), new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.SelectedStatus)
         </div>
     </div>
 

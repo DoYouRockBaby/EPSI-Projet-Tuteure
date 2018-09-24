@@ -12,7 +12,6 @@ namespace Carsale.DAO.Models
     {
         [Key]
         public int  Id { get; set; }
-
  
         [Required(ErrorMessage = "Date Is Required!")]
         public DateTime SaleDate { get; set; }

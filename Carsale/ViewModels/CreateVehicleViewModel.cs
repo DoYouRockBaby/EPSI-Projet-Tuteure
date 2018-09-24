@@ -23,6 +23,13 @@ namespace Carsale.ViewModels
         public IEnumerable<Brand> Brands { get; set; }
 
         [Required]
+        [Display(Name = "Statut")]
+        public string SelectedStatus { get; set; }
+
+        [Required]
+        [Display(Name = "Couleur")]
+        public string SelectedVehicleColor { get; set; }
+
         public IEnumerable<StatusVehicle> Status
         {
             get
@@ -31,7 +38,6 @@ namespace Carsale.ViewModels
             }
         }
 
-        [Required]
         public IEnumerable<VehicleColor> VehicleColor
         {
             get
