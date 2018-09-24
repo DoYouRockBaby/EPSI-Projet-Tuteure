@@ -3,12 +3,11 @@ using Carsale.DAO.Models;
 using Carsale.DAO.Providers;
 using English_Battle_MVC.Attributes;
 using System.Web.Mvc;
-//in commentaire ro bardaram
 
 namespace Carsale.Controllers
 {
-  //  [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.NewVehicleTrader, AccountType.OldVehicleTrader, AccountType.AccountingDepartmentManager })]
-    public class ClientController : Controller
+    [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.NewVehicleTrader, AccountType.OldVehicleTrader, AccountType.AccountingDepartmentManager })]
+    public class ClientController : AbstractController
     {
         ClientProvider clientProvider;
         CarsaleContext db = new CarsaleContext();
@@ -17,13 +16,6 @@ namespace Carsale.Controllers
         public ClientController(ClientProvider clientProvider)
         {
             this.clientProvider = clientProvider;
-        }
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            //Add the current logged user in the ViewBag so it can be accessed in all actions
-            ViewBag.LoggedUser = Session["User"];
-            base.OnActionExecuting(filterContext);
         }
 
         public ActionResult List()

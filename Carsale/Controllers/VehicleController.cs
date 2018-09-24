@@ -12,7 +12,7 @@ using System.Web.Mvc;
 namespace Carsale.Controllers
 {
     [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.NewVehicleTrader, AccountType.OldVehicleTrader })]
-    public class VehicleController : Controller
+    public class VehicleController : AbstractController
     {
         private VechicleProvider vechicleProvider;
         private CarsaleContext db = new CarsaleContext();
@@ -23,20 +23,32 @@ namespace Carsale.Controllers
             this.brandProvider = brandProvider;
         }
 
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            //Add the current logged user in the ViewBag so it can be accessed in all actions
-            ViewBag.LoggedUser = Session["User"];
-            base.OnActionExecuting(filterContext);
-        }
-
         public ActionResult List()
         {
             ViewBag.Vehicles = vechicleProvider.FindAll();
+            
+            var viewModel = new FilterViewModel()
+            {
+                Brands = brandProvider.FindAll(),
+                SelectedBrandId="0"
+            };
+            return View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult List(FilterViewModel viewModel)
+        {
+            if ((StatusVehicle)Enum.Parse(typeof(StatusVehicle), viewModel.SelectedStatus)< 0 || int.Parse(viewModel.SelectedBrandId) <0|| (VehicleColor)Enum.Parse(typeof(VehicleColor), viewModel.SelectedColor)<0)
+            {
+                List<Vehicle> vehicles = vechicleProvider.FindAll((StatusVehicle)Enum.Parse(typeof(StatusVehicle), viewModel.SelectedStatus),
+                                   int.Parse(viewModel.SelectedBrandId), (VehicleColor)Enum.Parse(typeof(VehicleColor), viewModel.SelectedColor));
+                ViewBag.Vehicles = vehicles;
+            }
+            else { ViewBag.Vehicles = vechicleProvider.FindAll(); }
+          
             return View();
         }
 
-        public ActionResult Create()
+            public ActionResult Create()
         {
             var viewModel = new CreateVehicleViewModel
             {

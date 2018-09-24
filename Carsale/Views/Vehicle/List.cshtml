@@ -1,50 +1,114 @@
 ﻿@using Carsale.DAO.Models
+@using Carsale.Extensions
 
+@model Carsale.ViewModels.FilterViewModel
 @{
     ViewBag.Title = "List";
 }
 
 <h2>List</h2>
 
-@if (ViewBag.LoggedUser!=null && ((ViewBag.LoggedUser as Account).Type == AccountType.Director))
-{
-    @Html.ActionLink("Ajouter un nouveau vehicule neuf", "Create", null, new { @class = "btn btn-default" })
-}
+    @if (ViewBag.LoggedUser != null && ((ViewBag.LoggedUser as Account).Type == AccountType.Director))
+    {
+        @Html.ActionLink("Ajouter un nouveau vehicule neuf", "Create", null, new { @class = "btn btn-default" })
+    }
 
-<table class="table">
-    <thead>
-        <tr>
-            
-            <th scope="col">Marque</th>
-            <th scope="col">Couleur</th>
-            <th scope="col">Puissance</th>
-            <th scope="col">Modèle</th>
-            <th scope="col">Status</th>
-            @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
-            {
-                <th scope="col"></th>
-                <th scope="col"></th>
-            }
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var vehicle in (ViewBag.Vehicles as IEnumerable<Vehicle>))
-        {
-        <tr>
-           
-            <td>@vehicle.Brand.Name</td>
-            <td>@vehicle.VehicleColor.ToString()</td>
-            <td>@vehicle.Power</td>
-            <td>@vehicle.Model</td>
-            <td>@vehicle.Status.ToString()</td>
-            @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
-            {
-                <td>@Html.ActionLink("Editer", "Edit", new { matriculation = vehicle.Matriculation })</td>
-                <td>@Html.ActionLink("Supprimer", "Delete", new { matriculation = vehicle.Matriculation })</td>
-            
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th scope="col">Marque</th>
+                <th scope="col">Couleur</th>
+                <th scope="col">Puissance</th>
+                <th scope="col">Modèle</th>
+                <th scope="col">Status</th>
+                @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
+                {
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+
+
+
+
                 }
-        </tr>
-        }
 
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
+            {
+
+                <p>
+                    <button class="btn btn-success" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="m1 m2 m3">Filtre</button>
+
+
+                </p>
+                @using (Html.BeginForm("List"))
+                {
+                    <div class="row">
+                        <div class="col">
+                            <div class="collapse multi-collapse" id="m1">
+                                <div class="card card-body">
+                                    @Html.LabelFor(m => m.Brands)
+                                    @Html.HiddenFor(m => m.SelectedBrandId, new { @class = "form-control" })
+                                    @Html.DropDownListFor(m => m.SelectedBrandId, Model.Brands.Select(brand => new SelectListItem
+                               {
+                                   Value = brand.Id.ToString(),
+                                   Text = brand.Name
+                               }).AddFirst(new SelectListItem()), new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Brands)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="collapse multi-collapse" id="m2">
+                                <div class="card card-body">
+                                    @Html.LabelFor(m => m.SelectedColor)
+                                    @Html.DropDownListFor(m => m.SelectedColor, (Model.VehicleColors as IEnumerable<VehicleColor>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable().AddFirst(new SelectListItem()), new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.SelectedColor, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="collapse multi-collapse" id="m3">
+                                <div class="card card-body">
+                                    @Html.LabelFor(m => m.SelectedStatus)
+                                    @Html.DropDownListFor(m => m.SelectedStatus, (Model.Status as IEnumerable<StatusVehicle>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable().AddFirst(new SelectListItem()), new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.SelectedStatus)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="collapse multi-collapse" id="m4">
+                                <br />
+
+                                <div class="card card-body">
+                                    <input class="btn btn-success" type="submit" value="Valider" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                }
+                @foreach (var vehicle in (ViewBag.Vehicles as IEnumerable<Vehicle>))
+                {
+                    <tr>
+
+                        <td>@vehicle.Brand.Name</td>
+                        <td>@vehicle.VehicleColor.ToString()</td>
+                        <td>@vehicle.Power</td>
+                        <td>@vehicle.Model</td>
+                        <td>@vehicle.Status.ToString()</td>
+                        @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
+                        {
+                            <td>@Html.ActionLink("Editer", "Edit", new { matriculation = vehicle.Matriculation })</td>
+                            <td>@Html.ActionLink("Supprimer", "Delete", new { matriculation = vehicle.Matriculation })</td>
+
+                        }
+                    </tr>
+                }
+
+            </tbody>
+    </table>

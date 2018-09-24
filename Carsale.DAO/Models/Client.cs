@@ -59,7 +59,5 @@ namespace Carsale.DAO.Models
         [StringLength(255)]
         [Display(Name = "Pays")]
         public string Country { get; set; }
-
-        public ICollection<Sale> Sales { get; set; }
     }
 }

@@ -18,16 +18,8 @@ namespace Carsale.DAO.Models
     public class Vehicle
     {
         [Key]
-<<<<<<< HEAD
-        public int Id { get; set; }
-
-        public int SaleId { get; set; }
-
         [Required]
         [Display(Name = "Immatriculation")] 
-=======
-
->>>>>>> 0bc519b9d121f162f05bb4568d073f7a7bbdc752
         public string Matriculation { get; set; }
 
         [Display(Name = "Marque")]
@@ -52,8 +44,5 @@ namespace Carsale.DAO.Models
         [Required]
         [Display(Name = "Status")]
         public StatusVehicle Status { get; set; }
-
-        [ForeignKey("SaleId")]
-        public virtual Sale Sale { get; set; }
     }
 }

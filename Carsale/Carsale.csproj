@@ -181,6 +181,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Authorizations\LoggedAuthorizationAttribute.cs" />
+    <Compile Include="Controllers\AbstractController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
@@ -191,9 +192,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ControllerActionLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CreateAccountViewModel.cs" />
     <Compile Include="ViewModels\CreateVehicleViewModel.cs" />
+    <Compile Include="ViewModels\FilterViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -283,7 +286,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Vehicle\Create.cshtml" />
-    <Content Include="Views\Vehicle\Index.cshtml" />
     <Content Include="Views\Client\List.cshtml" />
     <Content Include="Views\Home\ShowAllSale.cshtml" />
     <Content Include="Views\Home\Sale.cshtml" />
@@ -291,15 +293,12 @@
     <Content Include="Views\Client\Detail.cshtml" />
     <Content Include="Views\Brand\Create.cshtml" />
     <Content Include="Views\Vehicle\List.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Sales\Create.cshtml" />
     <Content Include="Views\Sales\Delete.cshtml" />
     <Content Include="Views\Sales\Details.cshtml" />
     <Content Include="Views\Sales\Edit.cshtml" />
     <Content Include="Views\Sales\Index.cshtml" />
-=======
     <Content Include="Views\Vehicle\Edit.cshtml" />
->>>>>>> 0bc519b9d121f162f05bb4568d073f7a7bbdc752
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Carsale.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : AbstractController
     {
         AccountProvider accountProvider;
         CarsaleContext db = new CarsaleContext();
@@ -67,17 +67,12 @@ namespace Carsale.Controllers
         }
 
         [HttpPost]
-        public ActionResult Sale(Sale modele)
+        public ActionResult Sale(Sale sale)
         {
             
             if (ModelState.IsValid)
             {
-                db.Sales.Add
-                    (new DAO.Models.Sale()
-                    {
-                        SaleDate = modele.SaleDate,
-                        SalePrice = modele.SalePrice
-                    });
+                db.Sales.Add(sale);
                 db.SaveChanges();
             }
             return View();
