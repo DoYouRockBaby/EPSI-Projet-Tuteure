@@ -25,6 +25,16 @@ namespace Carsale.DAO.Providers
                 return context.Vehicles.Include((v) => v.Brand).ToList();
             }
         }
+        public IEnumerable<Vehicle> FindAll(StatusVehicle statusVehicle)
+        {
+            using (var context = new CarsaleContext())
+            {
+                IQueryable<Vehicle> vehicles = from vehicle in context.Vehicles
+                                               where vehicle.Status == statusVehicle
+                                               select vehicle;
+                return vehicles.ToList();
+            }
+        }
         public Vehicle FindByMatriculation(string matriculation)
         {
             using (var context = new CarsaleContext())

@@ -44,7 +44,12 @@ namespace Carsale.Controllers
 
             return View(viewModel);
         }
+        public ActionResult Index()
+        {
+            var brand = new Brand();
 
+            return View(brand);
+        }
         [HttpPost]
         public ActionResult Create(CreateVehicleViewModel viewModel)
         {

@@ -8,6 +8,7 @@ namespace Carsale.DAO.Models
 {
     public enum StatusVehicle
     {
+        Choose,
         New,
         Used,
         Rental
