@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Carsale.Models
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -19,26 +21,18 @@
                     </div>
 
                     <ul class="list-unstyled components">
-                        <li><a href="#">Element du menu</a></li>
-                        <li><a href="#">Element du menu</a></li>
-                        <li><a href="#">Element du menu</a></li>
-                        <li><a href="#">Element du menu</a></li>
-                        <li><a href="#">Element du menu</a></li>
-                        <li><a href="#">Element du menu</a></li>
-                        <li><a href="#">Element du menu</a></li>
-                        <li><a href="#">Element du menu</a></li>
-                        <li><a href="#">Element du menu</a></li>
-                        <li><a href="#">Element du menu</a></li>
-                        <li><a href="#">Element du menu</a></li>
-                        <li><a href="#">Element du menu</a></li>
-                        <li><a href="#">Element du menu</a></li>
-                        <li><a href="#">Element du menu</a></li>
+                        @foreach (var item in (ViewBag.MenuItems as IEnumerable<ControllerActionLink>))
+                        {
+                            <li>
+                                @Html.ActionLink(item.Text, item.Action, item.Controller)
+                            </li>
+                        }
                     </ul>
                 </div>
             </nav>
         }
 
-        <div class="container" >
+        <div class="container">
             <div class="navbar navbar-fixed-top">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">
@@ -47,26 +41,25 @@
                     </a>
                 </div>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#hamburger-menu-contents" aria-controls="hamburger-menu-contents"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="dark-blue-text"><i class="fa fa-bars fa-1x"></i></span>
-                </button>
+                @if (ViewBag.LoggedUser != null)
+                {
+                    <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#hamburger-menu-contents" aria-controls="hamburger-menu-contents"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="dark-blue-text"><i class="fa fa-bars fa-1x"></i></span>
+                    </button>
 
-                <!-- Collapsible content -->
-                <div class="collapse navbar-collapse" id="hamburger-menu-contents">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
-                        </li>
-                    </ul>
-                </div>
-
+                    <!-- Collapsible content -->
+                    <div class="collapse navbar-collapse hidden-md-up" id="hamburger-menu-contents">
+                        <ul class="navbar-nav mr-auto">
+                            @foreach (var item in (ViewBag.MenuItems as IEnumerable<ControllerActionLink>))
+                            {
+                                <li class="nav-item">
+                                    @Html.ActionLink(item.Text, item.Action, item.Controller)
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
             </div>
 
             <div class="container body-content">
