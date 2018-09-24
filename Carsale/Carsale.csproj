@@ -286,11 +286,15 @@
     <Content Include="Views\Client\Detail.cshtml" />
     <Content Include="Views\Brand\Create.cshtml" />
     <Content Include="Views\Vehicle\List.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Sales\Create.cshtml" />
     <Content Include="Views\Sales\Delete.cshtml" />
     <Content Include="Views\Sales\Details.cshtml" />
     <Content Include="Views\Sales\Edit.cshtml" />
     <Content Include="Views\Sales\Index.cshtml" />
+=======
+    <Content Include="Views\Vehicle\Edit.cshtml" />
+>>>>>>> 0bc519b9d121f162f05bb4568d073f7a7bbdc752
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

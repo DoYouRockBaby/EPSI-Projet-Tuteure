@@ -9,17 +9,16 @@ namespace Carsale.ViewModels
 {
     public class CreateVehicleViewModel
     {
-
-
         [Required (ErrorMessage = "Vehicle doit être renseignée")]
         [Display(Name = "Vehicle")]
         public Vehicle Vehicle { get; set; }
 
-        [Required(ErrorMessage = "La Marque doit être renseignée")]
         [Display(Name = "Marque")]
-        public Brand Brand { get; set; }
+        public string SelectedBrandId { get; set; }
 
-        [Required(ErrorMessage = "Brand doit être renseignée")]
+        [Display(Name = "Nom de la marque")]
+        public string BrandName { get; set; }
+
         [Display(Name = "Brand")]
         public IEnumerable<Brand> Brands { get; set; }
 

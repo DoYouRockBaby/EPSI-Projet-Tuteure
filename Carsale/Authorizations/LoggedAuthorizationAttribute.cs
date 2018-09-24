@@ -15,7 +15,7 @@ namespace English_Battle_MVC.Attributes
             if (user == null)
             {
                 //If the user is not logged, redirect him to the connection page
-                filterContext.Result = new RedirectResult("/Account/Connect");
+                filterContext.Result = new RedirectResult("/Account/Login");
             }
             else if(AllowedTypes != null && AllowedTypes.Length > 0 && !AllowedTypes.Contains(user.Type))
             {
@@ -25,6 +25,7 @@ namespace English_Battle_MVC.Attributes
         }
 
         public void OnAuthenticationChallenge(AuthenticationChallengeContext filterContext)
+
         {
         }
     }

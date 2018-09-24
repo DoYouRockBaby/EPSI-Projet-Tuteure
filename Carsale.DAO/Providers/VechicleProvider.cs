@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Carsale.DAO.Providers
 {
-   public class VechicleProvider
+    public class VechicleProvider
     {
         public void Add(Vehicle vehicle)
         {
@@ -30,6 +30,8 @@ namespace Carsale.DAO.Providers
             using (var context = new CarsaleContext())
             {
                 return context.Sales.Include((v) => v.Brand).Where(e => e.Matriculation == matriculation).FirstOrDefault();
+
+                return context.Vehicles.SingleOrDefault(m => m.Matriculation == matriculation);
             }
         }
         public void Update(Vehicle vehicle)

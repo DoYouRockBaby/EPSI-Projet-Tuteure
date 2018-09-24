@@ -1,0 +1,55 @@
+﻿@using Carsale.DAO.Models
+@using Carsale.ViewModels
+
+@model CreateVehicleViewModel
+
+@{
+    ViewBag.Title = "Modifier Vehicle";
+}
+
+<h2>Update Vehicle</h2>
+
+@using (Html.BeginForm("Edit"))
+{
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.Brands)
+            @Html.HiddenFor(m => m.Vehicle.Matriculation, new { @class = "form-control" })
+            @Html.HiddenFor(m => m.Vehicle.BrandId, new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.Vehicle.BrandId, Model.Brands.Select(brand => new SelectListItem
+       {
+           Value = brand.Id.ToString(),
+           Text = brand.Name
+       }), new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Brands)
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.Vehicle.Power)
+            @Html.TextBoxFor(m => m.Vehicle.Power, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Vehicle.Power)
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.Vehicle.Model)
+            @Html.TextBoxFor(m => m.Vehicle.Model, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Vehicle.Model)
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.VehicleColor)
+            @Html.DropDownListFor(m => m.VehicleColor, (Model.VehicleColor as IEnumerable<VehicleColor>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable(), new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.VehicleColor, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.Status)
+            @Html.DropDownListFor(m => m.Status, (Model.Status as IEnumerable<StatusVehicle>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable(), new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Status)
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit" value="Modifier le véhicule" />
+        </div>
+    </div>
+}

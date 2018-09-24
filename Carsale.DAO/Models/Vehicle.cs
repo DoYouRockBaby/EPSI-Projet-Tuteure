@@ -18,22 +18,23 @@ namespace Carsale.DAO.Models
     public class Vehicle
     {
         [Key]
+<<<<<<< HEAD
         public int Id { get; set; }
 
         public int SaleId { get; set; }
 
         [Required]
         [Display(Name = "Immatriculation")] 
+=======
+
+>>>>>>> 0bc519b9d121f162f05bb4568d073f7a7bbdc752
         public string Matriculation { get; set; }
 
-        [Required]
         [Display(Name = "Marque")]
         public Brand Brand { get; set; }
 
-        [Required]
         [Display(Name = "Marque")]
         public int BrandId { get; set; }
-
         
         [Display(Name = "Couleur")]
         public VehicleColor VehicleColor { get; set; }
