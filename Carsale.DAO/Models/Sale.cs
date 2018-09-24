@@ -14,8 +14,8 @@ namespace Carsale.DAO.Models
         #region Keys
         [Key]
         public int  Id { get; set; }
- 
-        public string VehicleId { get; set; }
+
+        public string VehicleMatriculation { get; set; }
         public int ClientId { get; set; }
         #endregion
 

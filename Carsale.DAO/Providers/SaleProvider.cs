@@ -1,10 +1,7 @@
 ﻿using Carsale.DAO.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Carsale.DAO.Providers
 {
@@ -23,7 +20,7 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.Sales.ToList();
+                return context.Sales.Include(e => e.Vehicle).Include(e => e.Client).ToList();
             }
         }
 
@@ -31,7 +28,7 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.Sales.Find(id);
+                return context.Sales.Include(e => e.Vehicle).Include(e => e.Client).Where(e => e.Id == id).FirstOrDefault();
             }
         }
 

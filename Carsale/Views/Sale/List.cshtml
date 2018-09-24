@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Carsale.DAO.Models.Sale>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>Vehicule</th>
+        <th>Client</th>
+        <th>Prix</th>
+        <th>Date</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Vehicle.Matriculation</td>
+            <td>
+                @if (item.Client.Type == Carsale.DAO.Models.ClientType.Company)
+                {
+                    @item.Client.Name
+                }
+                else
+                {
+                    @item.Client.FirstName @item.Client.LastName
+                }
+            </td>
+            <td>@item.Price €</td>
+            <td>@item.Date.ToString("dd MMM yyyy")</td>
+        </tr>
+    }
+</table>

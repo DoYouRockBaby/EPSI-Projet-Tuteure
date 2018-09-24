@@ -11,7 +11,8 @@ namespace Carsale.ViewModels
     {
         [Display(Name = "Brands")]
         public IEnumerable<Brand> Brands { get; set; }
-
+        [Display(Name = "Vehicles")]
+        public IEnumerable<Vehicle> Vehicles { get; set; }
         [Display(Name = "BrandId")]
         public String SelectedBrandId { get; set; }
         public IEnumerable<StatusVehicle> Status

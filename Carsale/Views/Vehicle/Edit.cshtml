@@ -9,7 +9,7 @@
 
 <h2>Update Vehicle</h2>
 
-@using (Html.BeginForm("Edit"))
+@using (Html.BeginForm("Edit", "Vehicle", FormMethod.Post, new { id = "create", @Class = "form-horizontal" }))
 {
 
     <div class="form-row">

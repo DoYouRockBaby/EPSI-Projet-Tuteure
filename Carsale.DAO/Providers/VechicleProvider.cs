@@ -23,14 +23,14 @@ namespace Carsale.DAO.Providers
                 return context.Vehicles.Include((v) => v.Brand).ToList();
             }
         }
-        public List<Vehicle> FindAll(StatusVehicle? statusVehicle, int? IDBrand, VehicleColor? vehicleColor)
+        public IEnumerable<Vehicle> FindAll(StatusVehicle? statusVehicle, int? IDBrand, VehicleColor? vehicleColor)
         {
             using (var context = new CarsaleContext())
             {
                 IQueryable<Vehicle> vehicles = from vehicle in context.Vehicles
                                                where (statusVehicle == null || vehicle.Status == statusVehicle) && (IDBrand == null || vehicle.BrandId == IDBrand) && (vehicleColor == null || vehicle.VehicleColor == vehicleColor)                                                
                                                select vehicle;
-                return vehicles.ToList();
+                return vehicles.Include((v) => v.Brand).ToList();
             }
         }
         public Vehicle FindByMatriculation(string matriculation)

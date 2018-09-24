@@ -45,5 +45,6 @@ namespace Carsale.ViewModels
                 return (VehicleColor[])Enum.GetValues(typeof(VehicleColor));
             }
         }
+        
     }
 }

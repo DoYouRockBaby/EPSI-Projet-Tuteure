@@ -25,27 +25,48 @@ namespace Carsale.Controllers
 
         public ActionResult List()
         {
-            ViewBag.Vehicles = vechicleProvider.FindAll();
+           
             
             var viewModel = new FilterViewModel()
             {
                 Brands = brandProvider.FindAll(),
-                SelectedBrandId="0"
+                Vehicles = vechicleProvider.FindAll()
             };
             return View(viewModel);
         }
         [HttpPost]
         public ActionResult List(FilterViewModel viewModel)
         {
-            if ((StatusVehicle)Enum.Parse(typeof(StatusVehicle), viewModel.SelectedStatus)< 0 || int.Parse(viewModel.SelectedBrandId) <0|| (VehicleColor)Enum.Parse(typeof(VehicleColor), viewModel.SelectedColor)<0)
+
+            StatusVehicle? selectedStatus = null;
+            int? selectedBrandId = null;
+            VehicleColor? selectedColor = null;
+            
+            if(Enum.TryParse(viewModel.SelectedStatus, out StatusVehicle status))
             {
-                List<Vehicle> vehicles = vechicleProvider.FindAll((StatusVehicle)Enum.Parse(typeof(StatusVehicle), viewModel.SelectedStatus),
-                                   int.Parse(viewModel.SelectedBrandId), (VehicleColor)Enum.Parse(typeof(VehicleColor), viewModel.SelectedColor));
-                ViewBag.Vehicles = vehicles;
+                selectedStatus = status;
             }
-            else { ViewBag.Vehicles = vechicleProvider.FindAll(); }
+            if (int.TryParse(viewModel.SelectedBrandId, out int bradId))
+            {
+                selectedBrandId = bradId;
+            }
+            if (Enum.TryParse(viewModel.SelectedColor, out VehicleColor couleur))
+            {
+                selectedColor = couleur;
+            }
+            IEnumerable<Vehicle> vehicles= vechicleProvider.FindAll();
+           if (selectedStatus==null && selectedBrandId==null && selectedColor == null)
+            {
+                vehicles = vechicleProvider.FindAll();
+            }
+            else { vehicles = vechicleProvider.FindAll(selectedStatus, selectedBrandId, selectedColor); }
+            viewModel = new FilterViewModel()
+            {
+                Brands = brandProvider.FindAll(),
+                Vehicles = vehicles
+            };
           
-            return View();
+            return View(viewModel);
         }
 
             public ActionResult Create()
@@ -143,7 +164,7 @@ namespace Carsale.Controllers
             String matriculation = viewModel.Vehicle.Matriculation;
             if (vechicleProvider.FindByMatriculation(matriculation) == null)
             {
-                return new HttpNotFoundResult("Le véhicule n'existe pas.");
+                return new HttpNotFoundResult("There are not this vehicle in database!");
             }
            /// viewModel.Vehicle.Matriculation = matriculation;
             if (ModelState.IsValid)
@@ -160,7 +181,7 @@ namespace Carsale.Controllers
             //Check if the user exists
             if (vechicleProvider.FindByMatriculation(matriculation) == null)
             {
-                return new HttpNotFoundResult("Le compte n'existe pas.");
+                return new HttpNotFoundResult("There are not this vehicle in database!");
             }
 
             vechicleProvider.Delete(matriculation);

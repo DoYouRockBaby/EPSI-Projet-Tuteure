@@ -13,6 +13,7 @@
         @Html.ActionLink("Ajouter un nouveau vehicule neuf", "Create", null, new { @class = "btn btn-default" })
     }
 
+
     <table class="table">
         <thead>
             <tr>
@@ -26,10 +27,6 @@
                 {
                     <th scope="col"></th>
                     <th scope="col"></th>
-
-
-
-
                 }
 
         </thead>
@@ -39,25 +36,26 @@
             {
 
                 <p>
-                    <button class="btn btn-success" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="m1 m2 m3">Filtre</button>
+                    <button class="btn btn-success" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="m1 m2 m3 m4">Filtre</button>
 
 
                 </p>
-                @using (Html.BeginForm("List"))
+                using (Html.BeginForm("List","Vehicle", FormMethod.Post, new { id = "filter", @Class = "form-horizontal" }))
                 {
+
                     <div class="row">
                         <div class="col">
                             <div class="collapse multi-collapse" id="m1">
                                 <div class="card card-body">
                                     @Html.LabelFor(m => m.Brands)
-                                    @Html.HiddenFor(m => m.SelectedBrandId, new { @class = "form-control" })
                                     @Html.DropDownListFor(m => m.SelectedBrandId, Model.Brands.Select(brand => new SelectListItem
-                               {
-                                   Value = brand.Id.ToString(),
-                                   Text = brand.Name
-                               }).AddFirst(new SelectListItem()), new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.Brands)
+                                    {
+                                        Value = brand.Id.ToString(),
+                                        Text = brand.Name
+                                    })..AddFirst(new SelectListItem()), new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.SelectedBrandId)
                                 </div>
+                                
                             </div>
                         </div>
                         <div class="col">
@@ -84,7 +82,7 @@
                                 <br />
 
                                 <div class="card card-body">
-                                    <input class="btn btn-success" type="submit" value="Valider" />
+                                    <input type="submit" class="btn btn-secondary" value="Rechercher" />
                                 </div>
                             </div>
                         </div>
@@ -92,7 +90,7 @@
                     }
 
                 }
-                @foreach (var vehicle in (ViewBag.Vehicles as IEnumerable<Vehicle>))
+                @foreach (var vehicle in (Model.Vehicles as IEnumerable<Vehicle>))
                 {
                     <tr>
 
@@ -110,5 +108,4 @@
                     </tr>
                 }
 
-            </tbody>
-    </table>
+
