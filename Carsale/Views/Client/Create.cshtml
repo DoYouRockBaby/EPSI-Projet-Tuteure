@@ -1,0 +1,125 @@
+﻿@model Carsale.DAO.Models.Client
+
+@{
+    ViewBag.Title = "AddClient";
+}
+
+<h2>AddClient</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-row">
+        @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label" })
+        <div class="form-group col-md-12">
+            @Html.EnumDropDownListFor(model => model.Type, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.SIRET, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.SIRET, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SIRET, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Address1, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Address1, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Address1, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Address2, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Address2, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Address2, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Country, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @ViewBag.Error
+
+    <div class="form-row">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            function updateTypeFieldsVisibility() {
+                let isPerson = $('#Type').val() === "0";
+                let isCompany = $('#Type').val() === "1";
+
+                $('#FirstName').parent('.form-group').hide();
+                $('#LastName').parent('.form-group').hide();
+                $('#SIRET').parent('.form-group').hide();
+                $('#Name').parent('.form-group').hide();
+                $('#Description').parent('.form-group').hide();
+
+                if (isPerson) {
+                    $('#FirstName').parent('.form-group').show();
+                    $('#LastName').parent('.form-group').show();
+                }
+
+                if (isCompany) {
+                    $('#SIRET').parent('.form-group').show();
+                    $('#Name').parent('.form-group').show();
+                    $('#Description').parent('.form-group').show();
+                }
+            }
+
+            updateTypeFieldsVisibility();
+            $('#Type').change(function () {
+                updateTypeFieldsVisibility();
+            });
+        });
+    </script>
+}

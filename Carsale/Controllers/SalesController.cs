@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
-using Carsale.DAO;
 using Carsale.DAO.Models;
 using Carsale.DAO.Providers;
 
 namespace Carsale.Controllers
 {
-    public class SalesController : Controller
+    public class SalesController : AbstractController
     {
         SaleProvider saleProvider = new SaleProvider();
+
         // GET: Sales
         public ActionResult Index()
         {
@@ -24,15 +18,12 @@ namespace Carsale.Controllers
         // GET: Sales/Details/5
         public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Sale sale = saleProvider.FindById(id);
             if (sale == null)
             {
                 return HttpNotFound();
             }
+
             return View(sale);
         }
 

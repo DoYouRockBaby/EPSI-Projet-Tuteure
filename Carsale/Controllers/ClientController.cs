@@ -10,8 +10,6 @@ namespace Carsale.Controllers
     public class ClientController : AbstractController
     {
         ClientProvider clientProvider;
-        CarsaleContext db = new CarsaleContext();
-
 
         public ClientController(ClientProvider clientProvider)
         {
@@ -24,39 +22,27 @@ namespace Carsale.Controllers
             return View();
         }
 
-        public ActionResult AddClient()
+        public ActionResult Create()
         {
             return View();
         }
+
         //Créer une action ajouter un client dans le controlleur
         [HttpPost]
-        public ActionResult AddClient(Client client)
+        public ActionResult Create(Client client)
         {
             if (ModelState.IsValid)
             {
 
-                db.Clients.Add
-                    (new DAO.Models.Client()
-                    {
-
-                        FirstName = client.FirstName,
-                        LastName = client.LastName,
-                        SIRET = client.SIRET,
-                        Name = client.Name,
-                        Description = client.Description,
-                        Address1 = client.Address1,
-                        Address2 = client.Address2,
-                        ZipCode = client.ZipCode,
-                        Country = client.Country
-
-                    });
-                db.SaveChanges();
+                clientProvider.Add(client);
                 ViewBag.Error = "Data Added Success!";
                 return View();
             }
+
             ViewBag.Error = "Error Data Is Not Match!";
             return View();
         }
+
         public ActionResult Detail(int id)
         {
             //Check if the client exists

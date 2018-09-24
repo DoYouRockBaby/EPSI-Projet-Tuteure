@@ -235,6 +235,7 @@ input.form-control:-ms-input-placeholder {
     color: rgba(0, 0, 0, 0.4);
 }
 
+textarea.form-control,
 input.form-control[type="email"],
 input.form-control[type="text"],
 input.form-control[type="password"],
@@ -243,6 +244,7 @@ input.form-control[type="submit"]:focus {
     outline: 0;
 }
 
+textarea.form-control,
 input.form-control[type="email"],
 input.form-control[type="text"],
 input.form-control[type="password"] {
