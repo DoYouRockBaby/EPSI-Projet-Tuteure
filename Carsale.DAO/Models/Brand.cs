@@ -8,9 +8,9 @@ namespace Carsale.DAO.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(255)]
+        [Required(ErrorMessage = "Vous devez renseigner le nom de votre marque")]
+        [StringLength(255, ErrorMessage = "La taille maximale du nom est de 255 caractères")]
         [Display(Name = "Name")]
-        public String Name { get; set; }
+        public string Name { get; set; }
     }
 }

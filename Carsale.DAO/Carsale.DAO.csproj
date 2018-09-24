@@ -73,6 +73,10 @@
     <Compile Include="Migrations\201809241131213_Vehicle.Designer.cs">
       <DependentUpon>201809241131213_Vehicle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809241445444_Recette.cs" />
+    <Compile Include="Migrations\201809241445444_Recette.Designer.cs">
+      <DependentUpon>201809241445444_Recette.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
@@ -105,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809241131213_Vehicle.resx">
       <DependentUpon>201809241131213_Vehicle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241445444_Recette.resx">
+      <DependentUpon>201809241445444_Recette.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

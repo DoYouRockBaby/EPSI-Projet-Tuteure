@@ -4,9 +4,11 @@ using System.Web.Mvc;
 using Carsale.DAO.Models;
 using Carsale.DAO.Providers;
 using Carsale.ViewModels;
+using English_Battle_MVC.Attributes;
 
 namespace Carsale.Controllers
 {
+    [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.NewVehicleTrader, AccountType.OldVehicleTrader })]
     public class SaleController : AbstractController
     {
         SaleProvider saleProvider = new SaleProvider();

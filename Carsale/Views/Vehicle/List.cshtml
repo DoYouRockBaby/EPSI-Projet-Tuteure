@@ -14,6 +14,7 @@
     }
 
 
+<<<<<<< HEAD
     <table class="table">
         <thead>
             <tr>
@@ -32,6 +33,7 @@
         </thead>
 
         <tbody>
+
             @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
             {
 
@@ -52,7 +54,7 @@
                                     {
                                         Value = brand.Id.ToString(),
                                         Text = brand.Name
-                                    })..AddFirst(new SelectListItem()), new { @class = "form-control" })
+                                    }).AddFirst(new SelectListItem()), new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.SelectedBrandId)
                                 </div>
                                 
