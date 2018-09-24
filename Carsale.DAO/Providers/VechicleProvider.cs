@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Carsale.DAO.Providers
 {
@@ -14,7 +12,7 @@ namespace Carsale.DAO.Providers
         {
             using (var carsaleContext = new CarsaleContext())
             {
-                carsaleContext.Sales.Add(vehicle);
+                carsaleContext.Vehicles.Add(vehicle);
                 carsaleContext.SaveChanges();
             }
         }
@@ -22,16 +20,14 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.Sales.Include((v) => v.Brand).ToList();
+                return context.Vehicles.Include((v) => v.Brand).ToList();
             }
         }
         public Vehicle FindByMatriculation(string matriculation)
         {
             using (var context = new CarsaleContext())
             {
-                return context.Sales.Include((v) => v.Brand).Where(e => e.Matriculation == matriculation).FirstOrDefault();
-
-                return context.Vehicles.SingleOrDefault(m => m.Matriculation == matriculation);
+                return context.Vehicles.Include((v) => v.Brand).Where(e => e.Matriculation == matriculation).FirstOrDefault();
             }
         }
         public void Update(Vehicle vehicle)
@@ -51,7 +47,5 @@ namespace Carsale.DAO.Providers
                 context.SaveChanges();
             }
         }
-
-
     }
 }

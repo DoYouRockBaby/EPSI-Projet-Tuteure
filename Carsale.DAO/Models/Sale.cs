@@ -15,24 +15,21 @@ namespace Carsale.DAO.Models
         [Key]
         public int  Id { get; set; }
  
-        public int VehicleId { get; set; }
+        public string VehicleId { get; set; }
         public int ClientId { get; set; }
         #endregion
 
         #region Properties
         [Required(ErrorMessage = "Date Is Required!")]
-        public DateTime SaleDate { get; set; }
+        public DateTime Date { get; set; }
 
         [Required(ErrorMessage = "Price Is Required")]
-        public long SalePrice { get; set; }
+        public double Price { get; set; }
         #endregion
 
         #region Relations
-        [ForeignKey("VehicleId")]
-        public virtual Vehicle Vehicle { get; set; }
-
-        [ForeignKey("ClientId")]
-        public virtual Client Client { get; set; }
+        public Vehicle Vehicle { get; set; }
+        public Client Client { get; set; }
         #endregion
     }
 }
