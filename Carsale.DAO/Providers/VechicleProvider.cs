@@ -20,7 +20,7 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.Vehicles.Include((v) => v.Brand).ToList();
+                return (from vehicle in context.Vehicles where !(from sale in context.Sales select sale.VehicleMatriculation).Contains(vehicle.Matriculation) select vehicle).Include((v) => v.Brand).ToList();
             }
         }
         public Vehicle FindByMatriculation(string matriculation)

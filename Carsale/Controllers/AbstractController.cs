@@ -25,21 +25,21 @@ namespace Carsale.Controllers
                     case AccountType.Director:
                         menuItems.Add(new ControllerActionLink()
                         {
-                            Text = "Gérer les comptes utilisateurs",
+                            Text = "Comptes utilisateurs",
                             Controller = "Account",
                             Action = "List"
                         });
 
                         menuItems.Add(new ControllerActionLink()
                         {
-                            Text = "Gérer les comptes clients",
+                            Text = "Comptes clients",
                             Controller = "Client",
                             Action = "List"
                         });
 
                         menuItems.Add(new ControllerActionLink()
                         {
-                            Text = "Gérer les véhicules",
+                            Text = "Vehicules en vente",
                             Controller = "Vehicle",
                             Action = "List"
                         });
@@ -47,7 +47,7 @@ namespace Carsale.Controllers
                         menuItems.Add(new ControllerActionLink()
                         {
                             Text = "Historique des ventes",
-                            Controller = "Sales",
+                            Controller = "Sale",
                             Action = "List"
                         });
 
@@ -55,14 +55,14 @@ namespace Carsale.Controllers
                     case AccountType.NewVehicleTrader:
                         menuItems.Add(new ControllerActionLink()
                         {
-                            Text = "Gérer les comptes clients",
+                            Text = "Comptes clients",
                             Controller = "Client",
                             Action = "List"
                         });
 
                         menuItems.Add(new ControllerActionLink()
                         {
-                            Text = "Gérer les véhicules",
+                            Text = "Vehicules en vente",
                             Controller = "Vehicle",
                             Action = "List"
                         });
@@ -78,14 +78,14 @@ namespace Carsale.Controllers
                     case AccountType.OldVehicleTrader:
                         menuItems.Add(new ControllerActionLink()
                         {
-                            Text = "Gérer les comptes clients",
+                            Text = "Comptes clients",
                             Controller = "Client",
                             Action = "List"
                         });
 
                         menuItems.Add(new ControllerActionLink()
                         {
-                            Text = "Gérer les véhicules",
+                            Text = "Vehicules en vente",
                             Controller = "Vehicle",
                             Action = "List"
                         });

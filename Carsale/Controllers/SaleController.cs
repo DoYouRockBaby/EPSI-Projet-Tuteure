@@ -4,9 +4,11 @@ using System.Web.Mvc;
 using Carsale.DAO.Models;
 using Carsale.DAO.Providers;
 using Carsale.ViewModels;
+using English_Battle_MVC.Attributes;
 
 namespace Carsale.Controllers
 {
+    [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.NewVehicleTrader, AccountType.OldVehicleTrader })]
     public class SaleController : AbstractController
     {
         SaleProvider saleProvider = new SaleProvider();
@@ -66,7 +68,7 @@ namespace Carsale.Controllers
                 if(viewModel.ClientId != null && viewModel.ClientId != "" && Int32.TryParse(viewModel.ClientId, out int clientId))
                 {
                     viewModel.Sale.ClientId = clientId;
-                    viewModel.Sale.VehicleMatriculation = id
+                    viewModel.Sale.VehicleMatriculation = id;
                 }
             }
 
