@@ -57,27 +57,43 @@ namespace Carsale.Controllers
             return View(client);
         }
 
+
+        // GET: client/Edit
+        public ActionResult Edit(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Client oEntity = clientProvider.FindById(id);
+            if (oEntity == null)
+            {
+                return HttpNotFound();
+            }
+            return View(oEntity);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Type,FirstName,LastName,SIRET,Name,Description,Address1,Address2,ZipCode,Country")] Client client)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(client).State = EntityState.Modified;
-                db.SaveChanges();
+                clientProvider.Update(client);
                 return RedirectToAction("Index");
             }
             return View(client);
         }
 
         // GET: Clients/Delete
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client client = db.Clients.Find(id);
+            Client client = clientProvider.FindById(id);
+
             if (client == null)
             {
                 return HttpNotFound();
