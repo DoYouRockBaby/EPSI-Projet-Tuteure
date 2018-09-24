@@ -78,6 +78,7 @@
     <Compile Include="Providers\BrandProvider.cs" />
     <Compile Include="Providers\ClientProvider.cs" />
     <Compile Include="Providers\AccountProvider.cs" />
+    <Compile Include="Providers\SaleProvider.cs" />
     <Compile Include="Providers\VechicleProvider.cs" />
   </ItemGroup>
   <ItemGroup>

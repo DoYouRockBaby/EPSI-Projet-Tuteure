@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Carsale.DAO.Providers
 {
-   public class VechicleProvider
+    public class VechicleProvider
     {
         public void Add(Vehicle vehicle)
         {
             using (var carsaleContext = new CarsaleContext())
             {
-                carsaleContext.Vehicles.Add(vehicle);
+                carsaleContext.Sales.Add(vehicle);
                 carsaleContext.SaveChanges();
             }
         }
@@ -22,13 +22,15 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.Vehicles.Include((v) => v.Brand).ToList();
+                return context.Sales.Include((v) => v.Brand).ToList();
             }
         }
         public Vehicle FindByMatriculation(string matriculation)
         {
             using (var context = new CarsaleContext())
             {
+                return context.Sales.Include((v) => v.Brand).Where(e => e.Matriculation == matriculation).FirstOrDefault();
+
                 return context.Vehicles.SingleOrDefault(m => m.Matriculation == matriculation);
             }
         }

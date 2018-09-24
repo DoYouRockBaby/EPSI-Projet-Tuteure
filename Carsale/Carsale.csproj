@@ -186,6 +186,7 @@
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Extensions\EnumerableExtension.cs" />
     <Compile Include="Global.asax.cs">
@@ -287,9 +288,15 @@
     <Content Include="Views\Client\List.cshtml" />
     <Content Include="Views\Home\ShowAllSale.cshtml" />
     <Content Include="Views\Home\Sale.cshtml" />
+    <Content Include="Views\Client\AddClient.cshtml" />
     <Content Include="Views\Client\Detail.cshtml" />
     <Content Include="Views\Brand\Create.cshtml" />
     <Content Include="Views\Vehicle\List.cshtml" />
+    <Content Include="Views\Sales\Create.cshtml" />
+    <Content Include="Views\Sales\Delete.cshtml" />
+    <Content Include="Views\Sales\Details.cshtml" />
+    <Content Include="Views\Sales\Edit.cshtml" />
+    <Content Include="Views\Sales\Index.cshtml" />
     <Content Include="Views\Vehicle\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
