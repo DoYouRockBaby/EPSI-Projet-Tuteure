@@ -27,7 +27,7 @@ namespace Carsale.DAO.Providers
             }
         }
 
-        public Account FindById(int id)
+        public Account FindById(int? id)
         {
             using (var context = new CarsaleContext())
             {
@@ -52,7 +52,7 @@ namespace Carsale.DAO.Providers
             }
         }
 
-        public void Delete(int id)
+        public void Delete(int? id)
         {
             using (var context = new CarsaleContext())
             {
