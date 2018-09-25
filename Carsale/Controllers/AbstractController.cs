@@ -58,6 +58,13 @@ namespace Carsale.Controllers
                             Action = "List"
                         });
 
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Taux horaires",
+                            Controller = "HourlyRate",
+                            Action = "List"
+                        });
+
                         break;
                     case AccountType.NewVehicleTrader:
                         menuItems.Add(new ControllerActionLink()
@@ -122,12 +129,26 @@ namespace Carsale.Controllers
                             Action = "List"
                         });
 
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Taux horaires",
+                            Controller = "HourlyRate",
+                            Action = "List"
+                        });
+
                         break;
                     case AccountType.MaintenanceAgent:
                         menuItems.Add(new ControllerActionLink()
                         {
                             Text = "Catalogue des pièces",
                             Controller = "Part",
+                            Action = "List"
+                        });
+
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Taux horaires",
+                            Controller = "HourlyRate",
                             Action = "List"
                         });
 

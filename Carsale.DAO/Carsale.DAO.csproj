@@ -85,11 +85,25 @@
     <Compile Include="Migrations\201809250734024_VehiclePrice.Designer.cs">
       <DependentUpon>201809250734024_VehiclePrice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809251426097_HourlyRate.cs" />
+    <Compile Include="Migrations\201809251426097_HourlyRate.Designer.cs">
+      <DependentUpon>201809251426097_HourlyRate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809251435269_HourlyRate2.cs" />
+    <Compile Include="Migrations\201809251435269_HourlyRate2.Designer.cs">
+      <DependentUpon>201809251435269_HourlyRate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809251444561_HourlyRate3.cs" />
+    <Compile Include="Migrations\201809251444561_HourlyRate3.Designer.cs">
+      <DependentUpon>201809251444561_HourlyRate3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientType.cs" />
+    <Compile Include="Models\HourlyRate.cs" />
+    <Compile Include="Models\MaintenanceType.cs" />
     <Compile Include="Models\Part.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\StatusVehicle.cs" />
@@ -99,6 +113,7 @@
     <Compile Include="Providers\BrandProvider.cs" />
     <Compile Include="Providers\ClientProvider.cs" />
     <Compile Include="Providers\AccountProvider.cs" />
+    <Compile Include="Providers\HourlyRateProvider.cs" />
     <Compile Include="Providers\PartProvider.cs" />
     <Compile Include="Providers\SaleProvider.cs" />
     <Compile Include="Providers\VechicleProvider.cs" />
@@ -128,6 +143,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809250734024_VehiclePrice.resx">
       <DependentUpon>201809250734024_VehiclePrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809251426097_HourlyRate.resx">
+      <DependentUpon>201809251426097_HourlyRate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809251435269_HourlyRate2.resx">
+      <DependentUpon>201809251435269_HourlyRate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809251444561_HourlyRate3.resx">
+      <DependentUpon>201809251444561_HourlyRate3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
