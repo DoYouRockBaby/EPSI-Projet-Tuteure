@@ -1,5 +1,7 @@
 ﻿@using Carsale.DAO.Models
 
+@model IEnumerable<Part>
+
 @{
     ViewBag.Title = "List";
 }
@@ -14,12 +16,10 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Prénom</th>
             <th scope="col">Nom</th>
-            <th scope="col">Email</th>
-            <th scope="col">Type</th>
-            <th scope="col"></th>
-            @if ((ViewBag.LoggedUser as Account).Type == AccountType.MaintainVehicleManager || (ViewBag.LoggedUser as Account).Type == AccountType.MaintenanceAgent)
+            <th scope="col">Description</th>
+            <th scope="col">Prix</th>
+            @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
             {
                 <th scope="col"></th>
                 <th scope="col"></th>
@@ -27,21 +27,16 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var account in (ViewBag.Accounts as IEnumerable<Account>))
+        @foreach (var part in Model)
         {
             <tr>
-                <td>@account.FirstName</td>
-                <td>@account.LastName</td>
-                <td>@account.Email</td>
-                <td>@account.Type.ToString()</td>
-                <td>@Html.ActionLink("Voir Plus", "Detail", new { id = account.Id })</td>
+                <td>@part.Name</td>
+                <td>@part.Description</td>
+                <td>@part.Price €</td>
                 @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
                 {
-                }
-                @if ((ViewBag.LoggedUser as Account).Type == AccountType.MaintainVehicleManager || (ViewBag.LoggedUser as Account).Type == AccountType.MaintenanceAgent)
-                {
-                    <td>@Html.ActionLink("Editer", "Edit", new { id = account.Id })</td>
-                    <td>@Html.ActionLink("Supprimer", "Delete", new { id = account.Id })</td>
+                    <td>@Html.ActionLink("Editer", "Edit", new { id = part.Id })</td>
+                    <td>@Html.ActionLink("Supprimer", "Delete", new { id = part.Id })</td>
                 }
             </tr>
         }
