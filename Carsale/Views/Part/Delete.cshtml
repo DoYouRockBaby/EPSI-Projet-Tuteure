@@ -1,0 +1,53 @@
+﻿@using Carsale.DAO.Models
+
+@model Part
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+
+<h3>Voulez vous vraiment supprimer cette pièce ?</h3>
+<div>
+    <h4>Pièce</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm("DeleteConfirmed", "Part", new { id = Model.Id }, FormMethod.Post, null))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-primary" />
+        </div>
+        <div>
+            @Html.ActionLink("Retour au catalogue des pièces", "List")
+        </div>
+    }
+</div>

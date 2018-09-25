@@ -61,10 +61,6 @@ namespace Carsale.Controllers
         // GET: client/Edit
         public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Client oEntity = clientProvider.FindById(id);
             if (oEntity == null)
             {
@@ -88,16 +84,12 @@ namespace Carsale.Controllers
         // GET: Clients/Delete
         public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Client client = clientProvider.FindById(id);
-
             if (client == null)
             {
                 return HttpNotFound();
             }
+
             return View(client);
         }
     }
