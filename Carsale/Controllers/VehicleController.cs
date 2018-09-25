@@ -103,14 +103,15 @@ namespace Carsale.Controllers
             if (vechicleProvider.FindByMatriculation(viewModel.Vehicle.Matriculation) != null)
             {
                 ViewBag.MatriculationError = "Un véhicule existe déjà avec cette Immatriculation.";
-                viewModel.Vehicle.Matriculation = null;
             }
-
-            //If valid, add the vehicle to the database
-            if (ModelState.IsValid)
+            else
             {
-                vechicleProvider.Add(viewModel.Vehicle);
-                return RedirectToAction("List", "Vehicle");
+                //If valid, add the vehicle to the database
+                if (ModelState.IsValid)
+                {
+                    vechicleProvider.Add(viewModel.Vehicle);
+                    return RedirectToAction("List", "Vehicle");
+                }
             }
 
             viewModel.Brands = brandProvider.FindAll();

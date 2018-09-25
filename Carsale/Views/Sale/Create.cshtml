@@ -18,8 +18,8 @@
         <div class="form-group">
             <span class="input-symbol-euro">
                 @Html.TextBoxFor(model => model.Sale.Price, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Sale.Price).ToHtmlString()) })
-                @Html.ValidationMessageFor(model => model.Sale.Price, "", new { @class = "text-danger" })
             </span>
+            @Html.ValidationMessageFor(model => model.Sale.Price, ViewBag.PriceError as string, new { @class = "text-danger" })
         </div>
     </div>
 
@@ -35,6 +35,6 @@
     </div>
 
     <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
+        <input type="submit" value="Vendre" class="btn btn-primary" />
     </div>
 }
