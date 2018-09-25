@@ -85,6 +85,10 @@
     <Compile Include="Migrations\201809250734024_VehiclePrice.Designer.cs">
       <DependentUpon>201809250734024_VehiclePrice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809251341367_BrahimLeo.cs" />
+    <Compile Include="Migrations\201809251341367_BrahimLeo.Designer.cs">
+      <DependentUpon>201809251341367_BrahimLeo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
@@ -101,7 +105,7 @@
     <Compile Include="Providers\AccountProvider.cs" />
     <Compile Include="Providers\PartProvider.cs" />
     <Compile Include="Providers\SaleProvider.cs" />
-    <Compile Include="Providers\VechicleProvider.cs" />
+    <Compile Include="Providers\VehicleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -128,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809250734024_VehiclePrice.resx">
       <DependentUpon>201809250734024_VehiclePrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809251341367_BrahimLeo.resx">
+      <DependentUpon>201809251341367_BrahimLeo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

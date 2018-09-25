@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Carsale.DAO.Providers
 {
-    public class VechicleProvider
+    public class VehicleProvider
     {
         public void Add(Vehicle vehicle)
         {

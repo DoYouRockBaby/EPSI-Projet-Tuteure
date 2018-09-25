@@ -11,11 +11,11 @@ namespace Carsale.Controllers
     [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.NewVehicleTrader, AccountType.OldVehicleTrader })]
     public class VehicleController : AbstractController
     {
-        private VechicleProvider vechicleProvider;
+        private VehicleProvider vehicleProvider;
         private BrandProvider brandProvider;
-        public VehicleController(VechicleProvider vechicleProvider, BrandProvider brandProvider)
+        public VehicleController(VehicleProvider vehicleProvider, BrandProvider brandProvider)
         {
-            this.vechicleProvider = vechicleProvider;
+            this.vehicleProvider = vehicleProvider;
             this.brandProvider = brandProvider;
         }
 
@@ -26,7 +26,7 @@ namespace Carsale.Controllers
             var viewModel = new FilterViewModel()
             {
                 Brands = brandProvider.FindAll(),
-                Vehicles = vechicleProvider.FindAll()
+                Vehicles = vehicleProvider.FindAll()
             };
             return View(viewModel);
         }
@@ -51,14 +51,14 @@ namespace Carsale.Controllers
                 selectedColor = couleur;
             }
 
-            IEnumerable<Vehicle> vehicles= vechicleProvider.FindAll();
+            IEnumerable<Vehicle> vehicles= vehicleProvider.FindAll();
             if (selectedStatus==null && selectedBrandId==null && selectedColor == null)
             {
-                vehicles = vechicleProvider.FindAll();
+                vehicles = vehicleProvider.FindAll();
             }
             else
             {
-                vehicles = vechicleProvider.FindAll(selectedStatus, selectedBrandId, selectedColor);
+                vehicles = vehicleProvider.FindAll(selectedStatus, selectedBrandId, selectedColor);
             }
 
             viewModel = new FilterViewModel()
@@ -85,7 +85,7 @@ namespace Carsale.Controllers
         public ActionResult Create(CreateVehicleViewModel viewModel)
         {
             String m = viewModel.Vehicle.Matriculation;
-            if (vechicleProvider.FindByMatriculation(m) != null)
+            if (vehicleProvider.FindByMatriculation(m) != null)
             {
                  ViewBag.MatriculationError = "Un véhicule existe déjà avec cette Immatriculation.";
             }
@@ -113,7 +113,7 @@ namespace Carsale.Controllers
                     //If valid, add the vehicle to the database
                     if (ModelState.IsValid)
                     {
-                        vechicleProvider.Add(viewModel.Vehicle);
+                    vehicleProvider.Add(viewModel.Vehicle);
                         return RedirectToAction("List", "Vehicle");
                     }
             }
@@ -128,7 +128,7 @@ namespace Carsale.Controllers
 
         {
             //Check if the vehicle exists
-            var vehicle = vechicleProvider.FindByMatriculation(matriculation);
+            var vehicle = vehicleProvider.FindByMatriculation(matriculation);
             if (vehicle == null)
             {
                 return new HttpNotFoundResult("Le véhicule n'existe pas.");
@@ -152,7 +152,7 @@ namespace Carsale.Controllers
 
             //Check if the user exists
             String matriculation = viewModel.Vehicle.Matriculation;
-            if (vechicleProvider.FindByMatriculation(matriculation) == null)
+            if (vehicleProvider.FindByMatriculation(matriculation) == null)
             {
                 return new HttpNotFoundResult("There are not this vehicle in database!");
             }
@@ -170,17 +170,19 @@ namespace Carsale.Controllers
 
                 };
 
-                vechicleProvider.Update(viewModel.Vehicle);
+                vehicleProvider.Update(viewModel.Vehicle);
             }
             return RedirectToAction("List", "Vehicle");
         } 
         //Delete a new vehicle
         public ActionResult Delete(String matriculation)
         {
-            Vehicle vehicle = vechicleProvider.FindByMatriculation(matriculation);
-
-            ViewBag.Matriculation= matriculation;
-            ViewBag.vehicle = vehicle;
+            Vehicle vehicle = vehicleProvider.FindByMatriculation(matriculation);
+            if (vehicle==null)
+            {
+                return HttpNotFound();
+            }
+           
             ViewBag.BrandName = vehicle.Brand.Name;
 
             return View(vehicle);
@@ -189,18 +191,32 @@ namespace Carsale.Controllers
 
 
 
-        [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director })]
-        public ActionResult Delete(Vehicle vehicle)
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeletePost(String matriculation)
         {
+            Vehicle vehicle = vehicleProvider.FindByMatriculation(matriculation);
             //Check if the user exists
             if (vehicle == null)
             {
                 return new HttpNotFoundResult("There are not this vehicle in database!");
             }
 
-            vechicleProvider.Delete(vehicle.Matriculation);
+            vehicleProvider.Delete(vehicle.Matriculation);
 
             return RedirectToAction("List", "Vehicle");
+        }
+
+        [LoggedAuthorization]
+        public ActionResult Detail(String matriculation)
+        {
+            //Check if the user exists
+            var vehicle = vehicleProvider.FindByMatriculation(matriculation);
+            if (vehicle == null)
+            {
+                return new HttpNotFoundResult("Le compte n'existe pas.");
+            }
+
+            return View(vehicleProvider);
         }
 
     }
