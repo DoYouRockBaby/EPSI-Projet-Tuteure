@@ -15,8 +15,8 @@ namespace Carsale.Controllers
     public class VehicleController : AbstractController
     {
         private VechicleProvider vechicleProvider;
+        private CarsaleContext db = new CarsaleContext();
         private BrandProvider brandProvider;
-
         public VehicleController(VechicleProvider vechicleProvider, BrandProvider brandProvider)
         {
             this.vechicleProvider = vechicleProvider;
@@ -25,6 +25,8 @@ namespace Carsale.Controllers
 
         public ActionResult List()
         {
+           
+            
             var viewModel = new FilterViewModel()
             {
                 Brands = brandProvider.FindAll(),
@@ -67,7 +69,7 @@ namespace Carsale.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Create()
+            public ActionResult Create()
         {
             var viewModel = new CreateVehicleViewModel
             {
@@ -77,11 +79,22 @@ namespace Carsale.Controllers
 
             return View(viewModel);
         }
+        public ActionResult Index()
+        {
+            var brand = new Brand();
 
+            return View(brand);
+        }
         [HttpPost]
         public ActionResult Create(CreateVehicleViewModel viewModel)
         {
-            if (viewModel.BrandName != null && viewModel.BrandName != "")
+            String m = viewModel.Vehicle.Matriculation;
+            if (vechicleProvider.FindByMatriculation(m) != null)
+            {
+                 ViewBag.MatriculationError = "Un véhicule existe déjà avec cette Immatriculation.";
+            }
+            else { 
+            if(viewModel.BrandName != null && viewModel.BrandName != "")
             {
                 //If the brandname is filled in the form, create a new brand
                 viewModel.Vehicle.Brand = new Brand()
@@ -99,18 +112,12 @@ namespace Carsale.Controllers
                 }
 
             }
-
-            if (vechicleProvider.FindByMatriculation(viewModel.Vehicle.Matriculation) != null)
-            {
-                ViewBag.MatriculationError = "Un véhicule existe déjà avec cette Immatriculation.";
-                viewModel.Vehicle.Matriculation = null;
             }
-
             //If valid, add the vehicle to the database
             if (ModelState.IsValid)
             {
                 vechicleProvider.Add(viewModel.Vehicle);
-                return RedirectToAction("List", "Vehicle");
+                return RedirectToAction("List","Vehicle");
             }
 
             viewModel.Brands = brandProvider.FindAll();
@@ -140,9 +147,38 @@ namespace Carsale.Controllers
             
             return View(viewModel);
         }
+        //Update a  vehicle
+        [HttpPost]
+        public ActionResult Edit(CreateVehicleViewModel viewModel)
+        {
 
+            //Check if the user exists
+            String matriculation = viewModel.Vehicle.Matriculation;
+            if (vechicleProvider.FindByMatriculation(matriculation) == null)
+            {
+                return new HttpNotFoundResult("There are not this vehicle in database!");
+            }
+
+            {
+                Vehicle vehicle = new Vehicle()
+                {
+                    Matriculation = viewModel.Vehicle.Matriculation,
+                    BrandId = int.Parse(viewModel.SelectedBrandId),
+                    Model = viewModel.Vehicle.Model,
+                    VehicleColor = (VehicleColor)Enum.Parse(typeof(VehicleColor), viewModel.SelectedVehicleColor),
+                    Status = (StatusVehicle)Enum.Parse(typeof(StatusVehicle), viewModel.SelectedStatus),
+                    Power = viewModel.Vehicle.Power
+
+
+                };
+
+                vechicleProvider.Update(viewModel.Vehicle);
+            }
+            return RedirectToAction("List", "Vehicle");
+        } 
         //Delete a new vehicle
         public ActionResult DeleteNewVehicle(String matriculation)
+
         {
             Vehicle vehicle = vechicleProvider.FindByMatriculation(matriculation);
             if(vehicle == null)
@@ -156,24 +192,9 @@ namespace Carsale.Controllers
             return RedirectToAction("List");
             
         }
-        
-        [HttpPost, LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
-        public ActionResult Edit( CreateVehicleViewModel viewModel)
-        {
-            //Check if the user exists
-            String matriculation = viewModel.Vehicle.Matriculation;
-            if (vechicleProvider.FindByMatriculation(matriculation) == null)
-            {
-                return new HttpNotFoundResult("There are not this vehicle in database!");
-            }
-           /// viewModel.Vehicle.Matriculation = matriculation;
-            if (ModelState.IsValid)
-            {
-                vechicleProvider.Update(viewModel.Vehicle);
-            }
-            return RedirectToAction("List", "Vehicle");
-        }
-        
+
+
+
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director })]
         public ActionResult Delete(String matriculation)
         {
@@ -188,18 +209,6 @@ namespace Carsale.Controllers
             return RedirectToAction("List", "Vehicle");
         }
 
-        [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
-        public ActionResult Detail(String matriculation)
-        {
-            //Check if the vehicle exists
-            var vehicle = vechicleProvider.FindByMatriculation(matriculation);
-            if (vehicle == null)
-            {
-                return new HttpNotFoundResult("Le véhicule n'existe pas.");
-            }
-
-            return View(vehicle);
-        }
     }
 
 }
