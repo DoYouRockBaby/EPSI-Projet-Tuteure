@@ -1,12 +1,9 @@
-﻿using Carsale.DAO;
-using Carsale.DAO.Models;
+﻿using Carsale.DAO.Models;
 using Carsale.DAO.Providers;
 using Carsale.ViewModels;
 using English_Battle_MVC.Attributes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Carsale.Controllers
@@ -54,12 +51,17 @@ namespace Carsale.Controllers
             {
                 selectedColor = couleur;
             }
+
             IEnumerable<Vehicle> vehicles= vechicleProvider.FindAll();
-           if (selectedStatus==null && selectedBrandId==null && selectedColor == null)
+            if (selectedStatus==null && selectedBrandId==null && selectedColor == null)
             {
                 vehicles = vechicleProvider.FindAll();
             }
-            else { vehicles = vechicleProvider.FindAll(selectedStatus, selectedBrandId, selectedColor); }
+            else
+            {
+                vehicles = vechicleProvider.FindAll(selectedStatus, selectedBrandId, selectedColor);
+            }
+
             viewModel = new FilterViewModel()
             {
                 Brands = brandProvider.FindAll(),
@@ -101,6 +103,7 @@ namespace Carsale.Controllers
                 {
                     Name = viewModel.BrandName
                 };
+
                 viewModel.Vehicle.BrandId = 0;
             }
             else
@@ -110,14 +113,20 @@ namespace Carsale.Controllers
                 {
                     viewModel.Vehicle.Brand = brandProvider.FindById(brandId);
                 }
+            }
 
-            }
-            }
-            //If valid, add the vehicle to the database
-            if (ModelState.IsValid)
+            if (vechicleProvider.FindByMatriculation(viewModel.Vehicle.Matriculation) != null)
             {
-                vechicleProvider.Add(viewModel.Vehicle);
-                return RedirectToAction("List","Vehicle");
+                ViewBag.MatriculationError = "Un véhicule existe déjà avec cette Immatriculation.";
+            }
+            else
+            {
+                //If valid, add the vehicle to the database
+                if (ModelState.IsValid)
+                {
+                    vechicleProvider.Add(viewModel.Vehicle);
+                    return RedirectToAction("List", "Vehicle");
+                }
             }
 
             viewModel.Brands = brandProvider.FindAll();

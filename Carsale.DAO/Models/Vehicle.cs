@@ -24,7 +24,7 @@ namespace Carsale.DAO.Models
 
         [Required(ErrorMessage = "Vous devez renseigner un prix d'achat")]
         [Display(Name = "Prix")]
-        [Range(0, double.MaxValue)]
+        [Range(1, double.MaxValue)]
         public double Price { get; set; }
 
         [Display(Name = "Marque")]
