@@ -132,10 +132,11 @@ namespace Carsale.Controllers
 
              //Create default view model
             IEnumerable<Brand> brands = brandProvider.FindAll();
-            var viewModel = new CreateVehicleViewModel();            
-            viewModel.Vehicle = vehicle;
-            viewModel.Brands = brands;
-
+            var viewModel = new CreateVehicleViewModel()
+            {
+                Vehicle = vehicle,
+                Brands = brands
+            };
 
             
             return View(viewModel);
