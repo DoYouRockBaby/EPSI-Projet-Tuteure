@@ -88,6 +88,12 @@ namespace Carsale.Controllers
         [HttpPost]
         public ActionResult Create(CreateVehicleViewModel viewModel)
         {
+            String m = viewModel.Vehicle.Matriculation;
+            if (vechicleProvider.FindByMatriculation(m) != null)
+            {
+                ViewBag.MatriculationError = "Un véhicule existe déjà avec cette Immatriculation.";
+            }
+            else { 
             if(viewModel.BrandName != null && viewModel.BrandName != "")
             {
                 //If the brandname is filled in the form, create a new brand
@@ -106,7 +112,7 @@ namespace Carsale.Controllers
                 }
 
             }
-
+            }
             //If valid, add the vehicle to the database
             if (ModelState.IsValid)
             {
@@ -118,7 +124,7 @@ namespace Carsale.Controllers
             return View(viewModel);
         }
 
-
+        //Edit a  vehicle
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
         public ActionResult Edit(String matriculation)
 
@@ -141,7 +147,35 @@ namespace Carsale.Controllers
             
             return View(viewModel);
         }
+        //Update a  vehicle
+        [HttpPost]
+        public ActionResult Edit(CreateVehicleViewModel viewModel)
+        {
 
+            //Check if the user exists
+            String matriculation = viewModel.Vehicle.Matriculation;
+            if (vechicleProvider.FindByMatriculation(matriculation) == null)
+            {
+                return new HttpNotFoundResult("There are not this vehicle in database!");
+            }
+
+            {
+                Vehicle vehicle = new Vehicle()
+                {
+                    Matriculation = viewModel.Vehicle.Matriculation,
+                    BrandId = int.Parse(viewModel.SelectedBrandId),
+                    Model = viewModel.Vehicle.Model,
+                    VehicleColor = (VehicleColor)Enum.Parse(typeof(VehicleColor), viewModel.SelectedVehicleColor),
+                    Status = (StatusVehicle)Enum.Parse(typeof(StatusVehicle), viewModel.SelectedStatus),
+                    Power = viewModel.Vehicle.Power
+
+
+                };
+
+                vechicleProvider.Update(viewModel.Vehicle);
+            }
+            return RedirectToAction("List", "Vehicle");
+        } 
         //Delete a new vehicle
         public ActionResult DeleteNewVehicle(String matriculation)
 
@@ -159,34 +193,6 @@ namespace Carsale.Controllers
             
         }
 
-
-        [HttpPost, LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
-        public ActionResult Edit( CreateVehicleViewModel viewModel)
-        {
-            
-            //Check if the user exists
-            String matriculation = viewModel.Vehicle.Matriculation;
-            if (vechicleProvider.FindByMatriculation(matriculation) == null)
-            {
-                return new HttpNotFoundResult("There are not this vehicle in database!");
-            }
-            
-            {
-                Vehicle vehicle = new Vehicle
-                {
-                    BrandId = int.Parse(viewModel.SelectedBrandId),
-                     Model=viewModel.Vehicle.Model,
-                     VehicleColor=(VehicleColor)Enum.Parse(typeof(VehicleColor),viewModel.SelectedVehicleColor),
-                     Status=(StatusVehicle)Enum.Parse(typeof(StatusVehicle),viewModel.SelectedStatus),
-                     Power=viewModel.Vehicle.Power
-
-
-                };
-                
-                vechicleProvider.Update(viewModel.Vehicle);
-            }
-            return RedirectToAction("List", "Vehicle");
-        }
 
 
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director })]
