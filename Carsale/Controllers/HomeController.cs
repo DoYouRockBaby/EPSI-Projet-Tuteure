@@ -13,7 +13,6 @@ namespace Carsale.Controllers
     public class HomeController : AbstractController
     {
         AccountProvider accountProvider;
-        CarsaleContext db = new CarsaleContext();
 
         public HomeController(AccountProvider accountProvider)
         {
@@ -64,29 +63,6 @@ namespace Carsale.Controllers
         public ActionResult Contact()
         {
             return View();
-        }
-
-        [HttpPost]
-        public ActionResult Sale(Sale sale)
-        {
-            
-            if (ModelState.IsValid)
-            {
-                db.Sales.Add(sale);
-                db.SaveChanges();
-            }
-            return View();
-        }
-
-        public ActionResult Sale()
-        {
-            return View();
-        }
-
-        public ActionResult ShowAllSale()
-        {
-            var mySaleList = db.Sales.ToList();
-            return View(mySaleList);
         }
     }
 }

@@ -1,0 +1,18 @@
+﻿@using Carsale.DAO.Models
+
+@model Vehicle
+
+@{
+    ViewBag.Title = Model.Matriculation + " - " + Model.Model + Model.Brand.Name;
+}
+
+<h2>Detail</h2>
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Matriculation - @Model.Price €</h5>
+        <p class="card-text">@Model.Model @Model.Brand.Name</p>
+        <p class="card-text">@Model.VehicleColor.ToString() - @Model.Power W</p>
+        <p class="card-text">@Model.Status.ToString()</p>
+    </div>
+</div>

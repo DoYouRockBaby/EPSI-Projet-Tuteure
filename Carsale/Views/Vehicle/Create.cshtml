@@ -15,7 +15,14 @@
 {
     <div class="form-group">
         @Html.TextBoxFor(m => m.Vehicle.Matriculation, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Vehicle.Matriculation).ToHtmlString()) })
-        @Html.ValidationMessageFor(m => m.Vehicle.Matriculation)
+        @Html.ValidationMessageFor(m => m.Vehicle.Matriculation, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <span class="input-symbol-euro">
+            @Html.TextBoxFor(m => m.Vehicle.Price, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Vehicle.Price).ToHtmlString()) })
+        </span>
+        @Html.ValidationMessageFor(m => m.Vehicle.Price, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
@@ -26,14 +33,14 @@
                     Value = brand.Id.ToString(),
                     Text = brand.Name
                 }).AddFirst(new SelectListItem() { Text = "Marque", Value = "", Selected = true }), new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.SelectedBrandId)
+                @Html.ValidationMessageFor(m => m.SelectedBrandId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="collapse-brand-form collapse" aria-expanded="false">
             <div class="form-group">
                 @Html.TextBoxFor(m => m.BrandName, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.BrandName).ToHtmlString()) })
-                @Html.ValidationMessageFor(m => m.BrandName)
+                @Html.ValidationMessageFor(m => m.BrandName, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -49,28 +56,28 @@
     <div class="form-row">
         <div class="form-group">
             @Html.TextBoxFor(m => m.Vehicle.Power, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Vehicle.Power).ToHtmlString()) })
-            @Html.ValidationMessageFor(m => m.Vehicle.Power)
+            @Html.ValidationMessageFor(m => m.Vehicle.Power, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-row">
         <div class="form-group">
             @Html.TextBoxFor(m => m.Vehicle.Model, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Vehicle.Model).ToHtmlString()) })
-            @Html.ValidationMessageFor(m => m.Vehicle.Model)
+            @Html.ValidationMessageFor(m => m.Vehicle.Model, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-row">
         <div class="form-group">
             @Html.DropDownListFor(m => m.SelectedVehicleColor, (Model.VehicleColor as IEnumerable<VehicleColor>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AddFirst(new SelectListItem() { Text = "Couleur", Value = "", Selected = true }).AsEnumerable(), new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.VehicleColor)
+            @Html.ValidationMessageFor(m => m.SelectedVehicleColor, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-row">
         <div class="form-group">
             @Html.DropDownListFor(m => m.SelectedStatus, (Model.Status as IEnumerable<StatusVehicle>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AddFirst(new SelectListItem() { Text = "Statut", Value = "", Selected = true }).AsEnumerable(), new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.SelectedStatus)
+            @Html.ValidationMessageFor(m => m.SelectedStatus, "", new { @class = "text-danger" })
         </div>
     </div>
 

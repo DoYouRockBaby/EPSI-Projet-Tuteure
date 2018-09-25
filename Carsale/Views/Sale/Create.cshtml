@@ -16,8 +16,10 @@
 
     <div class="form-row">
         <div class="form-group">
-            @Html.TextBoxFor(model => model.Sale.Price, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Sale.Price).ToHtmlString()) })
-            @Html.ValidationMessageFor(model => model.Sale.Price, "", new { @class = "text-danger" })
+            <span class="input-symbol-euro">
+                @Html.TextBoxFor(model => model.Sale.Price, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Sale.Price).ToHtmlString()) })
+                @Html.ValidationMessageFor(model => model.Sale.Price, "", new { @class = "text-danger" })
+            </span>
         </div>
     </div>
 
@@ -28,7 +30,7 @@
                 Value = client.Id.ToString(),
                 Text = (client.Type == Carsale.DAO.Models.ClientType.Company) ? client.Name : client.FirstName + " " + client.LastName
             }).AddFirst(new SelectListItem() { Text = "Client", Value = "", Selected = true }), new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.ClientId)
+            @Html.ValidationMessageFor(m => m.ClientId, "", new { @class = "text-danger" })
         </div>
     </div>
 

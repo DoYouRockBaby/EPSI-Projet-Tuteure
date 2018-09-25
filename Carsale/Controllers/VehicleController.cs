@@ -15,8 +15,8 @@ namespace Carsale.Controllers
     public class VehicleController : AbstractController
     {
         private VechicleProvider vechicleProvider;
-        private CarsaleContext db = new CarsaleContext();
         private BrandProvider brandProvider;
+
         public VehicleController(VechicleProvider vechicleProvider, BrandProvider brandProvider)
         {
             this.vechicleProvider = vechicleProvider;
@@ -25,8 +25,6 @@ namespace Carsale.Controllers
 
         public ActionResult List()
         {
-           
-            
             var viewModel = new FilterViewModel()
             {
                 Brands = brandProvider.FindAll(),
@@ -69,7 +67,7 @@ namespace Carsale.Controllers
             return View(viewModel);
         }
 
-            public ActionResult Create()
+        public ActionResult Create()
         {
             var viewModel = new CreateVehicleViewModel
             {
@@ -79,12 +77,7 @@ namespace Carsale.Controllers
 
             return View(viewModel);
         }
-        public ActionResult Index()
-        {
-            var brand = new Brand();
 
-            return View(brand);
-        }
         [HttpPost]
         public ActionResult Create(CreateVehicleViewModel viewModel)
         {
@@ -116,8 +109,7 @@ namespace Carsale.Controllers
             viewModel.Brands = brandProvider.FindAll();
             return View(viewModel);
         }
-
-
+        
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
         public ActionResult Edit(String matriculation)
 
@@ -141,7 +133,6 @@ namespace Carsale.Controllers
 
         //Delete a new vehicle
         public ActionResult DeleteNewVehicle(String matriculation)
-
         {
             Vehicle vehicle = vechicleProvider.FindByMatriculation(matriculation);
             if(vehicle == null)
@@ -155,8 +146,7 @@ namespace Carsale.Controllers
             return RedirectToAction("List");
             
         }
-
-
+        
         [HttpPost, LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
         public ActionResult Edit( CreateVehicleViewModel viewModel)
         {
@@ -173,8 +163,7 @@ namespace Carsale.Controllers
             }
             return RedirectToAction("List", "Vehicle");
         }
-
-
+        
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director })]
         public ActionResult Delete(String matriculation)
         {
@@ -189,6 +178,18 @@ namespace Carsale.Controllers
             return RedirectToAction("List", "Vehicle");
         }
 
+        [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
+        public ActionResult Detail(String matriculation)
+        {
+            //Check if the vehicle exists
+            var vehicle = vechicleProvider.FindByMatriculation(matriculation);
+            if (vehicle == null)
+            {
+                return new HttpNotFoundResult("Le véhicule n'existe pas.");
+            }
+
+            return View(vehicle);
+        }
     }
 
 }

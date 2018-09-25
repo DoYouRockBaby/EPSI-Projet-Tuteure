@@ -81,6 +81,10 @@
     <Compile Include="Migrations\201809250709181_Jesaispas.Designer.cs">
       <DependentUpon>201809250709181_Jesaispas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809250734024_VehiclePrice.cs" />
+    <Compile Include="Migrations\201809250734024_VehiclePrice.Designer.cs">
+      <DependentUpon>201809250734024_VehiclePrice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
@@ -119,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809250709181_Jesaispas.resx">
       <DependentUpon>201809250709181_Jesaispas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809250734024_VehiclePrice.resx">
+      <DependentUpon>201809250734024_VehiclePrice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

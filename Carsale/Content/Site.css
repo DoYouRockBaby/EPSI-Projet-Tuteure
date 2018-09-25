@@ -318,3 +318,21 @@ select.form-control option {
 [data-toggle="collapse"]:not(.collapsed) .if-collapsed {
     display: none;
 }
+
+.input-symbol-euro {
+    position: relative;
+    font-size: 2em;
+}
+
+.input-symbol-euro input.form-control {
+    padding-right: 18px;
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.input-symbol-euro:after {
+    position: absolute;
+    top: calc(1em + 9px);
+    content: "€";
+    right: -24px;
+}
