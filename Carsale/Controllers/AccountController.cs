@@ -132,10 +132,11 @@ namespace Carsale.Controllers
                     ViewBag.EmailError = "L'email renseigné existe déjà dans la base de donnée";
                     errorOccured = true;
                 }
-
+          
                 if (!errorOccured)
                 {
                     accountProvider.Update(viewModel.Account);
+                    return RedirectToAction("List");
                 }
             }
 
