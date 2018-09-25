@@ -6,6 +6,7 @@ using English_Battle_MVC.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -25,8 +26,6 @@ namespace Carsale.Controllers
 
         public ActionResult List()
         {
-           
-            
             var viewModel = new FilterViewModel()
             {
                 Brands = brandProvider.FindAll(),
@@ -134,11 +133,16 @@ namespace Carsale.Controllers
             IEnumerable<Brand> brands = brandProvider.FindAll();
             var viewModel = new CreateVehicleViewModel()
             {
+                SelectedBrandId= vehicle.BrandId.ToString(),
                 Vehicle = vehicle,
-                Brands = brands
+                Brands = brands,
+                Power=vehicle.Power,
+                Model = vehicle.Model,
+                SelectedStatus = vehicle.Status,
+                SelectedVehicleColor = vehicle.VehicleColor,
+                BrandName = vehicle.Brand.Name
             };
-
-            
+            ViewBag.Brands= brandProvider.FindAll();
             return View(viewModel);
         }
         //Update a  vehicle
@@ -157,49 +161,72 @@ namespace Carsale.Controllers
                 Vehicle vehicle = new Vehicle()
                 {
                     Matriculation = viewModel.Vehicle.Matriculation,
-                    BrandId = int.Parse(viewModel.SelectedBrandId),
-                    Model = viewModel.Vehicle.Model,
-                    VehicleColor = (VehicleColor)Enum.Parse(typeof(VehicleColor), viewModel.SelectedVehicleColor),
-                    Status = (StatusVehicle)Enum.Parse(typeof(StatusVehicle), viewModel.SelectedStatus),
-                    Power = viewModel.Vehicle.Power
-
+                    BrandId =int.Parse(viewModel.SelectedBrandId),
+                    Model = viewModel.Model,
+                    VehicleColor = viewModel.SelectedVehicleColor,
+                    Status =viewModel.SelectedStatus,
+                    Power = viewModel.Power,
 
                 };
 
-                vechicleProvider.Update(viewModel.Vehicle);
+                vechicleProvider.Update(vehicle);
             }
             return RedirectToAction("List", "Vehicle");
-        } 
-        //Delete a new vehicle
-        public ActionResult DeleteNewVehicle(String matriculation)
+        }
+        ////Delete a new vehicle
+        //public ActionResult DeleteNewVehicle(String matriculation)
 
+        //{
+        //    Vehicle vehicle = vechicleProvider.FindByMatriculation(matriculation);
+        //    if(vehicle == null)
+        //        {
+        //        return new HttpNotFoundResult("There are not this vehicle in database!");
+        //        }
+        //    if (vehicle.Status == 0 )
+        //    {
+        //        vechicleProvider.Delete(matriculation);
+        //    }
+        //    return RedirectToAction("List");
+
+        //}
+
+
+
+        //[LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director })]
+        //public ActionResult Delete(String matriculation)
+        //{
+        //    //Check if the user exists
+        //    if (vechicleProvider.FindByMatriculation(matriculation) == null)
+        //    {
+        //        return new HttpNotFoundResult("There are not this vehicle in database!");
+        //    }
+
+        //    vechicleProvider.Delete(matriculation);
+
+        //    return RedirectToAction("List", "Vehicle");
+        //}
+        // GET: Vehicles/Delete
+        public ActionResult Delete(string matriculation)
         {
-            Vehicle vehicle = vechicleProvider.FindByMatriculation(matriculation);
-            if(vehicle == null)
-                {
-                return new HttpNotFoundResult("There are not this vehicle in database!");
-                }
-            if (vehicle.Status == 0 )
+            if (matriculation == null)
             {
-                vechicleProvider.Delete(matriculation);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return RedirectToAction("List");
-            
+            Vehicle vehicle = vechicleProvider.FindByMatriculation(matriculation);
+            if (vehicle == null)
+            {
+                return HttpNotFound();
+            }
+            return View(vehicle);
         }
 
-
-
+        // POST: Vehicles/Delete
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director })]
-        public ActionResult Delete(String matriculation)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string matriculation)
         {
-            //Check if the user exists
-            if (vechicleProvider.FindByMatriculation(matriculation) == null)
-            {
-                return new HttpNotFoundResult("There are not this vehicle in database!");
-            }
-
             vechicleProvider.Delete(matriculation);
-
             return RedirectToAction("List", "Vehicle");
         }
 

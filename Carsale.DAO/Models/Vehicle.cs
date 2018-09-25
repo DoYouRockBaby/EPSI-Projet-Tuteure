@@ -22,6 +22,11 @@ namespace Carsale.DAO.Models
         [Display(Name = "Immatriculation")] 
         public string Matriculation { get; set; }
 
+        [Required(ErrorMessage = "Vous devez renseigner un prix d'achat")]
+        [Display(Name = "Prix")]
+        [Range(1, double.MaxValue)]
+        public double Price { get; set; }
+
         [Display(Name = "Marque")]
         public Brand Brand { get; set; }
 
@@ -45,5 +50,6 @@ namespace Carsale.DAO.Models
         [Required(ErrorMessage = "Vous devez choisir le statut vehicule")]
         [Display(Name = "Status")]
         public StatusVehicle Status { get; set; }
+
     }
 }

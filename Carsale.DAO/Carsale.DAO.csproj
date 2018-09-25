@@ -81,6 +81,14 @@
     <Compile Include="Migrations\201809250709181_Jesaispas.Designer.cs">
       <DependentUpon>201809250709181_Jesaispas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809250959196_Account.cs" />
+    <Compile Include="Migrations\201809250959196_Account.Designer.cs">
+      <DependentUpon>201809250959196_Account.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809252300443_editDeletVehicle.cs" />
+    <Compile Include="Migrations\201809252300443_editDeletVehicle.Designer.cs">
+      <DependentUpon>201809252300443_editDeletVehicle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
@@ -119,6 +127,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809250709181_Jesaispas.resx">
       <DependentUpon>201809250709181_Jesaispas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809250959196_Account.resx">
+      <DependentUpon>201809250959196_Account.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809252300443_editDeletVehicle.resx">
+      <DependentUpon>201809252300443_editDeletVehicle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
