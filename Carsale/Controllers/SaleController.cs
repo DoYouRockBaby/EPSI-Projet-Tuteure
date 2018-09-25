@@ -11,9 +11,9 @@ namespace Carsale.Controllers
     [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.NewVehicleTrader, AccountType.OldVehicleTrader })]
     public class SaleController : AbstractController
     {
-        SaleProvider saleProvider = new SaleProvider();
-        ClientProvider clientProvider = new ClientProvider();
-        VechicleProvider vehicleProvider = new VechicleProvider();
+        SaleProvider saleProvider;
+        ClientProvider clientProvider;
+        VechicleProvider vehicleProvider;
 
         public SaleController(SaleProvider saleProvider, ClientProvider clientProvider, VechicleProvider vehicleProvider)
         {

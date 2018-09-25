@@ -90,6 +90,7 @@
     <Compile Include="Models\AccountType.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientType.cs" />
+    <Compile Include="Models\Part.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\StatusVehicle.cs" />
     <Compile Include="Models\Brand.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Providers\BrandProvider.cs" />
     <Compile Include="Providers\ClientProvider.cs" />
     <Compile Include="Providers\AccountProvider.cs" />
+    <Compile Include="Providers\PartProvider.cs" />
     <Compile Include="Providers\SaleProvider.cs" />
     <Compile Include="Providers\VechicleProvider.cs" />
   </ItemGroup>

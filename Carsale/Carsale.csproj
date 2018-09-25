@@ -186,6 +186,7 @@
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PartController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Images\Extensions\EnumerableExtension.cs" />
@@ -303,6 +304,7 @@
     <Content Include="Views\Client\Edit.cshtml" />
     <Content Include="Views\Vehicle\Detail.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
+    <Content Include="Views\Part\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
