@@ -81,7 +81,7 @@ namespace Carsale.Controllers
         [HttpPost]
         public ActionResult Create(CreateVehicleViewModel viewModel)
         {
-            if(viewModel.BrandName != null && viewModel.BrandName != "")
+            if (viewModel.BrandName != null && viewModel.BrandName != "")
             {
                 //If the brandname is filled in the form, create a new brand
                 viewModel.Vehicle.Brand = new Brand()
@@ -97,19 +97,27 @@ namespace Carsale.Controllers
                 {
                     viewModel.Vehicle.Brand = brandProvider.FindById(brandId);
                 }
+
+            }
+
+            if (vechicleProvider.FindByMatriculation(viewModel.Vehicle.Matriculation) != null)
+            {
+                ViewBag.MatriculationError = "Un véhicule existe déjà avec cette Immatriculation.";
+                viewModel.Vehicle.Matriculation = null;
             }
 
             //If valid, add the vehicle to the database
             if (ModelState.IsValid)
             {
                 vechicleProvider.Add(viewModel.Vehicle);
-                return RedirectToAction("List","Vehicle");
+                return RedirectToAction("List", "Vehicle");
             }
 
             viewModel.Brands = brandProvider.FindAll();
             return View(viewModel);
         }
-        
+
+        //Edit a  vehicle
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
         public ActionResult Edit(String matriculation)
 
@@ -123,9 +131,11 @@ namespace Carsale.Controllers
 
              //Create default view model
             IEnumerable<Brand> brands = brandProvider.FindAll();
-            var viewModel = new CreateVehicleViewModel();            
-            viewModel.Vehicle = vehicle;
-            viewModel.Brands = brands;
+            var viewModel = new CreateVehicleViewModel()
+            {
+                Vehicle = vehicle,
+                Brands = brands
+            };
 
             
             return View(viewModel);
