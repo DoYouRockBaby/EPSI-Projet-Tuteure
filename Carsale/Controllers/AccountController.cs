@@ -2,6 +2,7 @@
 using Carsale.DAO.Providers;
 using Carsale.ViewModels;
 using English_Battle_MVC.Attributes;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Carsale.Controllers
@@ -140,18 +141,34 @@ namespace Carsale.Controllers
 
             return View(viewModel);
         }
-
+        // GET: Accounts/Delete
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director })]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            //Check if the user exists
-            if (accountProvider.FindById(id) == null)
+            if (id == null)
             {
-                return new HttpNotFoundResult("Le compte n'existe pas.");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            accountProvider.Delete(id);
+            Account account = accountProvider.FindById(id);
+            if (account == null)
+            {
+                return HttpNotFound();
+            }
+            return View(account);
+        }
 
+        // POST: Accounts/Delete
+        [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director })]
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            if (accountProvider.FindById(id) == null)
+                {
+                  return new HttpNotFoundResult("Le compte n'existe pas.");
+                }
+            accountProvider.Delete(id);
             return RedirectToAction("List");
         }
 
