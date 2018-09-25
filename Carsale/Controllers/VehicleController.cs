@@ -1,12 +1,9 @@
-﻿using Carsale.DAO;
-using Carsale.DAO.Models;
+﻿using Carsale.DAO.Models;
 using Carsale.DAO.Providers;
 using Carsale.ViewModels;
 using English_Battle_MVC.Attributes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Carsale.Controllers
@@ -93,6 +90,7 @@ namespace Carsale.Controllers
                 {
                     Name = viewModel.BrandName
                 };
+
                 viewModel.Vehicle.BrandId = 0;
             }
             else
