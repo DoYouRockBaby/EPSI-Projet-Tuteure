@@ -186,6 +186,8 @@
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HourlyRateController.cs" />
+    <Compile Include="Controllers\PartController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Images\Extensions\EnumerableExtension.cs" />
@@ -197,6 +199,7 @@
     <Compile Include="ViewModels\CreateAccountViewModel.cs" />
     <Compile Include="ViewModels\CreateVehicleViewModel.cs" />
     <Compile Include="ViewModels\FilterViewModel.cs" />
+    <Compile Include="ViewModels\HourlyRateHistoryViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\SellViewModel.cs" />
   </ItemGroup>
@@ -235,6 +238,8 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\jquery.mask.js" />
+    <Content Include="Scripts\jquery.mask.min.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -301,8 +306,17 @@
     <Content Include="Views\Sale\List.cshtml" />
     <Content Include="Views\Vehicle\Edit.cshtml" />
     <Content Include="Views\Client\Edit.cshtml" />
+    <Content Include="Views\Vehicle\Detail.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Vehicle\Delete.cshtml" />
+=======
+    <Content Include="Views\Part\List.cshtml" />
+    <Content Include="Views\Part\Create.cshtml" />
+    <Content Include="Views\Part\Edit.cshtml" />
+    <Content Include="Views\Part\Delete.cshtml" />
+    <Content Include="Views\HourlyRate\List.cshtml" />
+>>>>>>> b29fba23ba9df2d9f625a28a2d6b3f2249bd5926
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

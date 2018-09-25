@@ -1,4 +1,5 @@
-﻿using Carsale.DAO.Models;
+﻿using Carsale.DAO.DataAnnotations;
+using Carsale.DAO.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,6 +15,8 @@ namespace Carsale.ViewModels
         public Vehicle Vehicle { get; set; }
 
         [Display(Name = "Marque")]
+        [RequiredIfOtherEquals("BrandName", "", ErrorMessage = "Vous devez choisir une marque")]
+        [RequiredIfOtherEquals("BrandName", null, ErrorMessage = "Vous devez choisir une marque")]
         public string SelectedBrandId { get; set; }
 
         [Display(Name = "Nom de la marque")]

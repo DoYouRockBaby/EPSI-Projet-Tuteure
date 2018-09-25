@@ -1,13 +1,15 @@
-﻿using Carsale.DAO;
-using Carsale.DAO.Models;
+﻿using Carsale.DAO.Models;
 using Carsale.DAO.Providers;
 using Carsale.ViewModels;
 using English_Battle_MVC.Attributes;
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.Linq;
 using System.Net;
 using System.Web;
+=======
+>>>>>>> b29fba23ba9df2d9f625a28a2d6b3f2249bd5926
 using System.Web.Mvc;
 
 namespace Carsale.Controllers
@@ -16,8 +18,8 @@ namespace Carsale.Controllers
     public class VehicleController : AbstractController
     {
         private VechicleProvider vechicleProvider;
-        private CarsaleContext db = new CarsaleContext();
         private BrandProvider brandProvider;
+
         public VehicleController(VechicleProvider vechicleProvider, BrandProvider brandProvider)
         {
             this.vechicleProvider = vechicleProvider;
@@ -53,12 +55,17 @@ namespace Carsale.Controllers
             {
                 selectedColor = couleur;
             }
+
             IEnumerable<Vehicle> vehicles= vechicleProvider.FindAll();
-           if (selectedStatus==null && selectedBrandId==null && selectedColor == null)
+            if (selectedStatus==null && selectedBrandId==null && selectedColor == null)
             {
                 vehicles = vechicleProvider.FindAll();
             }
-            else { vehicles = vechicleProvider.FindAll(selectedStatus, selectedBrandId, selectedColor); }
+            else
+            {
+                vehicles = vechicleProvider.FindAll(selectedStatus, selectedBrandId, selectedColor);
+            }
+
             viewModel = new FilterViewModel()
             {
                 Brands = brandProvider.FindAll(),
@@ -68,7 +75,7 @@ namespace Carsale.Controllers
             return View(viewModel);
         }
 
-            public ActionResult Create()
+        public ActionResult Create()
         {
             var viewModel = new CreateVehicleViewModel
             {
@@ -78,22 +85,18 @@ namespace Carsale.Controllers
 
             return View(viewModel);
         }
-        public ActionResult Index()
-        {
-            var brand = new Brand();
 
-            return View(brand);
-        }
         [HttpPost]
         public ActionResult Create(CreateVehicleViewModel viewModel)
         {
-            if(viewModel.BrandName != null && viewModel.BrandName != "")
+            if (viewModel.BrandName != null && viewModel.BrandName != "")
             {
                 //If the brandname is filled in the form, create a new brand
                 viewModel.Vehicle.Brand = new Brand()
                 {
                     Name = viewModel.BrandName
                 };
+
                 viewModel.Vehicle.BrandId = 0;
             }
             else
@@ -103,14 +106,20 @@ namespace Carsale.Controllers
                 {
                     viewModel.Vehicle.Brand = brandProvider.FindById(brandId);
                 }
-
             }
 
-            //If valid, add the vehicle to the database
-            if (ModelState.IsValid)
+            if (vechicleProvider.FindByMatriculation(viewModel.Vehicle.Matriculation) != null)
             {
-                vechicleProvider.Add(viewModel.Vehicle);
-                return RedirectToAction("List","Vehicle");
+                ViewBag.MatriculationError = "Un véhicule existe déjà avec cette Immatriculation.";
+            }
+            else
+            {
+                //If valid, add the vehicle to the database
+                if (ModelState.IsValid)
+                {
+                    vechicleProvider.Add(viewModel.Vehicle);
+                    return RedirectToAction("List", "Vehicle");
+                }
             }
 
             viewModel.Brands = brandProvider.FindAll();
@@ -145,6 +154,7 @@ namespace Carsale.Controllers
             ViewBag.Brands= brandProvider.FindAll();
             return View(viewModel);
         }
+<<<<<<< HEAD
         //Update a  vehicle
         [HttpPost]
         public ActionResult Edit(CreateVehicleViewModel viewModel)
@@ -207,6 +217,11 @@ namespace Carsale.Controllers
         //}
         // GET: Vehicles/Delete
         public ActionResult Delete(string matriculation)
+=======
+
+        //Delete a new vehicle
+        public ActionResult DeleteNewVehicle(String matriculation)
+>>>>>>> b29fba23ba9df2d9f625a28a2d6b3f2249bd5926
         {
             if (matriculation == null)
             {
@@ -219,8 +234,29 @@ namespace Carsale.Controllers
             }
             return View(vehicle);
         }
+<<<<<<< HEAD
 
         // POST: Vehicles/Delete
+=======
+        
+        [HttpPost, LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
+        public ActionResult Edit( CreateVehicleViewModel viewModel)
+        {
+            //Check if the user exists
+            String matriculation = viewModel.Vehicle.Matriculation;
+            if (vechicleProvider.FindByMatriculation(matriculation) == null)
+            {
+                return new HttpNotFoundResult("There are not this vehicle in database!");
+            }
+           /// viewModel.Vehicle.Matriculation = matriculation;
+            if (ModelState.IsValid)
+            {
+                vechicleProvider.Update(viewModel.Vehicle);
+            }
+            return RedirectToAction("List", "Vehicle");
+        }
+        
+>>>>>>> b29fba23ba9df2d9f625a28a2d6b3f2249bd5926
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director })]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -230,6 +266,18 @@ namespace Carsale.Controllers
             return RedirectToAction("List", "Vehicle");
         }
 
+        [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
+        public ActionResult Detail(String matriculation)
+        {
+            //Check if the vehicle exists
+            var vehicle = vechicleProvider.FindByMatriculation(matriculation);
+            if (vehicle == null)
+            {
+                return new HttpNotFoundResult("Le véhicule n'existe pas.");
+            }
+
+            return View(vehicle);
+        }
     }
 
 }

@@ -1,0 +1,163 @@
+﻿@using Carsale.ViewModels
+@using Carsale.DAO.Models
+
+@model HourlyRateHistoryViewModel
+
+@{
+    ViewBag.Title = "Historique des taux horaires";
+}
+
+<h2>Historique des taux horaires</h2>
+
+<div class="row">
+    <div class="col-md-3">
+        <h4>Mecanique</h4>
+
+        @using (Html.BeginForm("Create", "HourlyRate", FormMethod.Post, new { id = "create", @class = "form-horizontal secondary-form" }))
+        {
+            @Html.Hidden("MaintenanceType", MaintenanceType.Mechanical)
+
+            <div class="form-row">
+                <div class="form-group">
+                    @Html.TextBox("Price", null, new { @class = "form-control", placeholder = "Prix" })
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-secondary">Changer le taux horaire</button>
+                </div>
+            </div>
+        }
+
+        <table class="table" >
+            <thead>
+                <tr>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var hourlyRate in Model.MechanicalHourlyRates)
+                {
+                    <tr>
+                        <td>@hourlyRate.Price €</td>
+                        <td>@hourlyRate.DateTime.ToString("dd MMM yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-3">
+        <h4>Electrique</h4>
+
+        @using (Html.BeginForm("Create", "HourlyRate", FormMethod.Post, new { id = "create", @class = "form-horizontal secondary-form" }))
+        {
+            @Html.Hidden("MaintenanceType", MaintenanceType.Electrical)
+
+            <div class="form-row">
+                <div class="form-group">
+                    @Html.TextBox("Price", null, new { @class = "form-control", placeholder = "Prix" })
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-secondary">Changer le taux horaire</button>
+                </div>
+            </div>
+        }
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var hourlyRate in Model.ElectricalHourlyRates)
+                {
+                    <tr>
+                        <td>@hourlyRate.Price</td>
+                        <td>@hourlyRate.DateTime.ToString("dd MMM yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-3">
+        <h4>Electronique</h4>
+
+        @using (Html.BeginForm("Create", "HourlyRate", FormMethod.Post, new { id = "create", @class = "form-horizontal secondary-form" }))
+        {
+            @Html.Hidden("MaintenanceType", MaintenanceType.Electronical)
+
+            <div class="form-row">
+                <div class="form-group">
+                    @Html.TextBox("Price", null, new { @class = "form-control", placeholder = "Prix" })
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-secondary">Changer le taux horaire</button>
+                </div>
+            </div>
+        }
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var hourlyRate in Model.ElectronicalHourlyRates)
+                {
+                    <tr>
+                        <td>@hourlyRate.Price</td>
+                        <td>@hourlyRate.DateTime.ToString("dd MMM yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-3">
+        <h4>Carrosserie</h4>
+
+        @using (Html.BeginForm("Create", "HourlyRate", FormMethod.Post, new { id = "create", @class = "form-horizontal secondary-form" }))
+        {
+            @Html.Hidden("MaintenanceType", MaintenanceType.Body)
+
+            <div class="form-row">
+                <div class="form-group">
+                    @Html.TextBox("Price", null, new { @class = "form-control", placeholder = "Prix" })
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-secondary">Changer le taux horaire</button>
+                </div>
+            </div>
+        }
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var hourlyRate in Model.BodyHourlyRates)
+                {
+                    <tr>
+                        <td>@hourlyRate.Price</td>
+                        <td>@hourlyRate.DateTime.ToString("dd MMM yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -5,8 +5,8 @@ using System.Reflection;
 
 namespace Carsale.DAO.DataAnnotations
 {
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-    class RequiredIfOtherEquals : ValidationAttribute
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
+    public class RequiredIfOtherEquals : ValidationAttribute
     {
         public string OtherProperty { get; private set; }
         public string OtherPropertyDisplayName { get; set; }

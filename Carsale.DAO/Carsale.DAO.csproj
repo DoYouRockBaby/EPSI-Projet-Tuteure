@@ -81,6 +81,7 @@
     <Compile Include="Migrations\201809250709181_Jesaispas.Designer.cs">
       <DependentUpon>201809250709181_Jesaispas.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Migrations\201809250959196_Account.cs" />
     <Compile Include="Migrations\201809250959196_Account.Designer.cs">
       <DependentUpon>201809250959196_Account.cs</DependentUpon>
@@ -88,12 +89,24 @@
     <Compile Include="Migrations\201809252300443_editDeletVehicle.cs" />
     <Compile Include="Migrations\201809252300443_editDeletVehicle.Designer.cs">
       <DependentUpon>201809252300443_editDeletVehicle.cs</DependentUpon>
+=======
+    <Compile Include="Migrations\201809250734024_VehiclePrice.cs" />
+    <Compile Include="Migrations\201809250734024_VehiclePrice.Designer.cs">
+      <DependentUpon>201809250734024_VehiclePrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809252031479_Fix.cs" />
+    <Compile Include="Migrations\201809252031479_Fix.Designer.cs">
+      <DependentUpon>201809252031479_Fix.cs</DependentUpon>
+>>>>>>> b29fba23ba9df2d9f625a28a2d6b3f2249bd5926
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientType.cs" />
+    <Compile Include="Models\HourlyRate.cs" />
+    <Compile Include="Models\MaintenanceType.cs" />
+    <Compile Include="Models\Part.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\StatusVehicle.cs" />
     <Compile Include="Models\Brand.cs" />
@@ -102,6 +115,8 @@
     <Compile Include="Providers\BrandProvider.cs" />
     <Compile Include="Providers\ClientProvider.cs" />
     <Compile Include="Providers\AccountProvider.cs" />
+    <Compile Include="Providers\HourlyRateProvider.cs" />
+    <Compile Include="Providers\PartProvider.cs" />
     <Compile Include="Providers\SaleProvider.cs" />
     <Compile Include="Providers\VechicleProvider.cs" />
   </ItemGroup>
@@ -128,11 +143,19 @@
     <EmbeddedResource Include="Migrations\201809250709181_Jesaispas.resx">
       <DependentUpon>201809250709181_Jesaispas.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="Migrations\201809250959196_Account.resx">
       <DependentUpon>201809250959196_Account.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809252300443_editDeletVehicle.resx">
       <DependentUpon>201809252300443_editDeletVehicle.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="Migrations\201809250734024_VehiclePrice.resx">
+      <DependentUpon>201809250734024_VehiclePrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809252031479_Fix.resx">
+      <DependentUpon>201809252031479_Fix.cs</DependentUpon>
+>>>>>>> b29fba23ba9df2d9f625a28a2d6b3f2249bd5926
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

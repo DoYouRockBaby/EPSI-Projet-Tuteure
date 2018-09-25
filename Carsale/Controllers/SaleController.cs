@@ -11,9 +11,9 @@ namespace Carsale.Controllers
     [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.NewVehicleTrader, AccountType.OldVehicleTrader })]
     public class SaleController : AbstractController
     {
-        SaleProvider saleProvider = new SaleProvider();
-        ClientProvider clientProvider = new ClientProvider();
-        VechicleProvider vehicleProvider = new VechicleProvider();
+        SaleProvider saleProvider;
+        ClientProvider clientProvider;
+        VechicleProvider vehicleProvider;
 
         public SaleController(SaleProvider saleProvider, ClientProvider clientProvider, VechicleProvider vehicleProvider)
         {
@@ -41,6 +41,7 @@ namespace Carsale.Controllers
             {
                 Sale = new Sale()
                 {
+                    Price = 1.05 * vehicle.Price,
                     VehicleMatriculation = id
                 },
                 Vehicle = vehicle,
@@ -74,8 +75,16 @@ namespace Carsale.Controllers
 
             if (ModelState.IsValid)
             {
-                saleProvider.Add(viewModel.Sale);
-                return RedirectToAction("List");
+                //Si la marge est inferieur a 5%, on ne peut pas vendre le vehicule
+                if((viewModel.Sale.Price - vehicle.Price) / vehicle.Price < 0.05)
+                {
+                    saleProvider.Add(viewModel.Sale);
+                    return RedirectToAction("List");
+                }
+                else
+                {
+                    ViewBag.PriceError = "Le prix est trop bas, la marge sera inferieur à 5%";
+                }
             }
 
             viewModel.Clients = clientProvider.FindAll();

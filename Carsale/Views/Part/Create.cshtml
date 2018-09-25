@@ -1,0 +1,43 @@
+﻿@using Carsale.DAO.Models
+
+@model Part
+
+@{
+    ViewBag.Title = "Ajouter une pièce au catalogue";
+}
+
+<h2>Ajouter une pièce au catalogue</h2>
+
+@using (Html.BeginForm("Create", "Part", FormMethod.Post, new { id = "create", @Class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <span class="input-symbol-euro">
+                @Html.TextBoxFor(model => model.Price, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Price).ToHtmlString()) })
+            </span>
+            @Html.ValidationMessageFor(model => model.Price, ViewBag.PriceError as string, new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Ajouter" class="btn btn-primary" />
+    </div>
+}
