@@ -12,7 +12,6 @@ namespace Carsale.Controllers
     public class VehicleController : AbstractController
     {
         private VechicleProvider vechicleProvider;
-        private CarsaleContext db = new CarsaleContext();
         private BrandProvider brandProvider;
         public VehicleController(VechicleProvider vechicleProvider, BrandProvider brandProvider)
         {
@@ -96,37 +95,32 @@ namespace Carsale.Controllers
                  ViewBag.MatriculationError = "Un véhicule existe déjà avec cette Immatriculation.";
             }
             else { 
-            if(viewModel.BrandName != null && viewModel.BrandName != "")
-            {
-                //If the brandname is filled in the form, create a new brand
-                viewModel.Vehicle.Brand = new Brand()
+                if(viewModel.BrandName != null && viewModel.BrandName != "")
                 {
-                    Name = viewModel.BrandName
-                };
+                    //If the brandname is filled in the form, create a new brand
+                    viewModel.Vehicle.Brand = new Brand()
+                    {
+                        Name = viewModel.BrandName
+                    };
 
-                viewModel.Vehicle.BrandId = 0;
-            }
-            else
-            {
-                //Add the selected brand otherwise
-                if(Int32.TryParse(viewModel.SelectedBrandId, out int brandId))
-                {
-                    viewModel.Vehicle.Brand = brandProvider.FindById(brandId);
+                    viewModel.Vehicle.BrandId = 0;
                 }
-            }
+                else
+                {
+                    //Add the selected brand otherwise
+                    if(Int32.TryParse(viewModel.SelectedBrandId, out int brandId))
+                    {
+                        viewModel.Vehicle.Brand = brandProvider.FindById(brandId);
+                    }
+                }
 
-            if (vechicleProvider.FindByMatriculation(viewModel.Vehicle.Matriculation) != null)
-            {
-                ViewBag.MatriculationError = "Un véhicule existe déjà avec cette Immatriculation.";
-            }
-            else
-            {
-                //If valid, add the vehicle to the database
-                if (ModelState.IsValid)
-                {
-                    vechicleProvider.Add(viewModel.Vehicle);
-                    return RedirectToAction("List", "Vehicle");
-                }
+               
+                    //If valid, add the vehicle to the database
+                    if (ModelState.IsValid)
+                    {
+                        vechicleProvider.Add(viewModel.Vehicle);
+                        return RedirectToAction("List", "Vehicle");
+                    }
             }
 
             viewModel.Brands = brandProvider.FindAll();
