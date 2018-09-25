@@ -1,0 +1,30 @@
+﻿@using Carsale.DAO.Models
+
+@model Vehicle
+
+
+@{
+    ViewBag.Title = "Delete";
+    ViewBag.Matriculation = Model.Matriculation;
+    ViewBag.BrandName = Model.Brand.Name;
+}
+
+<h2>Véhicule à supprimer</h2>
+
+@using (Html.BeginForm("Delete", "Vehicle", FormMethod.Post, new { id = "delete", @Class = "form-horizontal" }))
+{
+    <div class="form-row">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Matriculation - @Model.Price €</h5>
+            <p class="card-text">@Model.Model @Model.Brand.Name</p>
+            <p class="card-text">@Model.VehicleColor.ToString() - @Model.Power W</p>
+            <p class="card-text">@Model.Status.ToString()</p>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Delete" />
+        </div>
+    </div>
+}
