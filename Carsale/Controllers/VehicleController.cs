@@ -52,12 +52,17 @@ namespace Carsale.Controllers
             {
                 selectedColor = couleur;
             }
+
             IEnumerable<Vehicle> vehicles= vechicleProvider.FindAll();
-           if (selectedStatus==null && selectedBrandId==null && selectedColor == null)
+            if (selectedStatus==null && selectedBrandId==null && selectedColor == null)
             {
                 vehicles = vechicleProvider.FindAll();
             }
-            else { vehicles = vechicleProvider.FindAll(selectedStatus, selectedBrandId, selectedColor); }
+            else
+            {
+                vehicles = vechicleProvider.FindAll(selectedStatus, selectedBrandId, selectedColor);
+            }
+
             viewModel = new FilterViewModel()
             {
                 Brands = brandProvider.FindAll(),
@@ -97,7 +102,6 @@ namespace Carsale.Controllers
                 {
                     viewModel.Vehicle.Brand = brandProvider.FindById(brandId);
                 }
-
             }
 
             if (vechicleProvider.FindByMatriculation(viewModel.Vehicle.Matriculation) != null)
