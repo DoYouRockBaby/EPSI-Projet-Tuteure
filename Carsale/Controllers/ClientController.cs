@@ -38,11 +38,11 @@ namespace Carsale.Controllers
 
                 clientProvider.Add(client);
                 ViewBag.Error = "Data Added Success!";
-                return View();
+                return RedirectToAction("List");
             }
 
             ViewBag.Error = "Error Data Is Not Match!";
-            return View();
+            return View(client);
         }
 
         public ActionResult Detail(int id)
