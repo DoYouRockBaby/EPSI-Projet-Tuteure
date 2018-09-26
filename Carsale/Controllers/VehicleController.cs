@@ -204,9 +204,9 @@ namespace Carsale.Controllers
         }
         [HttpPost]
         //sara
-        public ActionResult Delete(Vehicle Vehicle)
+        public ActionResult Delete(Vehicle vehicle)
         {
-            vehicleProvider.Delete(Vehicle.Matriculation);
+            vehicleProvider.Delete(vehicle.Matriculation);
             return RedirectToAction("List");
 
         }
