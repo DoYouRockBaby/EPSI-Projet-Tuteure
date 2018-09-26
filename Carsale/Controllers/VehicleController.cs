@@ -84,7 +84,7 @@ namespace Carsale.Controllers
 
             return View(viewModel);
         }
-
+        //sara
         [HttpPost]
         public ActionResult Create(CreateVehicleViewModel viewModel)
         {
@@ -206,7 +206,7 @@ namespace Carsale.Controllers
         }
 
         [LoggedAuthorization]
-        public ActionResult Detail(String matriculation)
+        public ActionResult Detail(string matriculation)
         {
             //Check if the user exists
             var vehicle = vehicleProvider.FindByMatriculation(matriculation);
@@ -218,7 +218,34 @@ namespace Carsale.Controllers
             return View(vehicle);
         }
 
+        //[LoggedAuthorization]
+        //public ActionResult Detail(string matriculation)
 
+        //{
+        //    //Check if the vehicle exists
+        //    var vehicle = vehicleProvider.FindByMatriculation(matriculation);
+        //    if (vehicle == null)
+        //    {
+        //        return new HttpNotFoundResult("Le véhicule n'existe pas.");
+        //    }
+
+        //    //Create default view model
+        //    IEnumerable<Brand> brands = brandProvider.FindAll();
+        //    var viewModel = new CreateVehicleViewModel()
+        //    {
+        //        SelectedBrandId = vehicle.BrandId.ToString(),
+        //        Vehicle = vehicle,
+        //        Brands = brands,
+        //        Power = vehicle.Power,
+        //        Model = vehicle.Model,
+        //        SelectedStatus = vehicle.Status,
+        //        SelectedVehicleColor = vehicle.VehicleColor,
+        //        BrandName = vehicle.Brand.Name,
+        //        Price = vehicle.Price
+        //    };
+        //    ViewBag.Brands = brandProvider.FindAll();
+        //    return View(vehicle);
+        //}
     }
 
 }

@@ -75,7 +75,7 @@
                 <td>@vehicle.Brand.Name</td>
                 <td>@vehicle.Model</td>
                 <td>@vehicle.Status.ToString()</td>
-                <td>@Html.ActionLink("Voir Plus", "Details", new { matriculation = vehicle.Matriculation })</td>
+                <td>@Html.ActionLink("Voir Plus", "Detail", new { matriculation = vehicle.Matriculation })</td>
                 <td>@Html.ActionLink("Vendre", "Create", "Sale", new { id = vehicle.Matriculation }, null)</td>
                 @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
                 {

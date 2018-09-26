@@ -113,6 +113,10 @@
     <Compile Include="Migrations\201809261338447_editeCreatSetUp2.Designer.cs">
       <DependentUpon>201809261338447_editeCreatSetUp2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809261415366_LastSetUpCreatVehicle.cs" />
+    <Compile Include="Migrations\201809261415366_LastSetUpCreatVehicle.Designer.cs">
+      <DependentUpon>201809261415366_LastSetUpCreatVehicle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
@@ -180,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809261338447_editeCreatSetUp2.resx">
       <DependentUpon>201809261338447_editeCreatSetUp2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809261415366_LastSetUpCreatVehicle.resx">
+      <DependentUpon>201809261415366_LastSetUpCreatVehicle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
