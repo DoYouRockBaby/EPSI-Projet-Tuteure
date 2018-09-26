@@ -211,7 +211,22 @@ namespace Carsale.Controllers
 
         }
 
+<<<<<<< HEAD
 
+=======
+        [LoggedAuthorization]
+        public ActionResult Detail(String matriculation)
+        {
+            //Check if the user exists
+            var vehicle = vehicleProvider.FindByMatriculation(matriculation);
+            if (vehicle == null)
+            {
+                return new HttpNotFoundResult("There are not this vehicle !");
+            }
+
+            return View(vehicle);
+        }
+>>>>>>> 3be8a76fd47219da824c3f7f88672cc3c765fa5a
 
     }
 
