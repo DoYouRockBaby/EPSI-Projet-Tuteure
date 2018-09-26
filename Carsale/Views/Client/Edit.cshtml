@@ -20,82 +20,82 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @*<div class="col-md-10">*@
                 @Html.EnumDropDownListFor(model => model.Type, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
-            </div>
+            @*</div>*@
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @*<div class="col-md-10">*@
                 @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-            </div>
+            @*</div>*@
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @*<div class="col-md-10">*@
                 @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-            </div>
+            @*</div>*@
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.SIRET, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @*<div class="col-md-10">*@
                 @Html.EditorFor(model => model.SIRET, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SIRET, "", new { @class = "text-danger" })
-            </div>
+            @*</div>*@
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @*<div class="col-md-10">*@
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
+            @*</div>*@
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @*<div class="col-md-10">*@
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
+            @*</div>*@
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Address1, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @*<div class="col-md-10">*@
                 @Html.EditorFor(model => model.Address1, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Address1, "", new { @class = "text-danger" })
-            </div>
+            @*</div>*@
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Address2, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @*<div class="col-md-10">*@
                 @Html.EditorFor(model => model.Address2, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Address2, "", new { @class = "text-danger" })
-            </div>
+            @*</div>*@
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @*<div class="col-md-10">*@
                 @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
-            </div>
+            @*</div>*@
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @*<div class="col-md-10">*@
                 @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
-            </div>
+            @*</div>*@
         </div>
 
         <div class="form-group">
@@ -111,5 +111,36 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            function updateTypeFieldsVisibility() {
+                let isPerson = $('#Type').val() === "0";
+                let isCompany = $('#Type').val() === "1";
+
+                $('#FirstName').parent('.form-group').hide();
+                $('#LastName').parent('.form-group').hide();
+                $('#SIRET').parent('.form-group').hide();
+                $('#Name').parent('.form-group').hide();
+                $('#Description').parent('.form-group').hide();
+
+                if (isPerson) {
+                    $('#FirstName').parent('.form-group').show();
+                    $('#LastName').parent('.form-group').show();
+                }
+
+                if (isCompany) {
+                    $('#SIRET').parent('.form-group').show();
+                    $('#Name').parent('.form-group').show();
+                    $('#Description').parent('.form-group').show();
+                }
+            }
+
+            updateTypeFieldsVisibility();
+            $('#Type').change(function () {
+                updateTypeFieldsVisibility();
+            });
+        });
+    </script>
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+   
 }
