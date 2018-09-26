@@ -16,5 +16,6 @@ namespace Carsale.DAO
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Part> Parts { get; set; }
+        public DbSet<HourlyRate> HourlyRates { get; set; }
     }
 }

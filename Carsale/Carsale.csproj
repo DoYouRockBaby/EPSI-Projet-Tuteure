@@ -186,6 +186,7 @@
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HourlyRateController.cs" />
     <Compile Include="Controllers\PartController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="ViewModels\CreateAccountViewModel.cs" />
     <Compile Include="ViewModels\CreateVehicleViewModel.cs" />
     <Compile Include="ViewModels\FilterViewModel.cs" />
+    <Compile Include="ViewModels\HourlyRateHistoryViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\SellViewModel.cs" />
   </ItemGroup>
@@ -306,6 +308,10 @@
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Vehicle\Delete.cshtml" />
     <Content Include="Views\Part\List.cshtml" />
+    <Content Include="Views\Part\Create.cshtml" />
+    <Content Include="Views\Part\Edit.cshtml" />
+    <Content Include="Views\Part\Delete.cshtml" />
+    <Content Include="Views\HourlyRate\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

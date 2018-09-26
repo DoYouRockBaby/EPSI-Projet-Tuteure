@@ -3,12 +3,12 @@
 @model IEnumerable<Part>
 
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Catalogue des pièces";
 }
 
 <h2>Catalogue des pièces</h2>
 
-@if ((ViewBag.LoggedUser as Account).Type == AccountType.MaintainVehicleManager || (ViewBag.LoggedUser as Account).Type == AccountType.MaintenanceAgent)
+@if ((ViewBag.LoggedUser as Account).Type == AccountType.MaintainVehicleManager || (ViewBag.LoggedUser as Account).Type == AccountType.Director)
 {
     @Html.ActionLink("Ajouter une pièce au catalogue", "Create", null, new { @class = "btn btn-default" })
 }
@@ -19,7 +19,7 @@
             <th scope="col">Nom</th>
             <th scope="col">Description</th>
             <th scope="col">Prix</th>
-            @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
+            @if ((ViewBag.LoggedUser as Account).Type == AccountType.MaintainVehicleManager || (ViewBag.LoggedUser as Account).Type == AccountType.Director)
             {
                 <th scope="col"></th>
                 <th scope="col"></th>
@@ -33,7 +33,7 @@
                 <td>@part.Name</td>
                 <td>@part.Description</td>
                 <td>@part.Price €</td>
-                @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
+                @if ((ViewBag.LoggedUser as Account).Type == AccountType.MaintainVehicleManager || (ViewBag.LoggedUser as Account).Type == AccountType.Director)
                 {
                     <td>@Html.ActionLink("Editer", "Edit", new { id = part.Id })</td>
                     <td>@Html.ActionLink("Supprimer", "Delete", new { id = part.Id })</td>

@@ -42,7 +42,7 @@ namespace Carsale
             container.RegisterType<ClientProvider, ClientProvider>();
             container.RegisterType<BrandProvider, BrandProvider>();
             container.RegisterType<PartProvider, PartProvider>();
-
+            container.RegisterType<HourlyRateProvider, HourlyRateProvider>();
         }
     }
 }

@@ -85,35 +85,17 @@
     <Compile Include="Migrations\201809250734024_VehiclePrice.Designer.cs">
       <DependentUpon>201809250734024_VehiclePrice.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809251341367_BrahimLeo.cs" />
-    <Compile Include="Migrations\201809251341367_BrahimLeo.Designer.cs">
-      <DependentUpon>201809251341367_BrahimLeo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809251943047_carsal.cs" />
-    <Compile Include="Migrations\201809251943047_carsal.Designer.cs">
-      <DependentUpon>201809251943047_carsal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809252017014_carsale.cs" />
-    <Compile Include="Migrations\201809252017014_carsale.Designer.cs">
-      <DependentUpon>201809252017014_carsale.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809252023141_crsal.cs" />
-    <Compile Include="Migrations\201809252023141_crsal.Designer.cs">
-      <DependentUpon>201809252023141_crsal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809252030002_carsale1.cs" />
-    <Compile Include="Migrations\201809252030002_carsale1.Designer.cs">
-      <DependentUpon>201809252030002_carsale1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809252035564_carsale2.cs" />
-    <Compile Include="Migrations\201809252035564_carsale2.Designer.cs">
-      <DependentUpon>201809252035564_carsale2.cs</DependentUpon>
+    <Compile Include="Migrations\201809252031479_Fix.cs" />
+    <Compile Include="Migrations\201809252031479_Fix.Designer.cs">
+      <DependentUpon>201809252031479_Fix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientType.cs" />
+    <Compile Include="Models\HourlyRate.cs" />
+    <Compile Include="Models\MaintenanceType.cs" />
     <Compile Include="Models\Part.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\StatusVehicle.cs" />
@@ -123,9 +105,10 @@
     <Compile Include="Providers\BrandProvider.cs" />
     <Compile Include="Providers\ClientProvider.cs" />
     <Compile Include="Providers\AccountProvider.cs" />
+    <Compile Include="Providers\HourlyRateProvider.cs" />
     <Compile Include="Providers\PartProvider.cs" />
     <Compile Include="Providers\SaleProvider.cs" />
-    <Compile Include="Providers\VehicleProvider.cs" />
+    <Compile Include="Providers\VechicleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -153,23 +136,8 @@
     <EmbeddedResource Include="Migrations\201809250734024_VehiclePrice.resx">
       <DependentUpon>201809250734024_VehiclePrice.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809251341367_BrahimLeo.resx">
-      <DependentUpon>201809251341367_BrahimLeo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809251943047_carsal.resx">
-      <DependentUpon>201809251943047_carsal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809252017014_carsale.resx">
-      <DependentUpon>201809252017014_carsale.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809252023141_crsal.resx">
-      <DependentUpon>201809252023141_crsal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809252030002_carsale1.resx">
-      <DependentUpon>201809252030002_carsale1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809252035564_carsale2.resx">
-      <DependentUpon>201809252035564_carsale2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809252031479_Fix.resx">
+      <DependentUpon>201809252031479_Fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

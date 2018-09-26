@@ -47,50 +47,64 @@ namespace Carsale.Controllers
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.MaintainVehicleManager })]
         public ActionResult Edit(int id)
         {
-            return View();
+            Part part = partProvider.FindById(id);
+            if (part == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(part);
         }
 
         // POST: Part/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.MaintainVehicleManager })]
-        public ActionResult Edit(int id, [Bind(Include = "Description,Price")] Part part)
+        public ActionResult Edit(int id, [Bind(Include = "Name,Description,Price")] Part part)
         {
-            try
+            if (partProvider.FindById(id) == null)
             {
-                // TODO: Add update logic here
+                return HttpNotFound();
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
+            part.Id = id;
+
+            if (ModelState.IsValid)
             {
-                return View();
+                partProvider.Update(part);
+                return RedirectToAction("List");
             }
+
+            return View(part);
         }
 
         // GET: Part/Delete/5
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.MaintainVehicleManager })]
         public ActionResult Delete(int id)
         {
-            return View();
+            Part part = partProvider.FindById(id);
+            if (part == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(part);
         }
 
         // POST: Part/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.MaintainVehicleManager })]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
+            Part part = partProvider.FindById(id);
+            if (part == null)
             {
-                // TODO: Add delete logic here
+                return HttpNotFound();
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            partProvider.Delete(id);
+            return RedirectToAction("List");
         }
     }
 }

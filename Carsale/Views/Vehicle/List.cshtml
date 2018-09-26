@@ -32,51 +32,34 @@
         <tr>
             <th colspan="6">
                 <div>
-                    <button class="btn btn-success" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="m1 m2 m3 m4">Filtre</button>
-                    @using (Html.BeginForm("List", "Vehicle", FormMethod.Post, new { id = "filter", @Class = "form-horizontal" }))
+                    <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="m1 m2 m3 m4">Filtre</button>
+                    @using (Html.BeginForm("List", "Vehicle", FormMethod.Post, new { id = "filter", @class = "form-horizontal secondary-form" }))
                     {
-                        <div class="row">
-                            <div class="col">
-                                <div class="collapse multi-collapse" id="m1">
-                                    <div class="card card-body">
-                                        @Html.LabelFor(m => m.Brands)
-                                        @Html.DropDownListFor(m => m.SelectedBrandId, Model.Brands.Select(brand => new SelectListItem
-                                        {
-                                            Value = brand.Id.ToString(),
-                                            Text = brand.Name
-                                        }).AddFirst(new SelectListItem()), new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(m => m.SelectedBrandId)
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="collapse multi-collapse" id="m2">
-                                    <div class="card card-body">
-                                        @Html.LabelFor(m => m.SelectedColor)
-                                        @Html.DropDownListFor(m => m.SelectedColor, (Model.VehicleColors as IEnumerable<VehicleColor>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable().AddFirst(new SelectListItem()), new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(m => m.SelectedColor, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+                        <div class="multi-collapse collapse form-row">
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.Brands)
+                                @Html.DropDownListFor(m => m.SelectedBrandId, Model.Brands.Select(brand => new SelectListItem
+                                {
+                                    Value = brand.Id.ToString(),
+                                    Text = brand.Name
+                                }).AddFirst(new SelectListItem()), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.SelectedBrandId)
                             </div>
 
-                            <div class="col">
-                                <div class="collapse multi-collapse" id="m3">
-                                    <div class="card card-body">
-                                        @Html.LabelFor(m => m.SelectedStatus)
-                                        @Html.DropDownListFor(m => m.SelectedStatus, (Model.Status as IEnumerable<StatusVehicle>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable().AddFirst(new SelectListItem()), new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(m => m.SelectedStatus)
-                                    </div>
-                                </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.SelectedColor)
+                                @Html.DropDownListFor(m => m.SelectedColor, (Model.VehicleColors as IEnumerable<VehicleColor>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable().AddFirst(new SelectListItem()), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.SelectedColor, "", new { @class = "text-danger" })
                             </div>
-                            <div class="col">
-                                <div class="collapse multi-collapse" id="m4">
-                                    <br />
 
-                                    <div class="card card-body">
-                                        <input type="submit" class="btn btn-secondary" value="Rechercher" />
-                                    </div>
-                                </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.SelectedStatus)
+                                @Html.DropDownListFor(m => m.SelectedStatus, (Model.Status as IEnumerable<StatusVehicle>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable().AddFirst(new SelectListItem()), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.SelectedStatus)
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <input type="submit" class="btn btn-secondary" value="Rechercher" />
                             </div>
                         </div>
                     }
