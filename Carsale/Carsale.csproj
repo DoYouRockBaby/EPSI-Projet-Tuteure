@@ -199,6 +199,7 @@
     </Compile>
     <Compile Include="Models\ControllerActionLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CryptoService.cs" />
     <Compile Include="ViewModels\CreateAccountViewModel.cs" />
     <Compile Include="ViewModels\CreateFuelViewModel.cs" />
     <Compile Include="ViewModels\CreateMaintenanceViewModel.cs" />

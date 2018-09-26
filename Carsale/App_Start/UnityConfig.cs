@@ -1,4 +1,5 @@
 using Carsale.DAO.Providers;
+using Carsale.Services;
 using System;
 
 using Unity;
@@ -37,6 +38,7 @@ namespace Carsale
         /// </remarks>
         public static void RegisterTypes(IUnityContainer container)
         {
+            container.RegisterType<CryptoService, CryptoService>();
             container.RegisterType<AccountProvider, AccountProvider>();
             container.RegisterType<VechicleProvider, VechicleProvider>();
             container.RegisterType<ClientProvider, ClientProvider>();

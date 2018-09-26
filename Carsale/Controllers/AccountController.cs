@@ -1,5 +1,6 @@
 ﻿using Carsale.DAO.Models;
 using Carsale.DAO.Providers;
+using Carsale.Services;
 using Carsale.ViewModels;
 using English_Battle_MVC.Attributes;
 using System.Net;
@@ -9,14 +10,16 @@ namespace Carsale.Controllers
 {
     public class AccountController : AbstractController
     {
+        CryptoService cryptoService;
         AccountProvider accountProvider;
 
-        public AccountController(AccountProvider accountProvider)
+        public AccountController(CryptoService cryptoService, AccountProvider accountProvider)
         {
+            this.cryptoService = cryptoService;
             this.accountProvider = accountProvider;
         }
 
-        [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director })]
+        //[LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director })]
         public ActionResult Create()
         {
             ViewBag.EmailError = "";
@@ -33,7 +36,8 @@ namespace Carsale.Controllers
             return View(viewModel);
         }
 
-        [HttpPost, LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director })]
+        [HttpPost]
+        //[LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director })]
         public ActionResult Create(CreateAccountViewModel viewModel)
         {
             ViewBag.EmailError = "";
@@ -57,6 +61,7 @@ namespace Carsale.Controllers
 
                 if (!errorOccured)
                 {
+                    viewModel.Account.Password = cryptoService.Hash(viewModel.Account.Password);
                     accountProvider.Add(viewModel.Account);
                     return RedirectToAction("List");
                 }
@@ -135,6 +140,7 @@ namespace Carsale.Controllers
           
                 if (!errorOccured)
                 {
+                    viewModel.Account.Password = cryptoService.Hash(viewModel.Account.Password);
                     accountProvider.Update(viewModel.Account);
                     return RedirectToAction("List");
                 }
@@ -187,23 +193,13 @@ namespace Carsale.Controllers
 
             if (ModelState.IsValid)
             {
+                viewModel.Password = cryptoService.Hash(viewModel.Password);
+
                 //Check if the user informations are correct
                 var user = accountProvider.FindByEmail(viewModel.Email);
                 if (user == null)
                 {
                     ViewBag.EmailError = "Le compte n'existe pas";
-
-                    accountProvider.Add(new Account()
-                    {
-                        Email = "fx.sheikhi@gmail.com",
-                        FirstName = "sara",
-                        LastName = "sheikhi",
-                        Password = "123456",
-                        Type = AccountType.Director
-                    });
-
-
-
                     return View();
                 }
                 else if (user.Password != viewModel.Password)
