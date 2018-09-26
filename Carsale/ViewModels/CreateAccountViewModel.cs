@@ -14,6 +14,9 @@ namespace Carsale.ViewModels
         [Required]
         public string RepeatPassword { get; set; }
 
+        public string EditPassword { get; set; }
+        public string EditRepeatPassword { get; set; }
+
         public IEnumerable<AccountType> AccountTypes
         {
             get

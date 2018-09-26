@@ -45,14 +45,14 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             @Html.LabelFor(model => model.Account.Password)
-            @Html.PasswordFor(model => model.Account.Password, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Account.Password, "", new { @class = "text-danger" })
+            @Html.PasswordFor(model => model.EditPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EditPassword,"", new { @class = "text-danger" })
         </div>
 
         <div class="form-group col-md-6">
             @Html.LabelFor(model => model.RepeatPassword)
-            @Html.PasswordFor(model => model.RepeatPassword, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.RepeatPassword, (string)ViewBag.RepeatPassword, new { @class = "text-danger" })
+            @Html.PasswordFor(model => model.EditRepeatPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EditRepeatPassword, (string)ViewBag.RepeatPasswordError, new { @class = "text-danger" })
         </div>
     </div>
 

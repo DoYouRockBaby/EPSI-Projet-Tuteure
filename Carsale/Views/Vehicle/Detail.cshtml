@@ -10,9 +10,11 @@
 
 <div class="card" style="width: 18rem;">
     <div class="card-body">
-        <h5 class="card-title">@Model.Matriculation - @Model.Price €</h5>
-        <p class="card-text">@Model.Model @Model.Brand.Name</p>
-        <p class="card-text">@Model.VehicleColor.ToString() - @Model.Power W</p>
-        <p class="card-text">@Model.Status.ToString()</p>
+        <h5 class="card-title"> Matriculation: @Model.Matriculation Price:  @Model.Price €</h5>
+        <h5 class="card-text">Model: @Model.Model</h5>
+        <h5 class="card-text"> Brand: @Model.Brand.Name</h5>
+        <h5 class="card-text">Color:  @Model.VehicleColor.ToString()</h5>
+        <h5 class="card-text"> Power:  @Model.Power W</h5>
+        <h5 class="card-text">Status: @Model.Status.ToString()</h5>
     </div>
 </div>

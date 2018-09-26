@@ -99,9 +99,9 @@ namespace Carsale.Controllers
             var viewModel = new CreateAccountViewModel()
             {
                 Account = account,
-                RepeatPassword = ""
+                EditRepeatPassword = account.Password,
+                EditPassword=account.Password
             };
-
             return View(viewModel);
         }
 
@@ -109,7 +109,8 @@ namespace Carsale.Controllers
         public ActionResult Edit(int id, CreateAccountViewModel viewModel)
         {
             //Check if the user exists
-            if(accountProvider.FindById(id) == null)
+            Account account = accountProvider.FindById(id);
+            if (account == null)
             {
                 return new HttpNotFoundResult("Le compte n'existe pas.");
             }
@@ -118,10 +119,19 @@ namespace Carsale.Controllers
             viewModel.Account.Id = id;
 
             //If the post informations are valid, update the user informations in the database
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 var errorOccured = false;
-                if (viewModel.RepeatPassword != viewModel.Account.Password)
+                if (viewModel.EditRepeatPassword != null && viewModel.EditRepeatPassword == viewModel.EditPassword)
+                    {
+                    viewModel.Account.Password = viewModel.EditPassword;
+                }
+                else
+                {
+                    if (viewModel.EditRepeatPassword == null && viewModel.EditPassword==null)
+                    viewModel.Account.Password = account.Password;
+                }
+                if(viewModel.EditRepeatPassword != viewModel.EditPassword)
                 {
                     ViewBag.RepeatPasswordError = "Les mots de passes ne correspondent pas.";
                     errorOccured = true;
@@ -135,6 +145,7 @@ namespace Carsale.Controllers
           
                 if (!errorOccured)
                 {
+                   
                     accountProvider.Update(viewModel.Account);
                     return RedirectToAction("List");
                 }
