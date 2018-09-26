@@ -1,0 +1,51 @@
+﻿@using Carsale.DAO.Models
+
+@model Maintenance
+
+@{
+    ViewBag.Title = "Entretient " + @Model.Vehicle.Matriculation + " le " + @Model.Date.ToString("dd MMM yyyy");
+}
+
+<h2>Entretient sur @Model.Vehicle.Matriculation du @Model.Date.ToString("dd MMM yyyy")</h2>
+
+<h4>Vehicule</h4>
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Vehicle.Matriculation - @Model.Vehicle.Price €</h5>
+        <p class="card-text">@Model.Vehicle.Model @Model.Vehicle.Brand.Name</p>
+        <p class="card-text">@Model.Vehicle.VehicleColor.ToString() - @Model.Vehicle.Power W</p>
+        <p class="card-text">@Model.Vehicle.Status.ToString()</p>
+    </div>
+</div>
+
+<h4>Bilan des couts</h4>
+
+<table>
+    <thead>
+        <tr>
+            <th>Intitulé</th>
+            <th>Prix unitaire</th>
+            <th>Quantité</th>
+            <th>Prix total</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>Main d'oeuvre</td>
+            <td>@Model.HourlyRate.Price €</td>
+            <td>@Model.WorkingTime h</td>
+            <td>@(Model.HourlyRate.Price * Model.WorkingTime) €</td>
+        </tr>
+
+        @foreach (var partCount in (from part in Model.Parts group part by part.Id into partGroup select new { Part = (from part2 in partGroup where part2.Id == partGroup.Key select part2).FirstOrDefault(), Count = partGroup.Count() }))
+        {
+            <tr>
+                <td>@partCount.Part.Name</td>
+                <td>@partCount.Part.Price €</td>
+                <td>@partCount.Count</td>
+                <td>@((double)partCount.Count * partCount.Part.Price) €</td>
+            </tr>
+        }
+    </tbody>
+</table>

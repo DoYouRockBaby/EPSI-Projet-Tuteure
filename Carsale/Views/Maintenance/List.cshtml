@@ -1,0 +1,33 @@
+﻿@using Carsale.DAO.Models
+
+@model IEnumerable<Maintenance>
+
+@{
+    ViewBag.Title = "Historique des entretients";
+}
+
+<h2>Historique des opérations d'entretient</h2>
+
+@Html.ActionLink("Ajouter une nouvelle operation d'entretient", "Create", null, new { @class = "btn btn-default" })
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Date</th>
+            <th scope="col">Vehicule</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var maintenance in Model)
+        {
+            <tr>
+                <td>@maintenance.HourlyRate.MaintenanceType.ToString()</td>
+                <td>@maintenance.Date.ToString("dd MMM yyyy")</td>
+                <td>@maintenance.Vehicle.Matriculation</td>
+                <td>@Html.ActionLink("Voir plus", "Detail", new { id = maintenance.Id })</td>
+            </tr>
+        }
+    </tbody>
+</table>

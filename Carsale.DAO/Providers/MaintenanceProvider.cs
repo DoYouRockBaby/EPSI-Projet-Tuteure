@@ -14,7 +14,23 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                context.Maintenances.Add(maintenance);
+
+                if(maintenance.Parts != null && maintenance.Parts.Count > 0)
+                {
+                    context.Maintenances.Attach(maintenance);
+                    foreach (var part in maintenance.Parts)
+                    {
+                        context.Parts.Attach(part);
+                    }
+
+                    context.Entry(maintenance).State = EntityState.Added;
+
+                }
+                else
+                {
+                    context.Maintenances.Add(maintenance);
+                }
+
                 context.SaveChanges();
             }
         }
@@ -23,7 +39,7 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.Maintenances.Include(m => m.Parts).Include(m => m.Vehicle).Include(m => m.HourlyRate).ToList();
+                return context.Maintenances.Include(m => m.Parts).Include(m => m.Vehicle).Include(m => m.Vehicle.Brand).Include(m => m.HourlyRate).ToList();
             }
         }
 
@@ -31,7 +47,7 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.Maintenances.Include(m => m.Parts).Include(m => m.Vehicle).Include(m => m.HourlyRate).Where(m => m.Id == id).FirstOrDefault();
+                return context.Maintenances.Include(m => m.Parts).Include(m => m.Vehicle).Include(m => m.Vehicle.Brand).Include(m => m.HourlyRate).Where(m => m.Id == id).FirstOrDefault();
             }
         }
 
@@ -39,7 +55,7 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.Maintenances.Include(m => m.Parts).Include(m => m.Vehicle).Include(m => m.HourlyRate).Where(m => m.VehicleMatriculation == matriculation).ToList();
+                return context.Maintenances.Include(m => m.Parts).Include(m => m.Vehicle).Include(m => m.Vehicle.Brand).Include(m => m.HourlyRate).Where(m => m.VehicleMatriculation == matriculation).ToList();
             }
         }
 
