@@ -211,9 +211,6 @@ namespace Carsale.Controllers
 
         }
 
-<<<<<<< HEAD
-
-=======
         [LoggedAuthorization]
         public ActionResult Detail(String matriculation)
         {
@@ -226,7 +223,7 @@ namespace Carsale.Controllers
 
             return View(vehicle);
         }
->>>>>>> 3be8a76fd47219da824c3f7f88672cc3c765fa5a
+
 
     }
 
