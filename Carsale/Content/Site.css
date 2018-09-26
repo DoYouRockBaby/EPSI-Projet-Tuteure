@@ -337,7 +337,20 @@ select.form-control option {
     height: 64px;
     background-size: contain;
     background-image: url('../Images/hamburger-icon.png');
-    position: fixed;
+    position: absolute;
+    top: 5px;
+    left: 12px;
+}
+
+.logout-form .logout-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 64px;
+    height: 64px;
+    background-size: contain;
+    background-image: url('../Images/logout-icon.png');
+    position: absolute;
     top: 5px;
     right: 12px;
 }

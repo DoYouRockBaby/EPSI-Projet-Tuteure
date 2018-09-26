@@ -101,6 +101,10 @@
     <Compile Include="Migrations\201809261346454_Fuel.Designer.cs">
       <DependentUpon>201809261346454_Fuel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809261456095_Fuel2.cs" />
+    <Compile Include="Migrations\201809261456095_Fuel2.Designer.cs">
+      <DependentUpon>201809261456095_Fuel2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
@@ -108,6 +112,7 @@
     <Compile Include="Models\ClientType.cs" />
     <Compile Include="Models\Fuel.cs" />
     <Compile Include="Models\FuelSale.cs" />
+    <Compile Include="Models\FuelType.cs" />
     <Compile Include="Models\FuelWholesaler.cs" />
     <Compile Include="Models\HourlyRate.cs" />
     <Compile Include="Models\Maintenance.cs" />
@@ -119,10 +124,13 @@
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BrandProvider.cs" />
+    <Compile Include="Providers\FuelProvider.cs" />
+    <Compile Include="Providers\FuelSaleProvider.cs" />
     <Compile Include="Providers\MaintenanceProvider.cs" />
     <Compile Include="Providers\ClientProvider.cs" />
     <Compile Include="Providers\AccountProvider.cs" />
     <Compile Include="Providers\HourlyRateProvider.cs" />
+    <Compile Include="Providers\FuelWholesalerProvider.cs" />
     <Compile Include="Providers\PartProvider.cs" />
     <Compile Include="Providers\SaleProvider.cs" />
     <Compile Include="Providers\VechicleProvider.cs" />
@@ -164,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809261346454_Fuel.resx">
       <DependentUpon>201809261346454_Fuel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809261456095_Fuel2.resx">
+      <DependentUpon>201809261456095_Fuel2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

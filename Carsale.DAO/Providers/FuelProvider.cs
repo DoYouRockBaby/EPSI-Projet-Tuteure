@@ -20,15 +20,15 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.Fuels.ToList();
+                return context.Fuels.Include(m => m.FuelWholesaler).ToList();
             }
         }
 
-        public Fuel FindById(int id)
+        public Fuel FindByReference(string reference)
         {
             using (var context = new CarsaleContext())
             {
-                return context.Fuels.Find(id);
+                return context.Fuels.Include(m => m.FuelWholesaler).Where(m => m.Reference == reference).FirstOrDefault();
             }
         }
 
@@ -41,11 +41,11 @@ namespace Carsale.DAO.Providers
             }
         }
 
-        public void Delete(int id)
+        public void Delete(string reference)
         {
             using (var context = new CarsaleContext())
             {
-                context.Entry(FindById(id)).State = EntityState.Deleted;
+                context.Entry(FindByReference(reference)).State = EntityState.Deleted;
                 context.SaveChanges();
             }
         }

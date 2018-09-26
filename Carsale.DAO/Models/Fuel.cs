@@ -11,6 +11,10 @@ namespace Carsale.DAO.Models
         [Display(Name = "Nom")]
         public string Name { get; set; }
 
+        [Required]
+        [Display(Name = "Type")]
+        public FuelType Type { get; set; }
+
         [Display(Name = "Grossiste")]
         public int FuelWholesalerId { get; set; }
 

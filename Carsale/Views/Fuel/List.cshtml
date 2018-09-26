@@ -1,0 +1,46 @@
+﻿@using Carsale.DAO.Models
+
+@model IEnumerable<Fuel>
+
+@{
+    ViewBag.Title = "Liste des carburants";
+}
+
+<h2>Liste des carburants</h2>
+
+@if ((ViewBag.LoggedUser as Account).Type == AccountType.MaintainVehicleManager || (ViewBag.LoggedUser as Account).Type == AccountType.Director)
+{
+    @Html.ActionLink("Ajouter un carburant", "Create", null, new { @class = "btn btn-default" })
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Reference</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Type</th>
+            <th scope="col">Grossiste</th>
+            @if ((ViewBag.LoggedUser as Account).Type == AccountType.MaintainVehicleManager || (ViewBag.LoggedUser as Account).Type == AccountType.Director)
+            {
+                <th scope="col"></th>
+                <th scope="col"></th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var fuel in Model)
+        {
+            <tr>
+                <td>@fuel.Reference</td>
+                <td>@fuel.Name</td>
+                <td>@fuel.Type.ToString()</td>
+                <td>@fuel.FuelWholesaler.Name</td>
+                @if ((ViewBag.LoggedUser as Account).Type == AccountType.MaintainVehicleManager || (ViewBag.LoggedUser as Account).Type == AccountType.Director)
+                {
+                    <td>@Html.ActionLink("Editer", "Edit", new { id = fuel.Reference })</td>
+                    <td>@Html.ActionLink("Supprimer", "Delete", new { id = fuel.Reference })</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

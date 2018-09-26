@@ -1,0 +1,61 @@
+﻿@using Carsale.DAO.Models
+
+@model Fuel
+
+@{
+    ViewBag.Title = "Supprimer " + Model.Name;
+}
+
+<h2>Supprimer @Model.Name</h2>
+
+
+<h3>Voulez vous vraiment supprimer ce carburant ?</h3>
+<div>
+    <h4>Pièce</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Reference)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reference)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FuelWholesaler)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FuelWholesaler.Name)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm("DeleteConfirmed", "Fuel", new { id = Model.Reference }, FormMethod.Post, null))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-primary" />
+        </div>
+        <div>
+            @Html.ActionLink("Retour a la liste des carburants", "List")
+        </div>
+    }
+</div>
