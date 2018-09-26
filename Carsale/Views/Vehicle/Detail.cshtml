@@ -1,18 +1,67 @@
-﻿@using Carsale.DAO.Models
-
-@model Vehicle
+﻿@model Carsale.DAO.Models.Vehicle
 
 @{
-    ViewBag.Title = Model.Matriculation + " - " + Model.Model + Model.Brand.Name;
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Detail</h2>
 
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">@Model.Matriculation - @Model.Price €</h5>
-        <p class="card-text">@Model.Model @Model.Brand.Name</p>
-        <p class="card-text">@Model.VehicleColor.ToString() - @Model.Power W</p>
-        <p class="card-text">@Model.Status.ToString()</p>
-    </div>
+<div>
+    <h4>Vehicle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Brand.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brand.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleColor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleColor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Power)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Power)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
 </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Matriculation }) |
+    @Html.ActionLink("Back to List", "List")
+</p>

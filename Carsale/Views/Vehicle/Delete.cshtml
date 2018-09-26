@@ -1,7 +1,6 @@
 ﻿@using Carsale.DAO.Models
-@using Carsale.ViewModels
 
-@model Carsale.DAO.Models.Vehicle
+@model Vehicle
 
 @{
     ViewBag.Title = "Delete";
@@ -18,10 +17,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.Brand.Name)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Brand.Name)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.VehicleColor)
@@ -67,3 +62,5 @@
         </div>
     }
 </div>
+=======
+

@@ -314,6 +314,7 @@
     <Content Include="Views\Part\Edit.cshtml" />
     <Content Include="Views\Part\Delete.cshtml" />
     <Content Include="Views\HourlyRate\List.cshtml" />
+    <Content Include="Views\Client\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

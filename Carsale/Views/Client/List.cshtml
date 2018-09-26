@@ -39,6 +39,8 @@
                 <td>@client.Country</td>
                 <td>@Html.ActionLink("Voir Plus", "Detail", new { id = client.Id })</td>
                 <td>@Html.ActionLink("Editer", "Edit", new { id = client.Id })</td>
+                <td>@Html.ActionLink("Supprimer", "Delete", new { id = client.Id })</td>
+
             </tr>
         }
     </tbody>

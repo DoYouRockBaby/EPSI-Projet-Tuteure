@@ -30,6 +30,11 @@ namespace Carsale.ViewModels
 
         public string Model { get; set; }
 
+        [Required(ErrorMessage = "Vous devez renseigner un prix d'achat")]
+        [Display(Name = "Prix")]
+        [Range(1, double.MaxValue)]
+        public double Price { get; set; }
+
         [Required]
         [Display(Name = "Statut")]
         public StatusVehicle SelectedStatus { get; set; }

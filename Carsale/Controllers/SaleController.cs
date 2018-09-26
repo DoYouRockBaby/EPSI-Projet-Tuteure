@@ -13,9 +13,9 @@ namespace Carsale.Controllers
     {
         SaleProvider saleProvider;
         ClientProvider clientProvider;
-        VechicleProvider vehicleProvider;
+        VehicleProvider vehicleProvider;
 
-        public SaleController(SaleProvider saleProvider, ClientProvider clientProvider, VechicleProvider vehicleProvider)
+        public SaleController(SaleProvider saleProvider, ClientProvider clientProvider, VehicleProvider vehicleProvider)
         {
             this.saleProvider = saleProvider;
             this.clientProvider = clientProvider;

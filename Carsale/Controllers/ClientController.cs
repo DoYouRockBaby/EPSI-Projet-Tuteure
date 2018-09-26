@@ -76,21 +76,34 @@ namespace Carsale.Controllers
             if (ModelState.IsValid)
             {
                 clientProvider.Update(client);
-                return RedirectToAction("Index");
+                return RedirectToAction("List");
             }
             return View(client);
         }
 
-        // GET: Clients/Delete
+        //sara
         public ActionResult Delete(int id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             Client client = clientProvider.FindById(id);
             if (client == null)
             {
                 return HttpNotFound();
             }
-
             return View(client);
+        }
+
+        // POST: Clients/Delete
+        //sara
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            clientProvider.Delete(id);
+            return RedirectToAction("List");
         }
     }
 }

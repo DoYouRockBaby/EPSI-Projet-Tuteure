@@ -116,7 +116,7 @@
     <Compile Include="Providers\HourlyRateProvider.cs" />
     <Compile Include="Providers\PartProvider.cs" />
     <Compile Include="Providers\SaleProvider.cs" />
-    <Compile Include="Providers\VechicleProvider.cs" />
+    <Compile Include="Providers\VehicleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

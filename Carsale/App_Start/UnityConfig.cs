@@ -38,7 +38,7 @@ namespace Carsale
         public static void RegisterTypes(IUnityContainer container)
         {
             container.RegisterType<AccountProvider, AccountProvider>();
-            container.RegisterType<VechicleProvider, VechicleProvider>();
+            container.RegisterType<VehicleProvider, VehicleProvider>();
             container.RegisterType<ClientProvider, ClientProvider>();
             container.RegisterType<BrandProvider, BrandProvider>();
             container.RegisterType<PartProvider, PartProvider>();
