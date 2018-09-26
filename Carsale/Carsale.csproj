@@ -187,6 +187,7 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HourlyRateController.cs" />
+    <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Controllers\PartController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
@@ -314,6 +315,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Maintenance\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
