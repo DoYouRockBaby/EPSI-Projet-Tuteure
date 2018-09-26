@@ -10,7 +10,10 @@ namespace Carsale.ViewModels
 {
     public class CreateVehicleViewModel
     {
-        [Required (ErrorMessage = "Vehicle doit être renseignée")]
+
+        [Display(Name = "Immatriculation")]
+        public string Matriculation { get; set; }
+
         [Display(Name = "Vehicle")]
         public Vehicle Vehicle { get; set; }
 

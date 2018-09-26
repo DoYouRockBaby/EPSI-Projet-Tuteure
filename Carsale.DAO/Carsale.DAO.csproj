@@ -97,6 +97,22 @@
     <Compile Include="Migrations\201809252330480_editVehicle.Designer.cs">
       <DependentUpon>201809252330480_editVehicle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809261225480_EditClientControllerSetUp.cs" />
+    <Compile Include="Migrations\201809261225480_EditClientControllerSetUp.Designer.cs">
+      <DependentUpon>201809261225480_EditClientControllerSetUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809261305515_rien.cs" />
+    <Compile Include="Migrations\201809261305515_rien.Designer.cs">
+      <DependentUpon>201809261305515_rien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809261324051_creatvehicleSetUp.cs" />
+    <Compile Include="Migrations\201809261324051_creatvehicleSetUp.Designer.cs">
+      <DependentUpon>201809261324051_creatvehicleSetUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809261338447_editeCreatSetUp2.cs" />
+    <Compile Include="Migrations\201809261338447_editeCreatSetUp2.Designer.cs">
+      <DependentUpon>201809261338447_editeCreatSetUp2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
@@ -152,6 +168,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809252330480_editVehicle.resx">
       <DependentUpon>201809252330480_editVehicle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809261225480_EditClientControllerSetUp.resx">
+      <DependentUpon>201809261225480_EditClientControllerSetUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809261305515_rien.resx">
+      <DependentUpon>201809261305515_rien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809261324051_creatvehicleSetUp.resx">
+      <DependentUpon>201809261324051_creatvehicleSetUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809261338447_editeCreatSetUp2.resx">
+      <DependentUpon>201809261338447_editeCreatSetUp2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
