@@ -4,12 +4,10 @@ using Carsale.ViewModels;
 using English_Battle_MVC.Attributes;
 using System;
 using System.Collections.Generic;
-<<<<<<< HEAD
 using System.Linq;
 using System.Net;
 using System.Web;
-=======
->>>>>>> b29fba23ba9df2d9f625a28a2d6b3f2249bd5926
+
 using System.Web.Mvc;
 
 namespace Carsale.Controllers
@@ -154,7 +152,7 @@ namespace Carsale.Controllers
             ViewBag.Brands= brandProvider.FindAll();
             return View(viewModel);
         }
-<<<<<<< HEAD
+
         //Update a  vehicle
         [HttpPost]
         public ActionResult Edit(CreateVehicleViewModel viewModel)
@@ -183,22 +181,6 @@ namespace Carsale.Controllers
             }
             return RedirectToAction("List", "Vehicle");
         }
-        ////Delete a new vehicle
-        //public ActionResult DeleteNewVehicle(String matriculation)
-
-        //{
-        //    Vehicle vehicle = vechicleProvider.FindByMatriculation(matriculation);
-        //    if(vehicle == null)
-        //        {
-        //        return new HttpNotFoundResult("There are not this vehicle in database!");
-        //        }
-        //    if (vehicle.Status == 0 )
-        //    {
-        //        vechicleProvider.Delete(matriculation);
-        //    }
-        //    return RedirectToAction("List");
-
-        //}
 
 
 
@@ -216,12 +198,12 @@ namespace Carsale.Controllers
         //    return RedirectToAction("List", "Vehicle");
         //}
         // GET: Vehicles/Delete
-        public ActionResult Delete(string matriculation)
-=======
+        //public ActionResult Delete(string matriculation)
+
 
         //Delete a new vehicle
         public ActionResult DeleteNewVehicle(String matriculation)
->>>>>>> b29fba23ba9df2d9f625a28a2d6b3f2249bd5926
+
         {
             if (matriculation == null)
             {
@@ -234,29 +216,10 @@ namespace Carsale.Controllers
             }
             return View(vehicle);
         }
-<<<<<<< HEAD
+
 
         // POST: Vehicles/Delete
-=======
         
-        [HttpPost, LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
-        public ActionResult Edit( CreateVehicleViewModel viewModel)
-        {
-            //Check if the user exists
-            String matriculation = viewModel.Vehicle.Matriculation;
-            if (vechicleProvider.FindByMatriculation(matriculation) == null)
-            {
-                return new HttpNotFoundResult("There are not this vehicle in database!");
-            }
-           /// viewModel.Vehicle.Matriculation = matriculation;
-            if (ModelState.IsValid)
-            {
-                vechicleProvider.Update(viewModel.Vehicle);
-            }
-            return RedirectToAction("List", "Vehicle");
-        }
-        
->>>>>>> b29fba23ba9df2d9f625a28a2d6b3f2249bd5926
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director })]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

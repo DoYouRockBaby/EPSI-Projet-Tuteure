@@ -81,15 +81,10 @@
     <Compile Include="Migrations\201809250709181_Jesaispas.Designer.cs">
       <DependentUpon>201809250709181_Jesaispas.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="Migrations\201809250959196_Account.cs" />
     <Compile Include="Migrations\201809250959196_Account.Designer.cs">
       <DependentUpon>201809250959196_Account.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809252300443_editDeletVehicle.cs" />
-    <Compile Include="Migrations\201809252300443_editDeletVehicle.Designer.cs">
-      <DependentUpon>201809252300443_editDeletVehicle.cs</DependentUpon>
-=======
     <Compile Include="Migrations\201809250734024_VehiclePrice.cs" />
     <Compile Include="Migrations\201809250734024_VehiclePrice.Designer.cs">
       <DependentUpon>201809250734024_VehiclePrice.cs</DependentUpon>
@@ -97,7 +92,10 @@
     <Compile Include="Migrations\201809252031479_Fix.cs" />
     <Compile Include="Migrations\201809252031479_Fix.Designer.cs">
       <DependentUpon>201809252031479_Fix.cs</DependentUpon>
->>>>>>> b29fba23ba9df2d9f625a28a2d6b3f2249bd5926
+    </Compile>
+    <Compile Include="Migrations\201809252330480_editVehicle.cs" />
+    <Compile Include="Migrations\201809252330480_editVehicle.Designer.cs">
+      <DependentUpon>201809252330480_editVehicle.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -143,19 +141,17 @@
     <EmbeddedResource Include="Migrations\201809250709181_Jesaispas.resx">
       <DependentUpon>201809250709181_Jesaispas.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
     <EmbeddedResource Include="Migrations\201809250959196_Account.resx">
       <DependentUpon>201809250959196_Account.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809252300443_editDeletVehicle.resx">
-      <DependentUpon>201809252300443_editDeletVehicle.cs</DependentUpon>
-=======
     <EmbeddedResource Include="Migrations\201809250734024_VehiclePrice.resx">
       <DependentUpon>201809250734024_VehiclePrice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809252031479_Fix.resx">
       <DependentUpon>201809252031479_Fix.cs</DependentUpon>
->>>>>>> b29fba23ba9df2d9f625a28a2d6b3f2249bd5926
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809252330480_editVehicle.resx">
+      <DependentUpon>201809252330480_editVehicle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

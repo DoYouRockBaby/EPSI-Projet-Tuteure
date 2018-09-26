@@ -5,12 +5,12 @@ namespace Carsale.DAO
 {
     public class CarsaleContext : DbContext
     {
-        public CarsaleContext()
-            : base("name=CarsaleContext")
-        {
-        }
+            public CarsaleContext()
+                : base("name=CarsaleContext")
+            {
+            }
 
-        public DbSet<Account> Accounts { get; set; }
+            public DbSet<Account> Accounts { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Sale> Sales { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
