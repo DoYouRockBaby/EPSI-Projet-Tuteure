@@ -89,12 +89,17 @@
     <Compile Include="Migrations\201809252031479_Fix.Designer.cs">
       <DependentUpon>201809252031479_Fix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809260627521_Maintenance.cs" />
+    <Compile Include="Migrations\201809260627521_Maintenance.Designer.cs">
+      <DependentUpon>201809260627521_Maintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientType.cs" />
     <Compile Include="Models\HourlyRate.cs" />
+    <Compile Include="Models\Maintenance.cs" />
     <Compile Include="Models\MaintenanceType.cs" />
     <Compile Include="Models\Part.cs" />
     <Compile Include="Models\Sale.cs" />
@@ -138,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809252031479_Fix.resx">
       <DependentUpon>201809252031479_Fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809260627521_Maintenance.resx">
+      <DependentUpon>201809260627521_Maintenance.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

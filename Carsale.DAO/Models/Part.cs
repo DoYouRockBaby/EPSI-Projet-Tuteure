@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Carsale.DAO.Models
 {
@@ -19,5 +20,8 @@ namespace Carsale.DAO.Models
         [Range(1, double.MaxValue)]
         [Display(Name = "Prix")]
         public double Price { get; set; }
+
+        [Display(Name = "Maintenance")]
+        public ICollection<Maintenance> Maintenances { get; set; }
     }
 }
