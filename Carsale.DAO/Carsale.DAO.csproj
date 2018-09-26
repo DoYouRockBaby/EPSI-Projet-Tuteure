@@ -93,6 +93,10 @@
     <Compile Include="Migrations\201809260627521_Maintenance.Designer.cs">
       <DependentUpon>201809260627521_Maintenance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809260636198_Maintenance2.cs" />
+    <Compile Include="Migrations\201809260636198_Maintenance2.Designer.cs">
+      <DependentUpon>201809260636198_Maintenance2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
@@ -108,6 +112,7 @@
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BrandProvider.cs" />
+    <Compile Include="Providers\MaintenanceProvider.cs" />
     <Compile Include="Providers\ClientProvider.cs" />
     <Compile Include="Providers\AccountProvider.cs" />
     <Compile Include="Providers\HourlyRateProvider.cs" />
@@ -146,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809260627521_Maintenance.resx">
       <DependentUpon>201809260627521_Maintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809260636198_Maintenance2.resx">
+      <DependentUpon>201809260636198_Maintenance2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
