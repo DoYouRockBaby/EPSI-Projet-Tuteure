@@ -97,11 +97,18 @@
     <Compile Include="Migrations\201809260636198_Maintenance2.Designer.cs">
       <DependentUpon>201809260636198_Maintenance2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809261346454_Fuel.cs" />
+    <Compile Include="Migrations\201809261346454_Fuel.Designer.cs">
+      <DependentUpon>201809261346454_Fuel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientType.cs" />
+    <Compile Include="Models\Fuel.cs" />
+    <Compile Include="Models\FuelSale.cs" />
+    <Compile Include="Models\FuelWholesaler.cs" />
     <Compile Include="Models\HourlyRate.cs" />
     <Compile Include="Models\Maintenance.cs" />
     <Compile Include="Models\MaintenanceType.cs" />
@@ -154,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809260636198_Maintenance2.resx">
       <DependentUpon>201809260636198_Maintenance2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809261346454_Fuel.resx">
+      <DependentUpon>201809261346454_Fuel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
