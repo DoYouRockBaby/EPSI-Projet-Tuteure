@@ -2,109 +2,120 @@
 using Carsale.DAO.Providers;
 using English_Battle_MVC.Attributes;
 using System.Web.Mvc;
-using System.Web.UI.WebControls.WebParts;
 
 namespace Carsale.Controllers
 {
     [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.MaintainVehicleManager, AccountType.MaintenanceAgent })]
-    public class PartController : AbstractController
+    public class FuelWholesalerController : AbstractController
     {
-        PartProvider partProvider;
+        FuelWholesalerProvider fuelWholesalerProvider;
 
-        public PartController(PartProvider partProvider)
+        public FuelWholesalerController(FuelWholesalerProvider fuelWholesalerProvider)
         {
-            this.partProvider = partProvider;
+            this.fuelWholesalerProvider = fuelWholesalerProvider;
         }
 
-        // GET: Part
+        // GET: FuelWholesaler
         public ActionResult List()
         {
-            return View(partProvider.FindAll());
+            return View(fuelWholesalerProvider.FindAll());
         }
 
-        // GET: Part/Create
+        // GET: FuelWholesaler/Details/5
+        public ActionResult Details(int id)
+        {
+            FuelWholesaler fuelWholesaler = fuelWholesalerProvider.FindById(id);
+            if (fuelWholesaler == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(fuelWholesaler);
+        }
+
+        // GET: FuelWholesaler/Create
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.MaintainVehicleManager })]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Part/Create
+        // POST: FuelWholesaler/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.MaintainVehicleManager })]
-        public ActionResult Create([Bind(Include = "Name,Description,Price")] Part part)
+        public ActionResult Create(FuelWholesaler fuelWholesaler)
         {
             if(ModelState.IsValid)
             {
-                partProvider.Add(part);
+                fuelWholesalerProvider.Add(fuelWholesaler);
                 return RedirectToAction("List");
             }
-
-            return View(part);
+            
+            return View(fuelWholesaler);
         }
 
-        // GET: Part/Edit/5
+        // GET: FuelWholesaler/Edit/5
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.MaintainVehicleManager })]
         public ActionResult Edit(int id)
         {
-            Part part = partProvider.FindById(id);
-            if (part == null)
+            FuelWholesaler fuelWholesaler = fuelWholesalerProvider.FindById(id);
+            if (fuelWholesaler == null)
             {
                 return HttpNotFound();
             }
 
-            return View(part);
+            return View(fuelWholesaler);
         }
 
-        // POST: Part/Edit/5
+        // POST: FuelWholesaler/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.MaintainVehicleManager })]
-        public ActionResult Edit(int id, [Bind(Include = "Name,Description,Price")] Part part)
+        public ActionResult Edit(int id, FuelWholesaler fuelWholesaler)
         {
-            if (partProvider.FindById(id) == null)
+            if (fuelWholesalerProvider.FindById(id) == null)
             {
                 return HttpNotFound();
             }
 
-            part.Id = id;
+            fuelWholesaler.Id = id;
 
             if (ModelState.IsValid)
             {
-                partProvider.Update(part);
+                fuelWholesalerProvider.Update(fuelWholesaler);
                 return RedirectToAction("List");
             }
 
-            return View(part);
+            return View(fuelWholesaler);
         }
 
-        // GET: Part/Delete/5
+        // GET: FuelWholesaler/Delete/5
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.MaintainVehicleManager })]
         public ActionResult Delete(int id)
         {
-            Part part = partProvider.FindById(id);
-            if (part == null)
+            FuelWholesaler fuelWholesaler = fuelWholesalerProvider.FindById(id);
+            if (fuelWholesaler == null)
             {
                 return HttpNotFound();
             }
 
-            return View(part);
+            return View(fuelWholesaler);
         }
 
-        // POST: Part/Delete/5
+        // POST: FuelWholesaler/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.MaintainVehicleManager })]
         public ActionResult DeleteConfirmed(int id)
         {
-            Part part = partProvider.FindById(id);
-            if (part == null)
+            FuelWholesaler fuelWholesaler = fuelWholesalerProvider.FindById(id);
+            if (fuelWholesaler == null)
             {
                 return HttpNotFound();
             }
 
-            partProvider.Delete(id);
+            fuelWholesalerProvider.Delete(id);
             return RedirectToAction("List");
         }
     }

@@ -232,5 +232,13 @@ namespace Carsale.Controllers
 
             return View(viewModel);
         }
+
+        [HttpPost]
+        [LoggedAuthorization]
+        public ActionResult Logout()
+        {
+            Session.Remove("User");
+            return RedirectToAction("Login");
+        }
     }
 }

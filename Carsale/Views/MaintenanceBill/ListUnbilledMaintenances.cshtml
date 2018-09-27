@@ -1,0 +1,39 @@
+﻿@using Carsale.DAO.Models
+
+@model IEnumerable<Maintenance>
+
+@{
+    ViewBag.Title = "Maintenances non facturées";
+}
+
+<h2>Maintenances non facturées</h2>
+
+<div>
+    @Html.ActionLink("Afficher les factures à payer", "ListUnpaid", null, new { @class = "btn btn-default" })
+</div>
+
+<div>
+    @Html.ActionLink("Afficher les factures payées", "ListPaid", null, new { @class = "btn btn-default" })
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Date</th>
+            <th scope="col">Vehicule</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var maintenance in Model)
+        {
+            <tr>
+                <td>@maintenance.HourlyRate.MaintenanceType.ToString()</td>
+                <td>@maintenance.Date.ToString("dd MMM yyyy")</td>
+                <td>@maintenance.Vehicle.Matriculation</td>
+                <td>@Html.ActionLink("Créer une facture", "Create", new { id = maintenance.Id })</td>
+            </tr>
+        }
+    </tbody>
+</table>

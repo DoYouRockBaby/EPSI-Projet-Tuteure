@@ -233,18 +233,22 @@ a[aria-expanded="true"] {
     }
 }
 
+textarea.form-control::-webkit-input-placeholder,
 input.form-control::-webkit-input-placeholder {
     color: rgba(0, 0, 0, 0.4);
 }
 
+textarea.form-control:-moz-placeholder,
 input.form-control:-moz-placeholder { /* Firefox 18- */
     color: rgba(0, 0, 0, 0.4);
 }
 
+textarea.form-control::-moz-placeholder,
 input.form-control::-moz-placeholder { /* Firefox 19+ */
     color: rgba(0, 0, 0, 0.4);
 }
 
+textarea.form-control:-ms-input-placeholder,
 input.form-control:-ms-input-placeholder {
     color: rgba(0, 0, 0, 0.4);
 }
@@ -268,7 +272,7 @@ input.form-control[type="password"] {
     border-width: 2px;
     border-color: #212529;
     border-style: solid;
-    background: url('transparent');
+    background-color: transparent;
     border-radius: 0;
     color: #212529;
 }
@@ -333,7 +337,20 @@ select.form-control option {
     height: 64px;
     background-size: contain;
     background-image: url('../Images/hamburger-icon.png');
-    position: fixed;
+    position: absolute;
+    top: 5px;
+    left: 12px;
+}
+
+.logout-form .logout-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 64px;
+    height: 64px;
+    background-size: contain;
+    background-image: url('../Images/logout-icon.png');
+    position: absolute;
     top: 5px;
     right: 12px;
 }
@@ -362,4 +379,31 @@ select.form-control option {
     top: calc(1em + 9px);
     content: "€";
     right: -24px;
+}
+
+.ms-container {
+    width: 100%;
+}
+
+.ms-container .ms-selectable,
+.ms-container .ms-selection {
+    width: calc(50% - 20px);
+    background-color: transparent;
+    border-width: 2px;
+    border-color: #212529;
+    border-style: solid;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+.ms-container .ms-selectable ul.ms-list,
+.ms-container .ms-selection ul.ms-list {
+    border: none;
+}
+
+.ms-container .ms-selectable li.ms-elem-selectable,
+.ms-container .ms-selection li.ms-elem-selection {
+    color: #212529;
+    border: none;
+    font-weight: 700;
 }

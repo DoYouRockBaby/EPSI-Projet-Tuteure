@@ -14,6 +14,9 @@ namespace Carsale
             bundles.Add(new ScriptBundle("~/bundles/jquery.mask").Include(
                         "~/Scripts/jquery.mask.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquery.multiselect").Include(
+                        "~/Scripts/jquery.multi-select.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
@@ -27,6 +30,7 @@ namespace Carsale
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/multi-select.dist.css",
                       "~/Content/site.css"));
         }
     }

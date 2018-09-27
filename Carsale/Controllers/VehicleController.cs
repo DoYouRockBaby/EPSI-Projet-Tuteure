@@ -1,5 +1,6 @@
-﻿using Carsale.DAO.Models;
-using Carsale.DAO.Providers;
+﻿
+using Carsale.DAO.Models;
+using  Carsale.DAO.Providers;
 using Carsale.ViewModels;
 using English_Battle_MVC.Attributes;
 using System;
@@ -7,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
-
 using System.Web.Mvc;
 
 namespace Carsale.Controllers
@@ -49,7 +49,7 @@ namespace Carsale.Controllers
         public ActionResult List(FilterViewModel viewModel)
         {
 
-            StatusVehicle? selectedStatus = null;
+            StatusVehicle selectedStatus = null;
             int? selectedBrandId = null;
             VehicleColor? selectedColor = null;
 
@@ -229,34 +229,6 @@ namespace Carsale.Controllers
             return View(vehicle);
         }
 
-        //[LoggedAuthorization]
-        //public ActionResult Detail(string matriculation)
-
-        //{
-        //    //Check if the vehicle exists
-        //    var vehicle = vehicleProvider.FindByMatriculation(matriculation);
-        //    if (vehicle == null)
-        //    {
-        //        return new HttpNotFoundResult("Le véhicule n'existe pas.");
-        //    }
-
-        //    //Create default view model
-        //    IEnumerable<Brand> brands = brandProvider.FindAll();
-        //    var viewModel = new CreateVehicleViewModel()
-        //    {
-        //        SelectedBrandId = vehicle.BrandId.ToString(),
-        //        Vehicle = vehicle,
-        //        Brands = brands,
-        //        Power = vehicle.Power,
-        //        Model = vehicle.Model,
-        //        SelectedStatus = vehicle.Status,
-        //        SelectedVehicleColor = vehicle.VehicleColor,
-        //        BrandName = vehicle.Brand.Name,
-        //        Price = vehicle.Price
-        //    };
-        //    ViewBag.Brands = brandProvider.FindAll();
-        //    return View(vehicle);
-        //}
     }
 
 }

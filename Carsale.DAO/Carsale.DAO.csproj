@@ -57,65 +57,9 @@
   <ItemGroup>
     <Compile Include="CarsaleContext.cs" />
     <Compile Include="DataAnnotations\RequiredIfOtherEquals.cs" />
-    <Compile Include="Migrations\201809201204241_Init.cs" />
-    <Compile Include="Migrations\201809201204241_Init.Designer.cs">
-      <DependentUpon>201809201204241_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809201400451_Vhile.cs" />
-    <Compile Include="Migrations\201809201400451_Vhile.Designer.cs">
-      <DependentUpon>201809201400451_Vhile.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809240649322_Corrections.cs" />
-    <Compile Include="Migrations\201809240649322_Corrections.Designer.cs">
-      <DependentUpon>201809240649322_Corrections.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809241131213_Vehicle.cs" />
-    <Compile Include="Migrations\201809241131213_Vehicle.Designer.cs">
-      <DependentUpon>201809241131213_Vehicle.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809241445444_Recette.cs" />
-    <Compile Include="Migrations\201809241445444_Recette.Designer.cs">
-      <DependentUpon>201809241445444_Recette.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809250709181_Jesaispas.cs" />
-    <Compile Include="Migrations\201809250709181_Jesaispas.Designer.cs">
-      <DependentUpon>201809250709181_Jesaispas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809250959196_Account.cs" />
-    <Compile Include="Migrations\201809250959196_Account.Designer.cs">
-      <DependentUpon>201809250959196_Account.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809250734024_VehiclePrice.cs" />
-    <Compile Include="Migrations\201809250734024_VehiclePrice.Designer.cs">
-      <DependentUpon>201809250734024_VehiclePrice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809252031479_Fix.cs" />
-    <Compile Include="Migrations\201809252031479_Fix.Designer.cs">
-      <DependentUpon>201809252031479_Fix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809252330480_editVehicle.cs" />
-    <Compile Include="Migrations\201809252330480_editVehicle.Designer.cs">
-      <DependentUpon>201809252330480_editVehicle.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809261225480_EditClientControllerSetUp.cs" />
-    <Compile Include="Migrations\201809261225480_EditClientControllerSetUp.Designer.cs">
-      <DependentUpon>201809261225480_EditClientControllerSetUp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809261305515_rien.cs" />
-    <Compile Include="Migrations\201809261305515_rien.Designer.cs">
-      <DependentUpon>201809261305515_rien.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809261324051_creatvehicleSetUp.cs" />
-    <Compile Include="Migrations\201809261324051_creatvehicleSetUp.Designer.cs">
-      <DependentUpon>201809261324051_creatvehicleSetUp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809261338447_editeCreatSetUp2.cs" />
-    <Compile Include="Migrations\201809261338447_editeCreatSetUp2.Designer.cs">
-      <DependentUpon>201809261338447_editeCreatSetUp2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809261415366_LastSetUpCreatVehicle.cs" />
-    <Compile Include="Migrations\201809261415366_LastSetUpCreatVehicle.Designer.cs">
-      <DependentUpon>201809261415366_LastSetUpCreatVehicle.cs</DependentUpon>
+    <Compile Include="Migrations\201809270904541_Init.cs" />
+    <Compile Include="Migrations\201809270904541_Init.Designer.cs">
+      <DependentUpon>201809270904541_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201809261907215_sixthSetUp.cs" />
     <Compile Include="Migrations\201809261907215_sixthSetUp.Designer.cs">
@@ -158,7 +102,14 @@
     <Compile Include="Models\AccountType.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientType.cs" />
+    <Compile Include="Models\Fuel.cs" />
+    <Compile Include="Models\FuelSale.cs" />
+    <Compile Include="Models\FuelType.cs" />
+    <Compile Include="Models\FuelWholesaler.cs" />
     <Compile Include="Models\HourlyRate.cs" />
+    <Compile Include="Models\Maintenance.cs" />
+    <Compile Include="Models\MaintenanceBill.cs" />
+    <Compile Include="Models\MaintenanceBillStatus.cs" />
     <Compile Include="Models\MaintenanceType.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Part.cs" />
@@ -168,11 +119,16 @@
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\MaintenanceBillProvider.cs" />
     <Compile Include="Providers\BrandProvider.cs" />
+    <Compile Include="Providers\FuelProvider.cs" />
+    <Compile Include="Providers\FuelSaleProvider.cs" />
+    <Compile Include="Providers\MaintenanceProvider.cs" />
     <Compile Include="Providers\ClientProvider.cs" />
     <Compile Include="Providers\AccountProvider.cs" />
     <Compile Include="Providers\HourlyRateProvider.cs" />
     <Compile Include="Providers\NotificationProvider.cs" />
+    <Compile Include="Providers\FuelWholesalerProvider.cs" />
     <Compile Include="Providers\PartProvider.cs" />
     <Compile Include="Providers\RentProvider.cs" />
     <Compile Include="Providers\SaleProvider.cs" />
@@ -183,50 +139,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809201204241_Init.resx">
-      <DependentUpon>201809201204241_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809201400451_Vhile.resx">
-      <DependentUpon>201809201400451_Vhile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809240649322_Corrections.resx">
-      <DependentUpon>201809240649322_Corrections.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809241131213_Vehicle.resx">
-      <DependentUpon>201809241131213_Vehicle.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809241445444_Recette.resx">
-      <DependentUpon>201809241445444_Recette.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809250709181_Jesaispas.resx">
-      <DependentUpon>201809250709181_Jesaispas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809250959196_Account.resx">
-      <DependentUpon>201809250959196_Account.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809250734024_VehiclePrice.resx">
-      <DependentUpon>201809250734024_VehiclePrice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809252031479_Fix.resx">
-      <DependentUpon>201809252031479_Fix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809252330480_editVehicle.resx">
-      <DependentUpon>201809252330480_editVehicle.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809261225480_EditClientControllerSetUp.resx">
-      <DependentUpon>201809261225480_EditClientControllerSetUp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809261305515_rien.resx">
-      <DependentUpon>201809261305515_rien.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809261324051_creatvehicleSetUp.resx">
-      <DependentUpon>201809261324051_creatvehicleSetUp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809261338447_editeCreatSetUp2.resx">
-      <DependentUpon>201809261338447_editeCreatSetUp2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809261415366_LastSetUpCreatVehicle.resx">
-      <DependentUpon>201809261415366_LastSetUpCreatVehicle.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809270904541_Init.resx">
+      <DependentUpon>201809270904541_Init.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809261907215_sixthSetUp.resx">
       <DependentUpon>201809261907215_sixthSetUp.cs</DependentUpon>

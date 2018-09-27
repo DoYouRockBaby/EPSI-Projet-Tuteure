@@ -1,0 +1,42 @@
+﻿@using Carsale.DAO.Models
+
+@model IEnumerable<FuelWholesaler>
+
+@{
+    ViewBag.Title = "Liste des grossistes";
+}
+
+<h2>Liste des grossistes</h2>
+
+@if ((ViewBag.LoggedUser as Account).Type == AccountType.MaintainVehicleManager || (ViewBag.LoggedUser as Account).Type == AccountType.Director)
+{
+    @Html.ActionLink("Ajouter un grossiste", "Create", null, new { @class = "btn btn-default" })
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Adresse</th>
+            @if ((ViewBag.LoggedUser as Account).Type == AccountType.MaintainVehicleManager || (ViewBag.LoggedUser as Account).Type == AccountType.Director)
+            {
+                <th scope="col"></th>
+                <th scope="col"></th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var fuelWholesaler in Model)
+        {
+            <tr>
+                <td>@fuelWholesaler.Name</td>
+                <td>@fuelWholesaler.Address</td>
+                @if ((ViewBag.LoggedUser as Account).Type == AccountType.MaintainVehicleManager || (ViewBag.LoggedUser as Account).Type == AccountType.Director)
+                {
+                    <td>@Html.ActionLink("Editer", "Edit", new { id = fuelWholesaler.Id })</td>
+                    <td>@Html.ActionLink("Supprimer", "Delete", new { id = fuelWholesaler.Id })</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,49 @@
+﻿@using Carsale.DAO.Models
+@using Carsale.ViewModels
+@using Carsale.Extensions
+
+@model SellFuelViewModel
+
+@{
+    ViewBag.Title = "Vendre un carburant";
+}
+
+<h2>Vendre un carburant</h2>
+
+@using (Html.BeginForm("Sell", "Fuel", FormMethod.Post, new { id = "create", @Class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Sale.Price, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Sale.Price, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Sale.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Sale.Mileage, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Sale.Mileage, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Sale.Mileage, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Sale.Volume, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Sale.Volume, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Sale.Volume, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            @Html.DropDownListFor(model => model.SelectedVehicleId, (Model.Vehicles as IEnumerable<Vehicle>).Select(e => new SelectListItem() { Text = e.Matriculation, Value = e.Matriculation, Selected = false }).AsEnumerable().AddFirst(new SelectListItem() { Text = "Vehicule", Value = "", Selected = true, Disabled = true }), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SelectedVehicleId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Ajouter" class="btn btn-primary" />
+    </div>
+}

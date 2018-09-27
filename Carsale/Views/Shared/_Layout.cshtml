@@ -48,6 +48,11 @@
                         <span class="dark-blue-text"><i class="fa fa-bars fa-1x"></i></span>
                     </button>
 
+                    using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @class = "logout-form" }))
+                    {
+                        <button type="submit" class="logout-button" ></button>
+                    }
+
                     <!-- Collapsible content -->
                     <div class="collapse navbar-collapse hidden-md-up" id="hamburger-menu-contents">
                         <ul class="navbar-nav mr-auto">
@@ -75,6 +80,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jquery.mask")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery.multiselect")
     @RenderSection("scripts", required: false)
 </body>
 </html>
