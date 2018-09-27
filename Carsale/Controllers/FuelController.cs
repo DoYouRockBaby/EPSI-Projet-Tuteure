@@ -12,10 +12,10 @@ namespace Carsale.Controllers
     {
         FuelProvider fuelProvider;
         FuelWholesalerProvider fuelWholesalerProvider;
-        VechicleProvider vehicleProvider;
+        VehicleProvider vehicleProvider;
         FuelSaleProvider fuelSaleProvider;
 
-        public FuelController(FuelProvider fuelProvider, FuelWholesalerProvider fuelWholesalerProvider, VechicleProvider vehicleProvider, FuelSaleProvider fuelSaleProvider)
+        public FuelController(FuelProvider fuelProvider, FuelWholesalerProvider fuelWholesalerProvider, VehicleProvider vehicleProvider, FuelSaleProvider fuelSaleProvider)
         {
             this.fuelProvider = fuelProvider;
             this.fuelWholesalerProvider = fuelWholesalerProvider;

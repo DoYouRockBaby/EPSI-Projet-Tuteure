@@ -14,10 +14,10 @@ namespace Carsale.Controllers
     {
         MaintenanceProvider maintenanceProvider;
         PartProvider partProvider;
-        VechicleProvider vehicleProvider;
+        VehicleProvider vehicleProvider;
         HourlyRateProvider hourlyRateProvider;
 
-        public MaintenanceController(MaintenanceProvider maintenanceProvider, PartProvider partProvider, VechicleProvider vehicleProvider, HourlyRateProvider hourlyRateProvider)
+        public MaintenanceController(MaintenanceProvider maintenanceProvider, PartProvider partProvider, VehicleProvider vehicleProvider, HourlyRateProvider hourlyRateProvider)
         {
             this.maintenanceProvider = maintenanceProvider;
             this.partProvider = partProvider;
