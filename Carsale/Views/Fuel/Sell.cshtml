@@ -38,7 +38,8 @@
 
     <div class="form-row">
         <div class="form-group col-md-12">
-            @Html.DropDownListFor(model => model.SelectedVehicleId, (Model.Vehicles as IEnumerable<Vehicle>).Select(e => new SelectListItem() { Text = e.Matriculation, Value = e.Matriculation, Selected = false }).AsEnumerable().AddFirst(new SelectListItem() { Text = "Vehicule", Value = "", Selected = true, Disabled = true }), new { @class = "form-control" })
+            @Html.LabelFor(model => model.SelectedVehicleId, htmlAttributes: new { @class = "control-label" })
+            @Html.DropDownListFor(model => model.SelectedVehicleId, (Model.Vehicles as IEnumerable<Vehicle>).Select(e => new SelectListItem() { Text = e.Matriculation, Value = e.Matriculation, Selected = false }).AsEnumerable(), new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.SelectedVehicleId, "", new { @class = "text-danger" })
         </div>
     </div>

@@ -16,8 +16,9 @@
 
     <div class="form-row">
         <div class="form-group">
+            @Html.LabelFor(model => model.Sale.Price, htmlAttributes: new { @class = "control-label" })
             <span class="input-symbol-euro">
-                @Html.TextBoxFor(model => model.Sale.Price, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Sale.Price).ToHtmlString()) })
+                @Html.TextBoxFor(model => model.Sale.Price, new { @class = "form-control" })
             </span>
             @Html.ValidationMessageFor(model => model.Sale.Price, ViewBag.PriceError as string, new { @class = "text-danger" })
         </div>
@@ -25,11 +26,12 @@
 
     <div class="form-row">
         <div class="form-group">
+            @Html.LabelFor(model => model.ClientId, htmlAttributes: new { @class = "control-label" })
             @Html.DropDownListFor(m => m.ClientId, Model.Clients.Select(client => new SelectListItem
             {
                 Value = client.Id.ToString(),
                 Text = (client.Type == Carsale.DAO.Models.ClientType.Company) ? client.Name : client.FirstName + " " + client.LastName
-            }).AddFirst(new SelectListItem() { Text = "Client", Value = "", Selected = true }), new { @class = "form-control" })
+            })
             @Html.ValidationMessageFor(m => m.ClientId, "", new { @class = "text-danger" })
         </div>
     </div>

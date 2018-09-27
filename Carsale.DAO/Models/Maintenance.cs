@@ -42,11 +42,18 @@ namespace Carsale.DAO.Models
         {
             get
             {
-                var price = HourlyRate.Price * WorkingTime;
-
-                foreach(var part in Parts)
+                var price = 0.0;
+                if (HourlyRate != null)
                 {
-                    price += part.Price;
+                    price = HourlyRate.Price * WorkingTime;
+                }
+
+                if(Parts != null)
+                {
+                    foreach (var part in Parts)
+                    {
+                        price += part.Price;
+                    }
                 }
 
                 return price;

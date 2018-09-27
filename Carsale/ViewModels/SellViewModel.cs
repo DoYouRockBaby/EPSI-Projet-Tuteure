@@ -24,7 +24,5 @@ namespace Carsale.ViewModels
         [Required]
         [Display(Name = "Vehicule")]
         public string VehicleId { get; set; }
-        public int Id { get; set; }
-
     }
 }

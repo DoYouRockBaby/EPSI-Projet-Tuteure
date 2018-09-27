@@ -57,13 +57,9 @@
   <ItemGroup>
     <Compile Include="CarsaleContext.cs" />
     <Compile Include="DataAnnotations\RequiredIfOtherEquals.cs" />
-    <Compile Include="Migrations\201809271422265_Init.cs" />
-    <Compile Include="Migrations\201809271422265_Init.Designer.cs">
-      <DependentUpon>201809271422265_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809271429501_VehiclesUpdate.cs" />
-    <Compile Include="Migrations\201809271429501_VehiclesUpdate.Designer.cs">
-      <DependentUpon>201809271429501_VehiclesUpdate.cs</DependentUpon>
+    <Compile Include="Migrations\201809271533550_Init.cs" />
+    <Compile Include="Migrations\201809271533550_Init.Designer.cs">
+      <DependentUpon>201809271533550_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -107,11 +103,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809271422265_Init.resx">
-      <DependentUpon>201809271422265_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809271429501_VehiclesUpdate.resx">
-      <DependentUpon>201809271429501_VehiclesUpdate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809271533550_Init.resx">
+      <DependentUpon>201809271533550_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

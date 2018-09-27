@@ -6,6 +6,10 @@
     ViewBag.Title = "Liste des ventes de carburant";
 }
 
+<div>
+    @Html.ActionLink("Liste des carburant", "List", null, new { @class = "btn btn-default" })
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -21,7 +25,7 @@
         @foreach (var fuelSale in Model)
         {
             <tr>
-                 <td>@fuelSale.Date.ToString("dd MMM yyyy")</td>
+                <td>@fuelSale.Date.ToString("dd MMM yyyy")</td>
                 <td>@fuelSale.Price</td>
                 <td>@fuelSale.Volume</td>
                 <td>@fuelSale.Mileage</td>

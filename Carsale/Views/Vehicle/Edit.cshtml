@@ -13,47 +13,65 @@
 
 @using (Html.BeginForm("Edit", "Vehicle", FormMethod.Post, new { id = "create", @Class = "form-horizontal" }))
 {
+    @Html.LabelFor(m => m.Brands)
+    @Html.HiddenFor(m => m.Vehicle.Matriculation, new { @class = "form-control" })
+
+    <div class="form-group">
+        <div class="collapse-brand-form collapse show" aria-expanded="true">
+            <div class="form-group">
+                @Html.LabelFor(m => m.SelectedBrandId)
+                @Html.DropDownListFor(m => m.SelectedBrandId, Model.Brands.Select(brand => new SelectListItem { Value = brand.Id.ToString(), Text = brand.Name }), new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.SelectedBrandId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="collapse-brand-form collapse" aria-expanded="false">
+            <div class="form-group">
+                @Html.LabelFor(m => m.BrandName)
+                @Html.TextBoxFor(m => m.BrandName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.BrandName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button id="brand-collapse-button" class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target=".collapse-brand-form" aria-expanded="false" aria-controls="collapse-brand-form">
+                <span class="if-collapsed">Créer une nouvelle marque</span>
+                <span class="if-not-collapsed">Utiliser une marque existante</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            @Html.LabelFor(m => m.Vehicle.Power)
+            @Html.TextBoxFor(m => m.Vehicle.Power, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Vehicle.Power)
+        </div>
+    </div>
 
     <div class="form-row">
         <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.Brands)
-            @Html.HiddenFor(m => m.Vehicle.Matriculation, new { @class = "form-control" })
-            @Html.HiddenFor(m => m.Vehicle.BrandId, new { @class = "form-control" })
-            @Html.DropDownListFor(m => m.SelectedBrandId, Model.Brands.Select(brand => new SelectListItem
-       {
-           Value = brand.Id.ToString(),
-           Text = brand.Name
-       }), new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Brands)
-        </div>
-        <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.Power)
-            @Html.TextBoxFor(m => m.Power, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Power)
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.Model)
-            @Html.TextBoxFor(m => m.Model, new { @class = "form-control" })
+            @Html.LabelFor(m => m.Vehicle.Model)
+            @Html.TextBoxFor(m => m.Vehicle.Model, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Vehicle.Model)
         </div>
         <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.Price)
-            @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Price)
+            @Html.LabelFor(m => m.Vehicle.Price)
+            @Html.TextBoxFor(m => m.Vehicle.Price, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Vehicle.Price)
         </div>
         <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.VehicleColor)
-            @Html.DropDownListFor(m => m.SelectedVehicleColor, (Model.VehicleColor as IEnumerable<VehicleColor>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable(), new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.VehicleColor, "", new { @class = "text-danger" })
+            @Html.LabelFor(m => m.Vehicle.VehicleColor)
+            @Html.EnumDropDownListFor(m => m.Vehicle.VehicleColor, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Vehicle.VehicleColor, "", new { @class = "text-danger" })
         </div>
         <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.Status)
-            @Html.DropDownListFor(m => m.SelectedStatus, (Model.Status as IEnumerable<StatusVehicle>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable(), new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Status)
+            @Html.LabelFor(m => m.Vehicle.Status)
+            @Html.EnumDropDownListFor(m => m.Vehicle.Status, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Vehicle.Status)
         </div>
     </div>
+
     <div class="form-row">
         <div class="form-group">
             <input class="btn btn-primary" type="submit" value="Modifier le véhicule" />

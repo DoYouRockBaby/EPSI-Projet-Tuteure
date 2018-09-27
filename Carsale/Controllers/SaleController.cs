@@ -76,7 +76,7 @@ namespace Carsale.Controllers
             if (ModelState.IsValid)
             {
                 //Si la marge est inferieur a 5%, on ne peut pas vendre le vehicule
-                if((viewModel.Sale.Price - vehicle.Price) / vehicle.Price < 0.05)
+                if((viewModel.Sale.Price - vehicle.Price) / vehicle.Price >= 0.05)
                 {
                     saleProvider.Add(viewModel.Sale);
                     return RedirectToAction("List");

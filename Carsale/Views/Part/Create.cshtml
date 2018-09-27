@@ -30,8 +30,9 @@
 
     <div class="form-row">
         <div class="form-group">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label" })
             <span class="input-symbol-euro">
-                @Html.TextBoxFor(model => model.Price, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Price).ToHtmlString()) })
+                @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
             </span>
             @Html.ValidationMessageFor(model => model.Price, ViewBag.PriceError as string, new { @class = "text-danger" })
         </div>

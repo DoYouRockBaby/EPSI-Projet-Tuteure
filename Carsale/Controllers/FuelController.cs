@@ -88,7 +88,9 @@ namespace Carsale.Controllers
             var viewModel = new CreateFuelViewModel()
             {
                 Fuel = fuel,
-                FuelWholesalers = fuelWholesalerProvider.FindAll()
+                FuelWholesalers = fuelWholesalerProvider.FindAll(),
+                SelectedFuelWholesaler = fuel.FuelWholesalerId.ToString(),
+                SelectedType = fuel.Type.ToString()
             };
 
             return View(viewModel);

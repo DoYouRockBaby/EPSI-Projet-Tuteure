@@ -10,10 +10,7 @@ namespace Carsale.ViewModels
 {
     public class CreateVehicleViewModel
     {
-
-        [Display(Name = "Immatriculation")]
-        public string Matriculation { get; set; }
-
+        [Required(ErrorMessage = "Vehicle doit être renseignée")]
         [Display(Name = "Vehicle")]
         public Vehicle Vehicle { get; set; }
 
@@ -25,43 +22,7 @@ namespace Carsale.ViewModels
         [Display(Name = "Nom de la marque")]
         public string BrandName { get; set; }
 
-        
         [Display(Name = "Brand")]
         public IEnumerable<Brand> Brands { get; set; }
-
-        public int Power { get; set; }
-
-        public string Model { get; set; }
-
-        [Required(ErrorMessage = "Vous devez renseigner un prix d'achat")]
-        [Display(Name = "Prix")]
-        [Range(1, double.MaxValue)]
-        public double Price { get; set; }
-
-        [Required]
-        [Display(Name = "Statut")]
-        public StatusVehicle SelectedStatus { get; set; }
-
-        [Required]
-        [Display(Name = "Couleur")]
-        public VehicleColor SelectedVehicleColor { get; set; }
-
-
-        public IEnumerable<StatusVehicle> Status
-        {
-            get
-            {
-                return (StatusVehicle[])Enum.GetValues(typeof(StatusVehicle));
-            }
-        }
-
-        public IEnumerable<VehicleColor> VehicleColor
-        {
-            get
-            {
-                return (VehicleColor[])Enum.GetValues(typeof(VehicleColor));
-            }
-        }
-        
     }
 }

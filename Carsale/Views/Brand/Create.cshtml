@@ -8,7 +8,8 @@
 {
 
     <div class="form-group">
-        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Name).ToHtmlString()) })
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Name)
     </div>
     <div class="col-md-4">

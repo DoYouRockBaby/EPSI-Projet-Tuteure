@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Carsale.Controllers
 {
-    public class MaintenanceBillController : Controller
+    public class MaintenanceBillController : AbstractController
     {
         MaintenanceProvider maintenanceProvider;
         MaintenanceBillProvider maintenanceBillProvider;

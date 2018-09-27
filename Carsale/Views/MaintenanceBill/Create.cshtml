@@ -16,11 +16,12 @@
 
     <div class="form-row">
         <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.SelectedClient, htmlAttributes: new { @class = "control-label" })
             @Html.DropDownListFor(model => model.SelectedClient, Model.Clients.Select(client => new SelectListItem
             {
                 Value = client.Id.ToString(),
                 Text = (client.Type == Carsale.DAO.Models.ClientType.Company) ? client.Name : client.FirstName + " " + client.LastName
-            }).AddFirst(new SelectListItem() { Text = "Client", Value = "", Selected = true }), new { @class = "form-control" })
+            }), new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.SelectedClient, "", new { @class = "text-danger" })
         </div>
     </div>

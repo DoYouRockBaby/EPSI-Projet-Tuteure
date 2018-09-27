@@ -95,47 +95,51 @@ namespace Carsale.Controllers
 
             return View(viewModel);
         }
-        //sara
+
         [HttpPost]
         public ActionResult Create(CreateVehicleViewModel viewModel)
         {
-            String m = viewModel.Matriculation;
+            String m = viewModel.Vehicle.Matriculation;
             if (vehicleProvider.FindByMatriculation(m) != null)
             {
                 ViewBag.MatriculationError = "Un véhicule existe déjà avec cette Immatriculation.";
             }
             else
             {
-                var brand = brandProvider.FindById(int.Parse(viewModel.SelectedBrandId));
-                var brands = brandProvider.FindAll();
-                Vehicle oVehicle = new Vehicle();
-                oVehicle.Matriculation = viewModel.Matriculation;
-                oVehicle.Price = viewModel.Price;
-                oVehicle.BrandId = int.Parse(viewModel.SelectedBrandId);
-                oVehicle.Model = viewModel.Model;
-                oVehicle.Power = viewModel.Power;
-                oVehicle.Status = viewModel.SelectedStatus;
-                oVehicle.VehicleColor = viewModel.SelectedVehicleColor;
-                viewModel.Vehicle = oVehicle;
-                viewModel.BrandName = brand.Name;
-                viewModel.Vehicle.Brand = brand;
-                viewModel.Brands = brands;
+                if (viewModel.BrandName != null && viewModel.BrandName != "")
+                {
+                    //If the brandname is filled in the form, create a new brand
+                    viewModel.Vehicle.Brand = new Brand()
+                    {
+                        Name = viewModel.BrandName
+                    };
 
+                    viewModel.Vehicle.BrandId = 0;
+                }
+                else
+                {
+                    //Add the selected brand otherwise
+                    if (int.TryParse(viewModel.SelectedBrandId, out int brandId))
+                    {
+                        viewModel.Vehicle.BrandId = brandId;
+                    }
+                }
+
+                //If valid, add the vehicle to the database
                 if (ModelState.IsValid)
                 {
-                    vehicleProvider.Add(oVehicle);
+                    vehicleProvider.Add(viewModel.Vehicle);
                     return RedirectToAction("List", "Vehicle");
                 }
             }
 
+            viewModel.Brands = brandProvider.FindAll();
             return View(viewModel);
         }
 
         //Edit a  vehicle
-        //sara
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
         public ActionResult Edit(String matriculation)
-
         {
             //Check if the vehicle exists
             var vehicle = vehicleProvider.FindByMatriculation(matriculation);
@@ -151,45 +155,51 @@ namespace Carsale.Controllers
                 SelectedBrandId = vehicle.BrandId.ToString(),
                 Vehicle = vehicle,
                 Brands = brands,
-                Power = vehicle.Power,
-                Model = vehicle.Model,
-                SelectedStatus = vehicle.Status,
-                SelectedVehicleColor = vehicle.VehicleColor,
-                BrandName = vehicle.Brand.Name,
-                Price = vehicle.Price
             };
+
             ViewBag.Brands = brandProvider.FindAll();
             return View(viewModel);
         }
 
         //Update a  vehicle
-        //sara
         [HttpPost]
         public ActionResult Edit(CreateVehicleViewModel viewModel)
         {
-
             //Check if the user exists
             String matriculation = viewModel.Vehicle.Matriculation;
             if (vehicleProvider.FindByMatriculation(matriculation) == null)
             {
-                return new HttpNotFoundResult("There are not this vehicle in database!");
+                return new HttpNotFoundResult("Le vehicule n'existe pas dans la base de donnée");
             }
 
+            if (viewModel.BrandName != null && viewModel.BrandName != "")
             {
-                Vehicle vehicle = new Vehicle()
+                //If the brandname is filled in the form, create a new brand
+                viewModel.Vehicle.Brand = new Brand()
                 {
-                    Matriculation = viewModel.Vehicle.Matriculation,
-                    BrandId = int.Parse(viewModel.SelectedBrandId),
-                    Model = viewModel.Model,
-                    VehicleColor = viewModel.SelectedVehicleColor,
-                    Status = viewModel.SelectedStatus,
-                    Power = viewModel.Power,
-                    Price = viewModel.Price
+                    Name = viewModel.BrandName
                 };
 
-                vehicleProvider.Update(vehicle);
+                viewModel.Vehicle.BrandId = 0;
             }
-            return RedirectToAction("List", "Vehicle");
+            else
+            {
+                //Add the selected brand otherwise
+                if (Int32.TryParse(viewModel.SelectedBrandId, out int brandId))
+                {
+                    viewModel.Vehicle.BrandId = brandId;
+                }
+            }
+
+            //If valid, add the vehicle to the database
+            if (ModelState.IsValid)
+            {
+                vehicleProvider.Update(viewModel.Vehicle);
+                return RedirectToAction("List", "Vehicle");
+            }
+
+            viewModel.Brands = brandProvider.FindAll();
+            return View(viewModel);
         }
 
         //Delete a new vehicle
