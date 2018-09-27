@@ -94,11 +94,11 @@ namespace Carsale.DAO.Migrations
                     {
                         Matriculation = c.String(nullable: false, maxLength: 128),
                         Price = c.Double(nullable: false),
+                        Mileage = c.Double(nullable: false),
                         BrandId = c.Int(nullable: false),
                         VehicleColor = c.Int(nullable: false),
                         Power = c.Int(nullable: false),
                         Model = c.String(nullable: false, maxLength: 255),
-                        Mileage = c.Double(nullable: false),
                         Status = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Matriculation)
@@ -205,6 +205,25 @@ namespace Carsale.DAO.Migrations
                 .Index(t => t.ClientId);
             
             CreateTable(
+                "dbo.TradeIns",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ClientId = c.Int(nullable: false),
+                        MatriculationNew = c.String(),
+                        MatriculationTradeIn = c.String(),
+                        DateTradeIn = c.DateTime(nullable: false),
+                        Mileage = c.Double(nullable: false),
+                        Price = c.Double(nullable: false),
+                        Vehicle_Matriculation = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Clients", t => t.ClientId, cascadeDelete: true)
+                .ForeignKey("dbo.Vehicles", t => t.Vehicle_Matriculation)
+                .Index(t => t.ClientId)
+                .Index(t => t.Vehicle_Matriculation);
+            
+            CreateTable(
                 "dbo.PartMaintenances",
                 c => new
                     {
@@ -221,6 +240,8 @@ namespace Carsale.DAO.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.TradeIns", "Vehicle_Matriculation", "dbo.Vehicles");
+            DropForeignKey("dbo.TradeIns", "ClientId", "dbo.Clients");
             DropForeignKey("dbo.Sales", "VehicleMatriculation", "dbo.Vehicles");
             DropForeignKey("dbo.Sales", "ClientId", "dbo.Clients");
             DropForeignKey("dbo.Rents", "VehicleMatriculation", "dbo.Vehicles");
@@ -237,6 +258,8 @@ namespace Carsale.DAO.Migrations
             DropForeignKey("dbo.Fuels", "FuelWholesalerId", "dbo.FuelWholesalers");
             DropIndex("dbo.PartMaintenances", new[] { "Maintenance_Id" });
             DropIndex("dbo.PartMaintenances", new[] { "Part_Id" });
+            DropIndex("dbo.TradeIns", new[] { "Vehicle_Matriculation" });
+            DropIndex("dbo.TradeIns", new[] { "ClientId" });
             DropIndex("dbo.Sales", new[] { "ClientId" });
             DropIndex("dbo.Sales", new[] { "VehicleMatriculation" });
             DropIndex("dbo.Rents", new[] { "ClientId" });
@@ -250,6 +273,7 @@ namespace Carsale.DAO.Migrations
             DropIndex("dbo.FuelSales", new[] { "FuelReference" });
             DropIndex("dbo.Fuels", new[] { "FuelWholesalerId" });
             DropTable("dbo.PartMaintenances");
+            DropTable("dbo.TradeIns");
             DropTable("dbo.Sales");
             DropTable("dbo.Rents");
             DropTable("dbo.Notifications");

@@ -31,7 +31,7 @@
             {
                 Value = client.Id.ToString(),
                 Text = (client.Type == Carsale.DAO.Models.ClientType.Company) ? client.Name : client.FirstName + " " + client.LastName
-            })
+            }), new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.ClientId, "", new { @class = "text-danger" })
         </div>
     </div>
