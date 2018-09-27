@@ -29,8 +29,9 @@ namespace Carsale.Controllers
         public ActionResult List()
         {
 
+
             //Filling brands and other vehicle here and then send them with our viewmodel to the view
-            var viewModel = new FilterViewModel()
+            var viewModel = new FilterVehicleViewModel()
             {
                 Brands = brandProvider.FindAll(),
                 Vehicles = vehicleProvider.FindAll()
@@ -46,7 +47,7 @@ namespace Carsale.Controllers
             return View(viewModel);
         }
         [HttpPost]
-        public ActionResult List(FilterViewModel viewModel)
+        public ActionResult List(FilterVehicleViewModel viewModel)
         {
 
             StatusVehicle selectedStatus = StatusVehicle.New;
@@ -76,7 +77,7 @@ namespace Carsale.Controllers
                 vehicles = vehicleProvider.FindAll(selectedStatus, selectedBrandId, selectedColor);
             }
 
-            viewModel = new FilterViewModel()
+            viewModel = new FilterVehicleViewModel()
             {
                 Brands = brandProvider.FindAll(),
                 Vehicles = vehicles
@@ -203,7 +204,6 @@ namespace Carsale.Controllers
         }
 
         //Delete a new vehicle
-        //sara
         public ActionResult Delete(String matriculation)
         {
             Vehicle vehicle = vehicleProvider.FindByMatriculation(matriculation);
@@ -218,7 +218,6 @@ namespace Carsale.Controllers
 
         }
         [HttpPost]
-        //sara
         public ActionResult Delete(Vehicle vehicle)
         {
             vehicleProvider.Delete(vehicle.Matriculation);

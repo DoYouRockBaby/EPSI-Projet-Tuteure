@@ -1,7 +1,7 @@
 ﻿@using Carsale.DAO.Models
 @using Carsale.Extensions
 
-@model Carsale.ViewModels.FilterViewModel
+@model Carsale.ViewModels.FilterVehicleViewModel
 @{
     ViewBag.Title = "Liste";
 }
@@ -69,8 +69,8 @@
     </thead>
 
     <tbody>
-    @foreach (var vehicle in (Model.Vehicles as IEnumerable<Vehicle>))
-    {
+        @foreach (var vehicle in (Model.Vehicles as IEnumerable<Vehicle>))
+        {
         <tr>
             <td>@vehicle.Brand.Name</td>
             <td>@vehicle.Model</td>
@@ -81,8 +81,11 @@
             {
                 <td>@Html.ActionLink("Editer", "Edit", new { matriculation = vehicle.Matriculation })</td>
                 <td>@Html.ActionLink("Supprimer", "Delete", new { matriculation = vehicle.Matriculation })</td>
+                <td>@Html.ActionLink("Reprise", "Create", "TradeIn", new { matriculation = vehicle.Matriculation }, null)</td>
             }
         </tr>
+        }
+          
     }
     </tbody>
 </table>

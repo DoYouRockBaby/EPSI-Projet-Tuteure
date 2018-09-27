@@ -27,6 +27,9 @@ namespace Carsale.DAO.Models
         [Range(1, double.MaxValue)]
         public double Price { get; set; }
 
+       
+        public double Mileage { get; set; }
+
         [Display(Name = "Marque")]
         public Brand Brand { get; set; }
 
@@ -46,8 +49,7 @@ namespace Carsale.DAO.Models
         [StringLength(255, ErrorMessage = "La taille maximale du modèle est de 255 caractères")]
         [Display(Name = "Modèle")]
         public string Model { get; set; }
-
-        public double Mileage { get; set; }
+        
 
         [Required(ErrorMessage = "Vous devez choisir le statut vehicule")]
         [Display(Name = "Status")]

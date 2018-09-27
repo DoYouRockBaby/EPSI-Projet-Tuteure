@@ -38,6 +38,21 @@
             </div>
         </div>
 
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <div class="collapse-brand-form collapse show" aria-expanded="true">
+                    <div class="form-group">
+                        @Html.DropDownListFor(m => m.SelectedBrandId, Model.Brands.Select(brand => new SelectListItem
+                        {
+                            Value = brand.Id.ToString(),
+                            Text = brand.Name
+                        }).AddFirst(new SelectListItem() { Text = "Marque", Value = "", Selected = true }), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.SelectedBrandId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="form-group">
             <button id="brand-collapse-button" class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target=".collapse-brand-form" aria-expanded="false" aria-controls="collapse-brand-form">
                 <span class="if-collapsed">Créer une nouvelle marque</span>
@@ -75,11 +90,11 @@
             @Html.EnumDropDownListFor(m => m.Vehicle.Status, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Vehicle.Status)
         </div>
-    </div>
 
-    <div class="form-row">
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Créer le vehicule" />
+        <div class="form-row">
+            <div class="form-group col-md-6" style="margin-left: 25%">
+                <input type="submit" class="btn btn-primary" value="Créer le vehicule" />
+            </div>
         </div>
     </div>
 }

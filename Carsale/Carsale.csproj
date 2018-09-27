@@ -194,6 +194,7 @@
     <Compile Include="Controllers\PartController.cs" />
     <Compile Include="Controllers\RentController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
+    <Compile Include="Controllers\TradeInController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Images\Extensions\EnumerableExtension.cs" />
     <Compile Include="Global.asax.cs">
@@ -206,11 +207,12 @@
     <Compile Include="ViewModels\CreateMaintenanceBillViewModel.cs" />
     <Compile Include="ViewModels\CreateMaintenanceViewModel.cs" />
     <Compile Include="ViewModels\CreateVehicleViewModel.cs" />
-    <Compile Include="ViewModels\FilterViewModel.cs" />
+    <Compile Include="ViewModels\FilterVehicleViewModel.cs" />
     <Compile Include="ViewModels\HourlyRateHistoryViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\SellFuelViewModel.cs" />
     <Compile Include="ViewModels\SellViewModel.cs" />
+    <Compile Include="ViewModels\TradeInlViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -326,6 +328,8 @@
     <Content Include="Views\Part\Edit.cshtml" />
     <Content Include="Views\Part\Delete.cshtml" />
     <Content Include="Views\HourlyRate\List.cshtml" />
+    <Content Include="Views\TradeIn\Create.cshtml" />
+    <Content Include="Views\TradeIn\CreateClient.cshtml" />
     <Content Include="Views\Maintenance\List.cshtml" />
     <Content Include="Views\Maintenance\Detail.cshtml" />
     <Content Include="Views\Maintenance\Create.cshtml" />

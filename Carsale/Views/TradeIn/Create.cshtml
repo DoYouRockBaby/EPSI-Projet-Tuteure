@@ -1,0 +1,132 @@
+﻿@using Carsale.Extensions
+@using Carsale.ViewModels
+@using Carsale.DAO.Models
+@model TradeInlViewModel
+
+
+@{
+    ViewBag.Title = "TradeIn";
+
+}
+
+<h2>Faire une reprise </h2>
+
+@using (Html.BeginForm("Create", "TradeIn", FormMethod.Post, new { id = "create", @Class = "form-horizontal" }))
+{
+<div class="form-row">
+
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.Matriculation)
+            @Html.HiddenFor(m => m.Matriculation, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Matriculation, new { @class = "form-control", disabled = "disabled" })
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.TradeInMatriculation)
+            @Html.TextBoxFor(m => m.TradeInMatriculation, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.BrandName)
+            @Html.TextBoxFor(m => m.BrandName, new { @class = "form-control", disabled = "disabled" })
+        </div>
+        <div class="form-group col-md-6">
+            <div class="collapse-brand-form collapse show" aria-expanded="true">
+                <div class="form-group">
+                    @Html.DropDownListFor(m => m.SelectedBrandId, Model.Brands.Select(brand => new SelectListItem
+                    {
+                        Value = brand.Id.ToString(),
+                        Text = brand.Name
+                    }).AddFirst(new SelectListItem() { Text = "Marque", Value = "", Selected = true }), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.SelectedBrandId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="collapse-brand-form collapse" aria-expanded="false">
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.BrandName, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.BrandName).ToHtmlString()) })
+                    @Html.ValidationMessageFor(m => m.BrandName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <button id="brand-collapse-button" class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target=".collapse-brand-form" aria-expanded="false" aria-controls="collapse-brand-form">
+                <span class="if-collapsed">Créer une nouvelle marque</span>
+                <span class="if-not-collapsed">Utiliser une marque existante</span>
+            </button>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.TextBox("Price", (ViewBag.NewVehicle as Vehicle).Price, new { @class = "form-control", disabled = "disabled" })
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.TradeInVehicle.Price)
+            @Html.TextBoxFor(m => m.TradeInVehicle.Price, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.Label("Power", "Power")
+            @Html.TextBox("Power", (ViewBag.NewVehicle as Vehicle).Power, new { @class = "form-control", disabled = "disabled" })
+        </div>
+        <div class="form-group col-md-6">
+
+            @Html.TextBoxFor(m => m.TradeInVehicle.Power, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.TradeInVehicle.Power)
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.Label("Mileage", "Mileage")
+            @Html.TextBox("Mileage",(ViewBag.NewVehicle as Vehicle).Mileage, new { @class = "form -control", disabled = "disabled" })
+        </div>
+        <div class="form-group col-md-6">
+
+            @Html.TextBoxFor(m => m.TradeInVehicle.Mileage, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.TradeInVehicle.Mileage)
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.Label("Model", "Model")
+            @Html.TextBox("Model" ,(ViewBag.NewVehicle as Vehicle).Model, new { @class = "form -control", disabled = "disabled" })
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.TradeInVehicle.Model)
+            @Html.TextBoxFor(m => m.TradeInVehicle.Model, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.TradeInVehicle.Model)
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.Label("VehicleColor", "VehicleColor")
+            @Html.TextBox("VehicleColor", (ViewBag.NewVehicle as Vehicle).VehicleColor, new { @class = "form -control", disabled = "disabled" })
+        </div>
+        <div class="form-group col-md-6">
+            @Html.DropDownListFor(m => m.SelectedVehicleColor, (Model.VehicleColor as IEnumerable<VehicleColor>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AddFirst(new SelectListItem() { Text = "Couleur", Value = "", Selected = true }).AsEnumerable(), new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.SelectedVehicleColor, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.Label("Status", "Status")
+            @Html.TextBox("Status",(ViewBag.NewVehicle as Vehicle).Status, new { @class = "form -control", disabled = "disabled" })
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Valider" />
+        </div>
+    </div>
+</div>
+}
+@section scripts
+{
+    <script>
+        $('#brand-collapse-button').click(function () {
+            $('#BrandName').val('');
+        });
+    </script>
+}

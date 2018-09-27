@@ -43,6 +43,7 @@ namespace Carsale
             container.RegisterType<BrandProvider, BrandProvider>();
             container.RegisterType<PartProvider, PartProvider>();
             container.RegisterType<HourlyRateProvider, HourlyRateProvider>();
+            container.RegisterType<TradeInProvider, TradeInProvider>();
             container.RegisterType<FuelProvider, FuelProvider>();
             container.RegisterType<FuelSaleProvider, FuelSaleProvider>();
             container.RegisterType<FuelWholesalerProvider, FuelWholesalerProvider>();

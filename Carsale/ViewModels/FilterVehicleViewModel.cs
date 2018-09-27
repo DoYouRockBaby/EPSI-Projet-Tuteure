@@ -7,7 +7,7 @@ using Carsale.DAO.Models;
 
 namespace Carsale.ViewModels
 {
-    public class FilterViewModel
+    public class FilterVehicleViewModel
     {
         [Display(Name = "Brands")]
         public IEnumerable<Brand> Brands { get; set; }

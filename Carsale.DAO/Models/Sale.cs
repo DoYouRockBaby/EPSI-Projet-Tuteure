@@ -26,5 +26,9 @@ namespace Carsale.DAO.Models
         public Vehicle Vehicle { get; set; }
         public Client Client { get; set; }
         #endregion
+        public Sale()
+        {
+
+        }
     }
 }
