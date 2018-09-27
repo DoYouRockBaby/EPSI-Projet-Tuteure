@@ -10,7 +10,10 @@ namespace Carsale.ViewModels
 {
     public class CreateVehicleViewModel
     {
-        [Required (ErrorMessage = "Vehicle doit être renseignée")]
+
+        [Display(Name = "Immatriculation")]
+        public string Matriculation { get; set; }
+
         [Display(Name = "Vehicle")]
         public Vehicle Vehicle { get; set; }
 
@@ -22,16 +25,27 @@ namespace Carsale.ViewModels
         [Display(Name = "Nom de la marque")]
         public string BrandName { get; set; }
 
+        //?? in irad dare are hame selected hastan in nist
         [Display(Name = "Brand")]
         public IEnumerable<Brand> Brands { get; set; }
 
+        public int Power { get; set; }
+
+        public string Model { get; set; }
+
+        [Required(ErrorMessage = "Vous devez renseigner un prix d'achat")]
+        [Display(Name = "Prix")]
+        [Range(1, double.MaxValue)]
+        public double Price { get; set; }
+
         [Required]
         [Display(Name = "Statut")]
-        public string SelectedStatus { get; set; }
+        public StatusVehicle SelectedStatus { get; set; }
 
         [Required]
         [Display(Name = "Couleur")]
-        public string SelectedVehicleColor { get; set; }
+        public VehicleColor SelectedVehicleColor { get; set; }
+
 
         public IEnumerable<StatusVehicle> Status
         {

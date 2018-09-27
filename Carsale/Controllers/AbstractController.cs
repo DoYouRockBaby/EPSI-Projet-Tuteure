@@ -14,10 +14,8 @@ namespace Carsale.Controllers
             ViewBag.LoggedUser = user;
             base.OnActionExecuting(filterContext);
 
-
             //Build the main menu items list
             var menuItems = new List<ControllerActionLink>();
-
             if(user != null)
             {
                 switch(user.Type)
@@ -63,6 +61,34 @@ namespace Carsale.Controllers
                             Text = "Taux horaires",
                             Controller = "HourlyRate",
                             Action = "List"
+                        });
+
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Entretients de vehicule",
+                            Controller = "Maintenance",
+                            Action = "List"
+                        });
+
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Carburants",
+                            Controller = "Fuel",
+                            Action = "List"
+                        });
+
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Grossistes en carburant",
+                            Controller = "FuelWholesaler",
+                            Action = "List"
+                        });
+
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Factures",
+                            Controller = "MaintenanceBill",
+                            Action = "ListUnbilledMaintenances"
                         });
 
                         break;
@@ -136,6 +162,34 @@ namespace Carsale.Controllers
                             Action = "List"
                         });
 
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Entretients de vehicule",
+                            Controller = "Maintenance",
+                            Action = "List"
+                        });
+
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Carburants",
+                            Controller = "Fuel",
+                            Action = "List"
+                        });
+
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Grossistes en carburant",
+                            Controller = "FuelWholesaler",
+                            Action = "List"
+                        });
+
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Factures",
+                            Controller = "MaintenanceBill",
+                            Action = "ListUnbilledMaintenances"
+                        });
+
                         break;
                     case AccountType.MaintenanceAgent:
                         menuItems.Add(new ControllerActionLink()
@@ -150,6 +204,34 @@ namespace Carsale.Controllers
                             Text = "Taux horaires",
                             Controller = "HourlyRate",
                             Action = "List"
+                        });
+
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Entretients de vehicule",
+                            Controller = "Maintenance",
+                            Action = "List"
+                        });
+
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Carburants",
+                            Controller = "Fuel",
+                            Action = "List"
+                        });
+
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Grossistes en carburant",
+                            Controller = "FuelWholesaler",
+                            Action = "List"
+                        });
+
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Factures",
+                            Controller = "MaintenanceBill",
+                            Action = "ListUnbilledMaintenances"
                         });
 
                         break;

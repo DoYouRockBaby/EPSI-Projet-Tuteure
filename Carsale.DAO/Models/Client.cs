@@ -58,5 +58,9 @@ namespace Carsale.DAO.Models
         [StringLength(255, ErrorMessage = "La taille maximale du pays est de 10 caractères")]
         [Display(Name = "Pays")]
         public string Country { get; set; }
+        public Client()
+        {
+
+        }
     }
 }

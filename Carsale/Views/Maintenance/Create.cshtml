@@ -1,0 +1,72 @@
+﻿@using Carsale.DAO.Models
+@using Carsale.ViewModels
+@using Carsale.Extensions
+
+@model CreateMaintenanceViewModel
+
+@{
+    ViewBag.Title = "Créer un entretient";
+}
+
+<h2>Créer un entretient</h2>
+
+@using (Html.BeginForm("Create", "Maintenance", FormMethod.Post, new { id = "create", @Class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            @Html.TextAreaFor(model => model.Maintenance.Description, new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.Maintenance.Description) })
+            @Html.ValidationMessageFor(model => model.Maintenance.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.TextBoxFor(model => model.Maintenance.WorkingTime, new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.Maintenance.WorkingTime) })
+            @Html.ValidationMessageFor(model => model.Maintenance.WorkingTime, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.DropDownListFor(model => model.SelectedHourlyRate, Model.HourlyRates.Select(hourlyRate => new SelectListItem
+            {
+                Value = hourlyRate.Id.ToString(),
+                Text = hourlyRate.MaintenanceType.ToString()
+            }).AddFirst(new SelectListItem() { Text = "Type d'activité", Value = "", Selected = true }), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SelectedHourlyRate, ViewBag.HourlyRateError as string, new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            @Html.DropDownListFor(model => model.Maintenance.VehicleMatriculation, Model.Vehicles.Select(vehicle => new SelectListItem
+            {
+                Value = vehicle.Matriculation,
+                Text = vehicle.Matriculation
+            }).AddFirst(new SelectListItem() { Text = "Vehicule", Value = "", Selected = true }), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Maintenance.VehicleMatriculation, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            @Html.DropDownListFor(model => model.SelectedParts, Model.Parts.Select(part => new SelectListItem
+            {
+                Value = part.Id.ToString(),
+                Text = part.Name
+            }), new { @class = "form-control", multiple = "multiple" })
+            @Html.ValidationMessageFor(model => model.SelectedParts, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Vendre" class="btn btn-primary" />
+    </div>
+}
+
+@section scripts
+{
+    <script>
+        $('select[multiple="multiple"]').multiSelect();
+    </script>
+}

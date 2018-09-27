@@ -183,10 +183,14 @@
     <Compile Include="Authorizations\LoggedAuthorizationAttribute.cs" />
     <Compile Include="Controllers\AbstractController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\MaintenanceBillController.cs" />
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\FuelController.cs" />
+    <Compile Include="Controllers\FuelWholesalerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HourlyRateController.cs" />
+    <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Controllers\PartController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Controllers\TradeInController.cs" />
@@ -198,10 +202,14 @@
     <Compile Include="Models\ControllerActionLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CreateAccountViewModel.cs" />
+    <Compile Include="ViewModels\CreateFuelViewModel.cs" />
+    <Compile Include="ViewModels\CreateMaintenanceBillViewModel.cs" />
+    <Compile Include="ViewModels\CreateMaintenanceViewModel.cs" />
     <Compile Include="ViewModels\CreateVehicleViewModel.cs" />
     <Compile Include="ViewModels\FilterVehicleViewModel.cs" />
     <Compile Include="ViewModels\HourlyRateHistoryViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\SellFuelViewModel.cs" />
     <Compile Include="ViewModels\SellViewModel.cs" />
     <Compile Include="ViewModels\TradeInlViewModel.cs" />
   </ItemGroup>
@@ -212,6 +220,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\multi-select.dist.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -221,7 +230,9 @@
     <Content Include="Images\company.png" />
     <Content Include="Images\hamburger-icon.png" />
     <Content Include="Images\head-icon.png" />
+    <Content Include="Images\logout-icon.png" />
     <Content Include="Images\person.png" />
+    <Content Include="Images\switch.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -242,6 +253,7 @@
     <Content Include="Scripts\esm\popper.min.js" />
     <Content Include="Scripts\jquery.mask.js" />
     <Content Include="Scripts\jquery.mask.min.js" />
+    <Content Include="Scripts\jquery.multi-select.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -279,7 +291,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -306,7 +320,6 @@
     <Content Include="Views\Sale\List.cshtml" />
     <Content Include="Views\Vehicle\Edit.cshtml" />
     <Content Include="Views\Client\Edit.cshtml" />
-    <Content Include="Views\Vehicle\Detail.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Vehicle\Delete.cshtml" />
     <Content Include="Views\Part\List.cshtml" />
@@ -316,6 +329,25 @@
     <Content Include="Views\HourlyRate\List.cshtml" />
     <Content Include="Views\TradeIn\Create.cshtml" />
     <Content Include="Views\TradeIn\CreateClient.cshtml" />
+    <Content Include="Views\Maintenance\List.cshtml" />
+    <Content Include="Views\Maintenance\Detail.cshtml" />
+    <Content Include="Views\Maintenance\Create.cshtml" />
+    <Content Include="Views\FuelWholesaler\List.cshtml" />
+    <Content Include="Views\FuelWholesaler\Create.cshtml" />
+    <Content Include="Views\FuelWholesaler\Edit.cshtml" />
+    <Content Include="Views\FuelWholesaler\Delete.cshtml" />
+    <Content Include="Views\Fuel\Create.cshtml" />
+    <Content Include="Views\Fuel\Delete.cshtml" />
+    <Content Include="Views\Fuel\Edit.cshtml" />
+    <Content Include="Views\Fuel\List.cshtml" />
+    <Content Include="Views\Fuel\Sell.cshtml" />
+    <Content Include="Views\Fuel\ListSales.cshtml" />
+    <Content Include="Views\MaintenanceBill\ListUnbilledMaintenances.cshtml" />
+    <Content Include="Views\MaintenanceBill\Create.cshtml" />
+    <Content Include="Views\MaintenanceBill\ListPaid.cshtml" />
+    <Content Include="Views\MaintenanceBill\ListUnpaid.cshtml" />
+    <Content Include="Views\Client\Delete.cshtml" />
+    <Content Include="Views\Vehicle\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

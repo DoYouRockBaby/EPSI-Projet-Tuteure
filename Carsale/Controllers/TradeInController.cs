@@ -43,7 +43,7 @@ namespace Carsale.Controllers
             TradeInlViewModel viewModel = new TradeInlViewModel()
             {
                 BrandName = brandName,
-                ClientId = "",
+                ClientId = 1,
                 Brands = brandProvider.FindAll()
 
             };
@@ -96,12 +96,14 @@ namespace Carsale.Controllers
             tradeIn.Mileage = viewModel.TradeInVehicle.Mileage;
             tradeIn.Price = vehicle.Price - viewModel.TradeInVehicle.Price;
             sale.Date = DateTime.Now;
-            sale.Price = vehicle.Price;
+            sale.ClientId = 1;
+            tradeIn.ClientId = 1;
             sale.VehicleMatriculation = vehicle.Matriculation;
-            viewModel.TradeIn.Client.Id = 0;
-            viewModel.Sale.Client.Id = 0;
+            sale.Price = vehicle.Price;
             tradeInProvider.Add(tradeIn);
             saleProvider.Add(sale);
+            viewModel.ClientId = 1;
+            
             viewModel.SaleID = sale.Id;
             viewModel.TradeInID = tradeIn.Id;
             if (!ModelState.IsValid)
@@ -122,33 +124,27 @@ namespace Carsale.Controllers
         [HttpPost]
         public ActionResult TradeInEnd(TradeInlViewModel viewModel)
         {
-         
-                clientProvider.Add(viewModel.Client);
-            
-            if (!ModelState.IsValid)
-            {
 
-                
-                viewModel.Sale.ClientId = viewModel.Client.Id;
-                viewModel.TradeIn = new TradeIn();
-                viewModel.Sale = new Sale();
-                viewModel.TradeIn.MatriculationNew = viewModel.Matriculation;
-                viewModel.TradeIn.MatriculationTradeIn = viewModel.TradeInMatriculation;
-                viewModel.TradeIn.DateTradeIn = DateTime.Now;
-                viewModel.TradeIn.Mileage = viewModel.TradeInVehicle.Mileage;
-                viewModel.TradeIn.Price = viewModel.TradeIn.Price - viewModel.TradeInVehicle.Price;
-                viewModel.Sale.Date = DateTime.Now;
-                viewModel.Sale.Price = viewModel.Sale.Price;
-                viewModel.Sale.VehicleMatriculation = viewModel.Sale.VehicleMatriculation;
-                saleProvider.Add(viewModel.Sale);
-                viewModel.TradeIn.ClientId= viewModel.Client.Id;
-                tradeInProvider.Add(viewModel.TradeIn);
+            Client client = viewModel.Client;
+            clientProvider.Add(client);
+            TradeIn tradeIn = new TradeIn();
+            Client clientValidation = clientProvider.FindById(client.Id);
+            tradeIn = tradeInProvider.FindById(viewModel.TradeInID);
+            tradeIn.ClientId = clientValidation.Id;
+            tradeIn.Client = client;
+            Sale sale = new Sale();
+            
+            sale = saleProvider.FindById(viewModel.SaleID);
+            sale.Client = client;
+            sale.ClientId = clientValidation.Id;
+            tradeInProvider.Update(tradeIn);
+            saleProvider.Update(sale);
+            
+           
+               
                 ViewBag.Error = "Data Added Success!";
                 return RedirectToAction("List","Vehicle");
-            }
-
-            ViewBag.Error = "Error Data Is Not Match!";
-            return View();
+          
         }
 
     }

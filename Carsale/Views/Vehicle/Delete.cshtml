@@ -2,56 +2,65 @@
 
 @model Vehicle
 
-
 @{
-    ViewBag.Title = "Delete";
-   
+    ViewBag.Title = "Supprimer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Véhicule à supprimer</h2>
+<h2>Supprimer</h2>
 
-@using (Html.BeginForm("Delete", "Vehicle", FormMethod.Post, new { id = "delete", @Class = "form-horizontal" }))
-{
-    <div class="form-row">
-        <div class="card-body">
+<h3>Êtes-vous sûr de vouloir supprimer ceci?</h3>
+<div>
+    <h4>Vehicle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Brand.Name)
+        </dt>
 
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    @Html.LabelFor(m => m.Matriculation)
-                    @Html.HiddenFor(m => m.Matriculation, new { @class = "form-control" })
-                    @Html.TextBoxFor(m => m.Matriculation, new { @class = "form-control", disabled = "disabled" })
-                </div>
-                <div class="form-group col-md-6">
-                    @Html.LabelFor(m => m.Price)
-                    @Html.TextBoxFor(m => m.Price, new { @class = "form-control", disabled = "disabled" })
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    @Html.LabelFor(m => m.Power)
-                    @Html.TextBoxFor(m => m.Power, new { @class = "form-control", disabled = "disabled" })
-                </div>
-                 <div class="form-group col-md-6">
-                    @Html.LabelFor(m => m.Model)
-                    @Html.TextBoxFor(m => m.Model, new { @class = "form-control", disabled = "disabled" })
-                 </div>
-               </div>
-               <div class="form-row">
-                        <div class="form-group col-md-6">
-                            @Html.LabelFor(m => m.VehicleColor)
-                            @Html.TextBoxFor(m => m.VehicleColor, new { @class = "form-control", disabled = "disabled" })
-                        </div>
-                        <div class="form-group col-md-6">
-                            @Html.LabelFor(m => m.Status)
-                            @Html.TextBoxFor(m => m.Status, new { @class = "form-control", disabled = "disabled" })
-                        </div>
-                </div>
-            </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleColor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleColor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Power)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Power)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Retour à la liste", "List")
         </div>
+    }
+</div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <input type="submit" class="btn btn-primary" value="Delete" />
-                </div>
-            </div>
-        }
+

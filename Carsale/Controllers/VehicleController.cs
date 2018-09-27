@@ -4,6 +4,10 @@ using Carsale.ViewModels;
 using English_Battle_MVC.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Web;
+
 using System.Web.Mvc;
 
 namespace Carsale.Controllers
@@ -21,16 +25,11 @@ namespace Carsale.Controllers
 
         public ActionResult List()
         {
-            IEnumerable<Brand> brands = brandProvider.FindAll();
-            IEnumerable<Vehicle> vehicles = vehicleProvider.FindAll();
-            FilterVehicleViewModel viewModel = new FilterVehicleViewModel();
-            if (brands!=null && vehicles!=null)
+            var viewModel = new FilterVehicleViewModel()
             {
-
-                viewModel.Brands = brands;
-                viewModel.Vehicles = vehicles;
-              
-            }  
+                Brands = brandProvider.FindAll(),
+                Vehicles = vehicleProvider.FindAll()
+            };
             
             
             return View(viewModel);
@@ -42,8 +41,8 @@ namespace Carsale.Controllers
             StatusVehicle? selectedStatus = null;
             int? selectedBrandId = null;
             VehicleColor? selectedColor = null;
-            
-            if(Enum.TryParse(viewModel.SelectedStatus, out StatusVehicle status))
+
+            if (Enum.TryParse(viewModel.SelectedStatus, out StatusVehicle status))
             {
                 selectedStatus = status;
             }
@@ -56,8 +55,8 @@ namespace Carsale.Controllers
                 selectedColor = couleur;
             }
 
-            IEnumerable<Vehicle> vehicles= vehicleProvider.FindAll();
-            if (selectedStatus==null && selectedBrandId==null && selectedColor == null)
+            IEnumerable<Vehicle> vehicles = vehicleProvider.FindAll();
+            if (selectedStatus == null && selectedBrandId == null && selectedColor == null)
             {
                 vehicles = vehicleProvider.FindAll();
             }
@@ -71,11 +70,11 @@ namespace Carsale.Controllers
                 Brands = brandProvider.FindAll(),
                 Vehicles = vehicles
             };
-          
+
             return View(viewModel);
         }
 
-            public ActionResult Create()
+        public ActionResult Create()
         {
             var viewModel = new CreateVehicleViewModel
             {
@@ -85,49 +84,43 @@ namespace Carsale.Controllers
 
             return View(viewModel);
         }
-      
+        
         [HttpPost]
         public ActionResult Create(CreateVehicleViewModel viewModel)
         {
-            String m = viewModel.Vehicle.Matriculation;
+            String m = viewModel.Matriculation;
             if (vehicleProvider.FindByMatriculation(m) != null)
             {
-                 ViewBag.MatriculationError = "Un véhicule existe déjà avec cette Immatriculation.";
+                ViewBag.MatriculationError = "Un véhicule existe déjà avec cette Immatriculation.";
             }
-            else { 
-                if(viewModel.BrandName != null && viewModel.BrandName != "")
-                {
-                    //If the brandname is filled in the form, create a new brand
-                    viewModel.Vehicle.Brand = new Brand()
-                    {
-                        Name = viewModel.BrandName
-                    };
+            else
+            {
+                var brand = brandProvider.FindById(int.Parse(viewModel.SelectedBrandId));
+                var brands = brandProvider.FindAll();
+                Vehicle oVehicle = new Vehicle();
+                oVehicle.Matriculation = viewModel.Matriculation;
+                oVehicle.Price = viewModel.Price;
+                oVehicle.BrandId = int.Parse(viewModel.SelectedBrandId);
+                oVehicle.Model = viewModel.Model;
+                oVehicle.Power = viewModel.Power;
+                oVehicle.Status = viewModel.SelectedStatus;
+                oVehicle.VehicleColor = viewModel.SelectedVehicleColor;
+                viewModel.Vehicle = oVehicle;
+                viewModel.BrandName = brand.Name;
+                viewModel.Vehicle.Brand = brand;
+                viewModel.Brands = brands;
 
-                    viewModel.Vehicle.BrandId = 0;
-                }
-                else
+                if (ModelState.IsValid)
                 {
-                    //Add the selected brand otherwise
-                    if(Int32.TryParse(viewModel.SelectedBrandId, out int brandId))
-                    {
-                        viewModel.Vehicle.Brand = brandProvider.FindById(brandId);
-                    }
+                    vehicleProvider.Add(oVehicle);
+                    return RedirectToAction("List", "Vehicle");
                 }
-
-               
-                    //If valid, add the vehicle to the database
-                    if (ModelState.IsValid)
-                    {
-                    vehicleProvider.Add(viewModel.Vehicle);
-                        return RedirectToAction("List", "Vehicle");
-                    }
             }
 
-            viewModel.Brands = brandProvider.FindAll();
             return View(viewModel);
         }
 
-        //Edit a  vehicle
+
         [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.DirectionAssistant })]
         public ActionResult Edit(String matriculation)
 
@@ -139,18 +132,24 @@ namespace Carsale.Controllers
                 return new HttpNotFoundResult("Le véhicule n'existe pas.");
             }
 
-             //Create default view model
+            //Create default view model
             IEnumerable<Brand> brands = brandProvider.FindAll();
             var viewModel = new CreateVehicleViewModel()
             {
+                SelectedBrandId = vehicle.BrandId.ToString(),
                 Vehicle = vehicle,
-                Brands = brands
+                Brands = brands,
+                Power = vehicle.Power,
+                Model = vehicle.Model,
+                SelectedStatus = vehicle.Status,
+                SelectedVehicleColor = vehicle.VehicleColor,
+                BrandName = vehicle.Brand.Name,
+                Price = vehicle.Price
             };
-
-            
+            ViewBag.Brands = brandProvider.FindAll();
             return View(viewModel);
         }
-        //Update a  vehicle
+
         [HttpPost]
         public ActionResult Edit(CreateVehicleViewModel viewModel)
         {
@@ -167,52 +166,44 @@ namespace Carsale.Controllers
                 {
                     Matriculation = viewModel.Vehicle.Matriculation,
                     BrandId = int.Parse(viewModel.SelectedBrandId),
-                    Model = viewModel.Vehicle.Model,
-                    VehicleColor = (VehicleColor)Enum.Parse(typeof(VehicleColor), viewModel.SelectedVehicleColor),
-                    Status = (StatusVehicle)Enum.Parse(typeof(StatusVehicle), viewModel.SelectedStatus),
-                    Power = viewModel.Vehicle.Power
+                    Model = viewModel.Model,
+                        VehicleColor = viewModel.SelectedVehicleColor,
+                        Status = viewModel.SelectedStatus,
+                        Power = viewModel.Power,
+                        Price = viewModel.Price
+                    };
 
-
-                };
-
-                vehicleProvider.Update(viewModel.Vehicle);
+                    vehicleProvider.Update(vehicle);
+                }
+                return RedirectToAction("List", "Vehicle");
             }
-            return RedirectToAction("List", "Vehicle");
-        } 
-        //Delete a new vehicle
+
+            //Delete a new vehicle
+            //sara
         public ActionResult Delete(String matriculation)
         {
             Vehicle vehicle = vehicleProvider.FindByMatriculation(matriculation);
-            if (vehicle==null)
+            if (vehicle == null)
             {
                 return HttpNotFound();
             }
-           
+
             ViewBag.BrandName = vehicle.Brand.Name;
 
             return View(vehicle);
 
         }
-
-
-
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeletePost(String matriculation)
+        [HttpPost]
+        //sara
+        public ActionResult Delete(Vehicle vehicle)
         {
-            Vehicle vehicle = vehicleProvider.FindByMatriculation(matriculation);
-            //Check if the user exists
-            if (vehicle == null)
-            {
-                return new HttpNotFoundResult("There are not this vehicle in database!");
-            }
-
             vehicleProvider.Delete(vehicle.Matriculation);
+            return RedirectToAction("List");
 
-            return RedirectToAction("List", "Vehicle");
         }
 
         [LoggedAuthorization]
-        public ActionResult Detail(String matriculation)
+        public ActionResult Detail(string matriculation)
         {
             //Check if the user exists
             var vehicle = vehicleProvider.FindByMatriculation(matriculation);
@@ -224,6 +215,34 @@ namespace Carsale.Controllers
             return View(vehicle);
         }
 
+        //[LoggedAuthorization]
+        //public ActionResult Detail(string matriculation)
+
+        //{
+        //    //Check if the vehicle exists
+        //    var vehicle = vehicleProvider.FindByMatriculation(matriculation);
+        //    if (vehicle == null)
+        //    {
+        //        return new HttpNotFoundResult("Le véhicule n'existe pas.");
+        //    }
+
+        //    //Create default view model
+        //    IEnumerable<Brand> brands = brandProvider.FindAll();
+        //    var viewModel = new CreateVehicleViewModel()
+        //    {
+        //        SelectedBrandId = vehicle.BrandId.ToString(),
+        //        Vehicle = vehicle,
+        //        Brands = brands,
+        //        Power = vehicle.Power,
+        //        Model = vehicle.Model,
+        //        SelectedStatus = vehicle.Status,
+        //        SelectedVehicleColor = vehicle.VehicleColor,
+        //        BrandName = vehicle.Brand.Name,
+        //        Price = vehicle.Price
+        //    };
+        //    ViewBag.Brands = brandProvider.FindAll();
+        //    return View(vehicle);
+        //}
     }
 
 }

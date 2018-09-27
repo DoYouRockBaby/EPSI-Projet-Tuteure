@@ -33,7 +33,7 @@ namespace Carsale.ViewModels
 
         [Required]
         [Display(Name = "Client")]
-        public string ClientId { get; set; }
+        public int ClientId { get; set; }
 
         [Required]
         [Display(Name = "Nom Marque")]

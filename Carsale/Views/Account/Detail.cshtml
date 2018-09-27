@@ -3,10 +3,10 @@
 @model Account
 
 @{
-    ViewBag.Title = Model.FirstName + " " + Model.LastName;
+    ViewBag.Title = "Détail de Compte";
 }
 
-<h2>Detail</h2>
+<h2>Détail de Compte</h2>
 
 <div class="card" style="width: 18rem;">
     <div class="card-body">
@@ -15,10 +15,10 @@
 
         @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
         {
-            <ul>
-                <li>@Html.ActionLink("Editer", "Edit", new { id = Model.Id })</li>
-                <li>@Html.ActionLink("Supprimer", "Delete", new { id = Model.Id })</li>
-            </ul>
+        <ul>
+            <li>@Html.ActionLink("Editer", "Edit", new { id = Model.Id })</li>
+            <li>@Html.ActionLink("Supprimer", "Delete", new { id = Model.Id })</li>
+        </ul>
         }
     </div>
 </div>

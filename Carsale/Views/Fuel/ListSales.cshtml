@@ -1,0 +1,33 @@
+﻿@using Carsale.DAO.Models
+
+@model IEnumerable<FuelSale>
+
+@{
+    ViewBag.Title = "Liste des ventes de carburant";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Volume</th>
+            <th scope="col">Kilométrage</th>
+            <th scope="col">Carburant</th>
+            <th scope="col">Vehicule</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var fuelSale in Model)
+        {
+            <tr>
+                 <td>@fuelSale.Date.ToString("dd MMM yyyy")</td>
+                <td>@fuelSale.Price</td>
+                <td>@fuelSale.Volume</td>
+                <td>@fuelSale.Mileage</td>
+                <td>@fuelSale.Fuel.Name (@fuelSale.Fuel.FuelWholesaler.Name)</td>
+                <td>@fuelSale.Vehicle.Matriculation</td>
+            </tr>
+        }
+    </tbody>
+</table>
