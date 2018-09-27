@@ -50,5 +50,6 @@ namespace Carsale.DAO.Models
         [Required(ErrorMessage = "Vous devez choisir le statut vehicule")]
         [Display(Name = "Status")]
         public StatusVehicle Status { get; set; }
+
     }
 }

@@ -289,7 +289,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -316,8 +318,8 @@
     <Content Include="Views\Sale\List.cshtml" />
     <Content Include="Views\Vehicle\Edit.cshtml" />
     <Content Include="Views\Client\Edit.cshtml" />
-    <Content Include="Views\Vehicle\Detail.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
+    <Content Include="Views\Vehicle\Delete.cshtml" />
     <Content Include="Views\Part\List.cshtml" />
     <Content Include="Views\Part\Create.cshtml" />
     <Content Include="Views\Part\Edit.cshtml" />
@@ -340,6 +342,8 @@
     <Content Include="Views\MaintenanceBill\Create.cshtml" />
     <Content Include="Views\MaintenanceBill\ListPaid.cshtml" />
     <Content Include="Views\MaintenanceBill\ListUnpaid.cshtml" />
+    <Content Include="Views\Client\Delete.cshtml" />
+    <Content Include="Views\Vehicle\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

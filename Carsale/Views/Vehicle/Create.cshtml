@@ -1,10 +1,12 @@
-﻿@using Carsale.DAO.Models
+﻿
+
+@using Carsale.DAO.Models
 @using Carsale.ViewModels
 @using Carsale.Extensions
 
 @model CreateVehicleViewModel
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Créer";
 }
 
 <h2>
@@ -14,15 +16,15 @@
 @using (Html.BeginForm("Create", "Vehicle", FormMethod.Post, new { id = "create", @Class = "form-horizontal" }))
 {
     <div class="form-group">
-        @Html.TextBoxFor(m => m.Vehicle.Matriculation, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Vehicle.Matriculation).ToHtmlString()) })
-        @Html.ValidationMessageFor(m => m.Vehicle.Matriculation, ViewBag.MatriculationError as string, new { @class = "text-danger" })
+        @Html.TextBoxFor(m => m.Matriculation, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Vehicle.Matriculation).ToHtmlString()) })
+        @Html.ValidationMessageFor(m => m.Matriculation, ViewBag.MatriculationError as string, new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
         <span class="input-symbol-euro">
-            @Html.TextBoxFor(m => m.Vehicle.Price, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Vehicle.Price).ToHtmlString()) })
+            @Html.TextBoxFor(m => m.Price, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Vehicle.Price).ToHtmlString()) })
         </span>
-        @Html.ValidationMessageFor(m => m.Vehicle.Price, "", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
@@ -55,15 +57,15 @@
 
     <div class="form-row">
         <div class="form-group">
-            @Html.TextBoxFor(m => m.Vehicle.Power, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Vehicle.Power).ToHtmlString()) })
-            @Html.ValidationMessageFor(m => m.Vehicle.Power, "", new { @class = "text-danger" })
+            @Html.TextBoxFor(m => m.Power, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Vehicle.Power).ToHtmlString()) })
+            @Html.ValidationMessageFor(m => m.Power, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-row">
         <div class="form-group">
-            @Html.TextBoxFor(m => m.Vehicle.Model, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Vehicle.Model).ToHtmlString()) })
-            @Html.ValidationMessageFor(m => m.Vehicle.Model, "", new { @class = "text-danger" })
+            @Html.TextBoxFor(m => m.Model, new { @class = "form-control", placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(model => model.Vehicle.Model).ToHtmlString()) })
+            @Html.ValidationMessageFor(m => m.Model, "", new { @class = "text-danger" })
         </div>
     </div>
 
