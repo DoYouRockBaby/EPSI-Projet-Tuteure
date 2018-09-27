@@ -47,6 +47,8 @@ namespace Carsale.DAO.Models
         [Display(Name = "Modèle")]
         public string Model { get; set; }
 
+        public double Mileage { get; set; }
+
         [Required(ErrorMessage = "Vous devez choisir le statut vehicule")]
         [Display(Name = "Status")]
         public StatusVehicle Status { get; set; }

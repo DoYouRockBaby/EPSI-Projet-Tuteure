@@ -49,7 +49,7 @@ namespace Carsale.Controllers
         public ActionResult List(FilterViewModel viewModel)
         {
 
-            StatusVehicle selectedStatus = null;
+            StatusVehicle selectedStatus = StatusVehicle.New;
             int? selectedBrandId = null;
             VehicleColor? selectedColor = null;
 

@@ -13,7 +13,7 @@ namespace Carsale.DAO.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201809270904541_Init"; }
+            get { return "201809271422265_Init"; }
         }
         
         string IMigrationMetadata.Source

@@ -7,13 +7,13 @@ namespace Carsale.DAO.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class SecondSetUpNotifications : IMigrationMetadata
+    public sealed partial class VehiclesUpdate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SecondSetUpNotifications));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(VehiclesUpdate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201809271051431_SecondSetUpNotifications"; }
+            get { return "201809271429501_VehiclesUpdate"; }
         }
         
         string IMigrationMetadata.Source

@@ -3,7 +3,7 @@ namespace Carsale.DAO.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class secondSetupForRent : DbMigration
+    public partial class VehiclesUpdate : DbMigration
     {
         public override void Up()
         {
