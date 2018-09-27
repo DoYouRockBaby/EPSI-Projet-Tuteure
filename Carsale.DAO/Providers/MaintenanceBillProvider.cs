@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Carsale.DAO.Providers
 {
-    class MaintenanceBillProvider
+    public class MaintenanceBillProvider
     {
         public void Add(MaintenanceBill bill)
         {
@@ -20,7 +20,7 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.MaintenanceBills.ToList();
+                return context.MaintenanceBills.Include(e => e.Client).Include(e => e.Maintenance).Include(e => e.Maintenance.HourlyRate).ToList();
             }
         }
 
@@ -28,7 +28,7 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.MaintenanceBills.Where(e => e.Status == MaintenanceBillStatus.Paid).ToList();
+                return context.MaintenanceBills.Include(e => e.Client).Include(e => e.Maintenance).Include(e => e.Maintenance.HourlyRate).Where(e => e.Status == MaintenanceBillStatus.Paid).ToList();
             }
         }
 
@@ -36,7 +36,7 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.MaintenanceBills.Where(e => e.Status == MaintenanceBillStatus.Unpaid).ToList();
+                return context.MaintenanceBills.Include(e => e.Client).Include(e => e.Maintenance).Include(e => e.Maintenance.HourlyRate).Where(e => e.Status == MaintenanceBillStatus.Unpaid).ToList();
             }
         }
 
@@ -44,7 +44,7 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.MaintenanceBills.Find(id);
+                return context.MaintenanceBills.Include(e => e.Client).Include(e => e.Maintenance).Include(e => e.Maintenance.HourlyRate).Where(e => e.Id == id).FirstOrDefault();
             }
         }
 

@@ -84,6 +84,13 @@ namespace Carsale.Controllers
                             Action = "List"
                         });
 
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Factures",
+                            Controller = "MaintenanceBill",
+                            Action = "ListUnbilledMaintenances"
+                        });
+
                         break;
                     case AccountType.NewVehicleTrader:
                         menuItems.Add(new ControllerActionLink()
@@ -176,6 +183,13 @@ namespace Carsale.Controllers
                             Action = "List"
                         });
 
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Factures",
+                            Controller = "MaintenanceBill",
+                            Action = "ListUnbilledMaintenances"
+                        });
+
                         break;
                     case AccountType.MaintenanceAgent:
                         menuItems.Add(new ControllerActionLink()
@@ -211,6 +225,13 @@ namespace Carsale.Controllers
                             Text = "Grossistes en carburant",
                             Controller = "FuelWholesaler",
                             Action = "List"
+                        });
+
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Factures",
+                            Controller = "MaintenanceBill",
+                            Action = "ListUnbilledMaintenances"
                         });
 
                         break;

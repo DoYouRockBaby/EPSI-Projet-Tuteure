@@ -1,0 +1,46 @@
+﻿@using Carsale.DAO.Models
+
+@model IEnumerable<MaintenanceBill>
+
+@{
+    ViewBag.Title = "Facture payées";
+}
+
+<h2>Facture payées</h2>
+
+<div>
+    @Html.ActionLink("Afficher les factures à payer", "ListUnpaid", null, new { @class = "btn btn-default" })
+</div>
+
+<div>
+    @Html.ActionLink("Afficher les opérations d'entretient non facturées", "ListUnbilledMaintenances", null, new { @class = "btn btn-default" })
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Operation</th>
+            <th scope="col">Client</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bill in Model)
+        {
+            <tr>
+                <td>@bill.Date.ToString("dd MMM yyyy")</td>
+                <td>@bill.Maintenance.HourlyRate.MaintenanceType.ToString() (@bill.Maintenance.Date.ToString("dd MMM yyyy"))</td>
+                <td>
+                    @if (bill.Client.Type == Carsale.DAO.Models.ClientType.Company)
+                    {
+                        @bill.Client.Name
+                    }
+                    else
+                    {
+                        @bill.Client.FirstName @bill.Client.LastName
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -121,6 +121,10 @@
     <Compile Include="Migrations\201809270731134_Bill.Designer.cs">
       <DependentUpon>201809270731134_Bill.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809270821140_Bill1.cs" />
+    <Compile Include="Migrations\201809270821140_Bill1.Designer.cs">
+      <DependentUpon>201809270821140_Bill1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
@@ -206,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809270731134_Bill.resx">
       <DependentUpon>201809270731134_Bill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809270821140_Bill1.resx">
+      <DependentUpon>201809270821140_Bill1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

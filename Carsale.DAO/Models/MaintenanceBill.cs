@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Carsale.DAO.Models
 {
@@ -11,6 +11,10 @@ namespace Carsale.DAO.Models
         [Required]
         [Display(Name = "Statut")]
         public MaintenanceBillStatus Status { get; set; }
+
+        [Required]
+        [Display(Name = "Date")]
+        public DateTime Date { get; set; }
 
         [Display(Name = "Client")]
         public int ClientId { get; set; }
