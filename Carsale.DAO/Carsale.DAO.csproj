@@ -57,9 +57,9 @@
   <ItemGroup>
     <Compile Include="CarsaleContext.cs" />
     <Compile Include="DataAnnotations\RequiredIfOtherEquals.cs" />
-    <Compile Include="Migrations\201809271522416_Init.cs" />
-    <Compile Include="Migrations\201809271522416_Init.Designer.cs">
-      <DependentUpon>201809271522416_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201809271831429_Init.cs" />
+    <Compile Include="Migrations\201809271831429_Init.Designer.cs">
+      <DependentUpon>201809271831429_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -75,7 +75,9 @@
     <Compile Include="Models\MaintenanceBill.cs" />
     <Compile Include="Models\MaintenanceBillStatus.cs" />
     <Compile Include="Models\MaintenanceType.cs" />
+    <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Part.cs" />
+    <Compile Include="Models\Rent.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\StatusVehicle.cs" />
     <Compile Include="Models\Brand.cs" />
@@ -90,8 +92,10 @@
     <Compile Include="Providers\ClientProvider.cs" />
     <Compile Include="Providers\AccountProvider.cs" />
     <Compile Include="Providers\HourlyRateProvider.cs" />
+    <Compile Include="Providers\NotificationProvider.cs" />
     <Compile Include="Providers\FuelWholesalerProvider.cs" />
     <Compile Include="Providers\PartProvider.cs" />
+    <Compile Include="Providers\RentProvider.cs" />
     <Compile Include="Providers\SaleProvider.cs" />
     <Compile Include="Providers\TradeInProvider.cs" />
     <Compile Include="Providers\VehicleProvider.cs" />
@@ -101,8 +105,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809271522416_Init.resx">
-      <DependentUpon>201809271522416_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809271831429_Init.resx">
+      <DependentUpon>201809271831429_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

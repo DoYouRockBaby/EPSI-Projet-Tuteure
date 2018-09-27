@@ -2,6 +2,8 @@
 using Carsale.DAO.Providers;
 using English_Battle_MVC.Attributes;
 using System.Web.Mvc;
+using System.Web.UI.WebControls.WebParts;
+using Part = Carsale.DAO.Models.Part;
 
 namespace Carsale.Controllers
 {

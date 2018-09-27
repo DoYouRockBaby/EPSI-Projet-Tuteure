@@ -15,57 +15,57 @@
 
 <table class="table">
     <thead>
-        <tr>
+    <tr>
 
-            <th scope="col">Marque</th>
-            <th scope="col">Modèle</th>
-            <th scope="col">Status</th>
+        <th scope="col">Marque</th>
+        <th scope="col">Modèle</th>
+        <th scope="col">Status</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
+        {
             <th scope="col"></th>
             <th scope="col"></th>
-            @if ((ViewBag.LoggedUser as Account).Type == AccountType.Director)
-            {
-                <th scope="col"></th>
-                <th scope="col"></th>
-            }
-        </tr>
+        }
+    </tr>
 
-        <tr>
-            <th colspan="6">
-                <div>
-                    <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="m1 m2 m3 m4">Filtre</button>
-                    @using (Html.BeginForm("List", "Vehicle", FormMethod.Post, new { id = "filter", @class = "form-horizontal secondary-form" }))
-                    {
-                        <div class="multi-collapse collapse form-row">
-                            <div class="form-group col-md-3">
-                                @Html.LabelFor(m => m.Brands)
-                                @Html.DropDownListFor(m => m.SelectedBrandId, Model.Brands.Select(brand => new SelectListItem
-                                {
-                                    Value = brand.Id.ToString(),
-                                    Text = brand.Name
-                                }).AddFirst(new SelectListItem()), new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.SelectedBrandId)
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                @Html.LabelFor(m => m.SelectedColor)
-                                @Html.DropDownListFor(m => m.SelectedColor, (Model.VehicleColors as IEnumerable<VehicleColor>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable().AddFirst(new SelectListItem()), new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.SelectedColor, "", new { @class = "text-danger" })
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                @Html.LabelFor(m => m.SelectedStatus)
-                                @Html.DropDownListFor(m => m.SelectedStatus, (Model.Status as IEnumerable<StatusVehicle>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable().AddFirst(new SelectListItem()), new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.SelectedStatus)
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <input type="submit" class="btn btn-secondary" value="Rechercher" />
-                            </div>
+    <tr>
+        <th colspan="6">
+            <div>
+                <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="m1 m2 m3 m4">Filtre</button>
+                @using (Html.BeginForm("List", "Vehicle", FormMethod.Post, new { id = "filter", @class = "form-horizontal secondary-form" }))
+                {
+                    <div class="multi-collapse collapse form-row">
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(m => m.Brands)
+                            @Html.DropDownListFor(m => m.SelectedBrandId, Model.Brands.Select(brand => new SelectListItem
+                            {
+                                Value = brand.Id.ToString(),
+                                Text = brand.Name
+                            }).AddFirst(new SelectListItem()), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.SelectedBrandId)
                         </div>
-                    }
-                </div>
-            </th>
-        </tr>
+
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(m => m.SelectedColor)
+                            @Html.DropDownListFor(m => m.SelectedColor, (Model.VehicleColors as IEnumerable<VehicleColor>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable().AddFirst(new SelectListItem()), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.SelectedColor, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(m => m.SelectedStatus)
+                            @Html.DropDownListFor(m => m.SelectedStatus, (Model.Status as IEnumerable<StatusVehicle>).Select(e => new SelectListItem() { Text = e.ToString(), Value = e.ToString() }).AsEnumerable().AddFirst(new SelectListItem()), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.SelectedStatus)
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <input type="submit" class="btn btn-secondary" value="Rechercher" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </th>
+    </tr>
     </thead>
 
     <tbody>
@@ -85,5 +85,14 @@
             }
         </tr>
         }
+          
+    }
     </tbody>
 </table>
+
+<div style="margin-top: 25px; border: 1px solid Yellow;background-color: beige">
+    <h1>Notifications</h1>
+    <p>
+        @ViewBag.Notifications
+    </p>
+</div>

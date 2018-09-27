@@ -49,6 +49,7 @@ namespace Carsale.DAO.Models
         [StringLength(255, ErrorMessage = "La taille maximale du modèle est de 255 caractères")]
         [Display(Name = "Modèle")]
         public string Model { get; set; }
+        
 
         [Required(ErrorMessage = "Vous devez choisir le statut vehicule")]
         [Display(Name = "Status")]

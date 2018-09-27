@@ -1,5 +1,6 @@
-﻿using Carsale.DAO.Models;
-using Carsale.DAO.Providers;
+﻿
+using Carsale.DAO.Models;
+using  Carsale.DAO.Providers;
 using Carsale.ViewModels;
 using English_Battle_MVC.Attributes;
 using System;
@@ -7,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
-
 using System.Web.Mvc;
 
 namespace Carsale.Controllers
@@ -17,28 +17,40 @@ namespace Carsale.Controllers
     {
         private VehicleProvider vehicleProvider;
         private BrandProvider brandProvider;
-        public VehicleController(VehicleProvider vehicleProvider, BrandProvider brandProvider)
+        private NotificationProvider _notificationProvider;
+
+        public VehicleController(VehicleProvider vehicleProvider, BrandProvider brandProvider, NotificationProvider notificationProvider)
         {
             this.vehicleProvider = vehicleProvider;
             this.brandProvider = brandProvider;
+            this._notificationProvider = notificationProvider;
         }
 
         public ActionResult List()
         {
+
+
+            //Filling brands and other vehicle here and then send them with our viewmodel to the view
             var viewModel = new FilterVehicleViewModel()
             {
                 Brands = brandProvider.FindAll(),
                 Vehicles = vehicleProvider.FindAll()
             };
-            
-            
+            var notifications = _notificationProvider.FindAll(DateTime.Now.ToShortDateString());
+            string text = "";
+            foreach (var item in notifications)
+            {
+                text += item.Title + "\n";
+                text += item.Text + "\n\n";
+            }
+            ViewBag.Notifications = text;
             return View(viewModel);
         }
         [HttpPost]
         public ActionResult List(FilterVehicleViewModel viewModel)
         {
 
-            StatusVehicle? selectedStatus = null;
+            StatusVehicle selectedStatus = StatusVehicle.New;
             int? selectedBrandId = null;
             VehicleColor? selectedColor = null;
 
@@ -179,7 +191,6 @@ namespace Carsale.Controllers
             }
 
             //Delete a new vehicle
-            //sara
         public ActionResult Delete(String matriculation)
         {
             Vehicle vehicle = vehicleProvider.FindByMatriculation(matriculation);
@@ -194,7 +205,6 @@ namespace Carsale.Controllers
 
         }
         [HttpPost]
-        //sara
         public ActionResult Delete(Vehicle vehicle)
         {
             vehicleProvider.Delete(vehicle.Matriculation);
@@ -215,34 +225,6 @@ namespace Carsale.Controllers
             return View(vehicle);
         }
 
-        //[LoggedAuthorization]
-        //public ActionResult Detail(string matriculation)
-
-        //{
-        //    //Check if the vehicle exists
-        //    var vehicle = vehicleProvider.FindByMatriculation(matriculation);
-        //    if (vehicle == null)
-        //    {
-        //        return new HttpNotFoundResult("Le véhicule n'existe pas.");
-        //    }
-
-        //    //Create default view model
-        //    IEnumerable<Brand> brands = brandProvider.FindAll();
-        //    var viewModel = new CreateVehicleViewModel()
-        //    {
-        //        SelectedBrandId = vehicle.BrandId.ToString(),
-        //        Vehicle = vehicle,
-        //        Brands = brands,
-        //        Power = vehicle.Power,
-        //        Model = vehicle.Model,
-        //        SelectedStatus = vehicle.Status,
-        //        SelectedVehicleColor = vehicle.VehicleColor,
-        //        BrandName = vehicle.Brand.Name,
-        //        Price = vehicle.Price
-        //    };
-        //    ViewBag.Brands = brandProvider.FindAll();
-        //    return View(vehicle);
-        //}
     }
 
 }

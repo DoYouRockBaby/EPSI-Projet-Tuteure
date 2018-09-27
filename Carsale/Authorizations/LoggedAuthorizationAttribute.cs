@@ -17,7 +17,7 @@ namespace English_Battle_MVC.Attributes
                 //If the user is not logged, redirect him to the connection page
                 filterContext.Result = new RedirectResult("/Account/Login");
             }
-            else if(AllowedTypes != null && AllowedTypes.Length > 0 && !AllowedTypes.Contains(user.Type))
+            else if (AllowedTypes != null && AllowedTypes.Length > 0 && !AllowedTypes.Contains(user.Type))
             {
                 //If the user is logged but dont have the good access rights, send him a 401 error
                 filterContext.Result = new HttpUnauthorizedResult();

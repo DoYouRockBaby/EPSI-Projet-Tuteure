@@ -65,6 +65,13 @@ namespace Carsale.Controllers
 
                         menuItems.Add(new ControllerActionLink()
                         {
+                            Text = "Historique des locations",
+                            Controller = "Rent",
+                            Action = "Index"
+                        });
+
+                        menuItems.Add(new ControllerActionLink()
+                        {
                             Text = "Entretients de vehicule",
                             Controller = "Maintenance",
                             Action = "List"
@@ -90,7 +97,6 @@ namespace Carsale.Controllers
                             Controller = "MaintenanceBill",
                             Action = "ListUnbilledMaintenances"
                         });
-
                         break;
                     case AccountType.NewVehicleTrader:
                         menuItems.Add(new ControllerActionLink()
