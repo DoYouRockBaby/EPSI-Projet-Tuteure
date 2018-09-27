@@ -27,6 +27,9 @@ namespace Carsale.DAO.Models
         [Range(1, double.MaxValue)]
         public double Price { get; set; }
 
+       
+        public double Mileage { get; set; }
+
         [Display(Name = "Marque")]
         public Brand Brand { get; set; }
 

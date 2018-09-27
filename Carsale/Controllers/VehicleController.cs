@@ -21,17 +21,22 @@ namespace Carsale.Controllers
 
         public ActionResult List()
         {
-           
-            
-            var viewModel = new FilterViewModel()
+            IEnumerable<Brand> brands = brandProvider.FindAll();
+            IEnumerable<Vehicle> vehicles = vehicleProvider.FindAll();
+            FilterVehicleViewModel viewModel = new FilterVehicleViewModel();
+            if (brands!=null && vehicles!=null)
             {
-                Brands = brandProvider.FindAll(),
-                Vehicles = vehicleProvider.FindAll()
-            };
+
+                viewModel.Brands = brands;
+                viewModel.Vehicles = vehicles;
+              
+            }  
+            
+            
             return View(viewModel);
         }
         [HttpPost]
-        public ActionResult List(FilterViewModel viewModel)
+        public ActionResult List(FilterVehicleViewModel viewModel)
         {
 
             StatusVehicle? selectedStatus = null;
@@ -61,7 +66,7 @@ namespace Carsale.Controllers
                 vehicles = vehicleProvider.FindAll(selectedStatus, selectedBrandId, selectedColor);
             }
 
-            viewModel = new FilterViewModel()
+            viewModel = new FilterVehicleViewModel()
             {
                 Brands = brandProvider.FindAll(),
                 Vehicles = vehicles

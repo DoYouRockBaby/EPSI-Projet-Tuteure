@@ -7,7 +7,7 @@ namespace Carsale.DAO.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.Sales", "VehicleId", c => c.String());
+            AddColumn("dbo.Sales", "VehicleId", c => c.Int(nullable: false));
             AddColumn("dbo.Sales", "ClientId", c => c.Int(nullable: false));
             AddColumn("dbo.Sales", "Date", c => c.DateTime(nullable: false));
             AddColumn("dbo.Sales", "Price", c => c.Double(nullable: false));
