@@ -117,6 +117,42 @@
     <Compile Include="Migrations\201809261415366_LastSetUpCreatVehicle.Designer.cs">
       <DependentUpon>201809261415366_LastSetUpCreatVehicle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809261907215_sixthSetUp.cs" />
+    <Compile Include="Migrations\201809261907215_sixthSetUp.Designer.cs">
+      <DependentUpon>201809261907215_sixthSetUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809270939343_RentSetUp.cs" />
+    <Compile Include="Migrations\201809270939343_RentSetUp.Designer.cs">
+      <DependentUpon>201809270939343_RentSetUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809270949401_RentSetUp2.cs" />
+    <Compile Include="Migrations\201809270949401_RentSetUp2.Designer.cs">
+      <DependentUpon>201809270949401_RentSetUp2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809271009183_secondSetupForRent.cs" />
+    <Compile Include="Migrations\201809271009183_secondSetupForRent.Designer.cs">
+      <DependentUpon>201809271009183_secondSetupForRent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809271019066_ThirdSetupRent.cs" />
+    <Compile Include="Migrations\201809271019066_ThirdSetupRent.Designer.cs">
+      <DependentUpon>201809271019066_ThirdSetupRent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809271043478_NotifictionSetup.cs" />
+    <Compile Include="Migrations\201809271043478_NotifictionSetup.Designer.cs">
+      <DependentUpon>201809271043478_NotifictionSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809271051431_SecondSetUpNotifications.cs" />
+    <Compile Include="Migrations\201809271051431_SecondSetUpNotifications.Designer.cs">
+      <DependentUpon>201809271051431_SecondSetUpNotifications.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809271103133_ThirdSetUpNotifications.cs" />
+    <Compile Include="Migrations\201809271103133_ThirdSetUpNotifications.Designer.cs">
+      <DependentUpon>201809271103133_ThirdSetUpNotifications.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809271105415_ForthSetUpNotifications.cs" />
+    <Compile Include="Migrations\201809271105415_ForthSetUpNotifications.Designer.cs">
+      <DependentUpon>201809271105415_ForthSetUpNotifications.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
@@ -124,7 +160,9 @@
     <Compile Include="Models\ClientType.cs" />
     <Compile Include="Models\HourlyRate.cs" />
     <Compile Include="Models\MaintenanceType.cs" />
+    <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Part.cs" />
+    <Compile Include="Models\Rent.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\StatusVehicle.cs" />
     <Compile Include="Models\Brand.cs" />
@@ -134,7 +172,9 @@
     <Compile Include="Providers\ClientProvider.cs" />
     <Compile Include="Providers\AccountProvider.cs" />
     <Compile Include="Providers\HourlyRateProvider.cs" />
+    <Compile Include="Providers\NotificationProvider.cs" />
     <Compile Include="Providers\PartProvider.cs" />
+    <Compile Include="Providers\RentProvider.cs" />
     <Compile Include="Providers\SaleProvider.cs" />
     <Compile Include="Providers\VehicleProvider.cs" />
   </ItemGroup>
@@ -187,6 +227,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809261415366_LastSetUpCreatVehicle.resx">
       <DependentUpon>201809261415366_LastSetUpCreatVehicle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809261907215_sixthSetUp.resx">
+      <DependentUpon>201809261907215_sixthSetUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809270939343_RentSetUp.resx">
+      <DependentUpon>201809270939343_RentSetUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809270949401_RentSetUp2.resx">
+      <DependentUpon>201809270949401_RentSetUp2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809271009183_secondSetupForRent.resx">
+      <DependentUpon>201809271009183_secondSetupForRent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809271019066_ThirdSetupRent.resx">
+      <DependentUpon>201809271019066_ThirdSetupRent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809271043478_NotifictionSetup.resx">
+      <DependentUpon>201809271043478_NotifictionSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809271051431_SecondSetUpNotifications.resx">
+      <DependentUpon>201809271051431_SecondSetUpNotifications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809271103133_ThirdSetUpNotifications.resx">
+      <DependentUpon>201809271103133_ThirdSetUpNotifications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809271105415_ForthSetUpNotifications.resx">
+      <DependentUpon>201809271105415_ForthSetUpNotifications.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

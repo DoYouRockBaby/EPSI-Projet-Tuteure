@@ -17,21 +17,32 @@ namespace Carsale.Controllers
     {
         private VehicleProvider vehicleProvider;
         private BrandProvider brandProvider;
-        public VehicleController(VehicleProvider vehicleProvider, BrandProvider brandProvider)
+        private NotificationProvider _notificationProvider;
+
+        public VehicleController(VehicleProvider vehicleProvider, BrandProvider brandProvider, NotificationProvider notificationProvider)
         {
             this.vehicleProvider = vehicleProvider;
             this.brandProvider = brandProvider;
+            this._notificationProvider = notificationProvider;
         }
 
         public ActionResult List()
         {
 
-
+            //Filling brands and other vehicle here and then send them with our viewmodel to the view
             var viewModel = new FilterViewModel()
             {
                 Brands = brandProvider.FindAll(),
                 Vehicles = vehicleProvider.FindAll()
             };
+            var notifications = _notificationProvider.FindAll(DateTime.Now.ToShortDateString());
+            string text = "";
+            foreach (var item in notifications)
+            {
+                text += item.Title + "\n";
+                text += item.Text + "\n\n";
+            }
+            ViewBag.Notifications = text;
             return View(viewModel);
         }
         [HttpPost]

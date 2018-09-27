@@ -188,6 +188,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HourlyRateController.cs" />
     <Compile Include="Controllers\PartController.cs" />
+    <Compile Include="Controllers\RentController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Images\Extensions\EnumerableExtension.cs" />
@@ -315,6 +316,11 @@
     <Content Include="Views\HourlyRate\List.cshtml" />
     <Content Include="Views\Client\Delete.cshtml" />
     <Content Include="Views\Vehicle\Detail.cshtml" />
+    <Content Include="Views\Rent\Create.cshtml" />
+    <Content Include="Views\Rent\Delete.cshtml" />
+    <Content Include="Views\Rent\Details.cshtml" />
+    <Content Include="Views\Rent\Edit.cshtml" />
+    <Content Include="Views\Rent\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

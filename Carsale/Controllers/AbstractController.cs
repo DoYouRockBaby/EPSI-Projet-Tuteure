@@ -64,7 +64,12 @@ namespace Carsale.Controllers
                             Controller = "HourlyRate",
                             Action = "List"
                         });
-
+                        menuItems.Add(new ControllerActionLink()
+                        {
+                            Text = "Historique des locations",
+                            Controller = "Rent",
+                            Action = "Index"
+                        });
                         break;
                     case AccountType.NewVehicleTrader:
                         menuItems.Add(new ControllerActionLink()
