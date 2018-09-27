@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Carsale.DAO.Models
 {
@@ -22,14 +23,18 @@ namespace Carsale.DAO.Models
         [Range(0, double.MaxValue)]
         public double Mileage { get; set; }
 
+        [Required]
+        [Display(Name = "Date")]
+        public DateTime Date { get; set; }
+
         [Display(Name = "Carburant")]
-        public int FuelId { get; set; }
+        public string FuelReference { get; set; }
 
         [Display(Name = "Carburant")]
         public Fuel Fuel { get; set; }
 
         [Display(Name = "Vehicule")]
-        public int VehicleId { get; set; }
+        public string VehicleMatriculation { get; set; }
 
         [Display(Name = "Vehicule")]
         public Vehicle Vehicle { get; set; }

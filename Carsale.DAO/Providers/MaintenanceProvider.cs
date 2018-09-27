@@ -43,6 +43,14 @@ namespace Carsale.DAO.Providers
             }
         }
 
+        public IEnumerable<Maintenance> FindAllUnbilled()
+        {
+            using (var context = new CarsaleContext())
+            {
+                return context.Maintenances.Include(m => m.Parts).Include(m => m.Vehicle).Include(m => m.Vehicle.Brand).Include(m => m.HourlyRate).Where(e=> context.MaintenanceBills.Where(b => b.MaintenanceId == e.Id).Count() == 0).ToList();
+            }
+        }
+
         public Maintenance FindById(int id)
         {
             using (var context = new CarsaleContext())

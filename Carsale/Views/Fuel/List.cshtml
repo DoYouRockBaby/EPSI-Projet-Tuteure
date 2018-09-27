@@ -10,8 +10,15 @@
 
 @if ((ViewBag.LoggedUser as Account).Type == AccountType.MaintainVehicleManager || (ViewBag.LoggedUser as Account).Type == AccountType.Director)
 {
-    @Html.ActionLink("Ajouter un carburant", "Create", null, new { @class = "btn btn-default" })
+    <div>
+        @Html.ActionLink("Ajouter un carburant", "Create", null, new { @class = "btn btn-default" })
+    </div>
 }
+
+<div>
+    @Html.ActionLink("Liste des ventes de carburant", "ListSales", null, new { @class = "btn btn-default" })
+</div>
+
 
 <table class="table">
     <thead>
@@ -20,6 +27,7 @@
             <th scope="col">Nom</th>
             <th scope="col">Type</th>
             <th scope="col">Grossiste</th>
+            <th scope="col"></th>
             @if ((ViewBag.LoggedUser as Account).Type == AccountType.MaintainVehicleManager || (ViewBag.LoggedUser as Account).Type == AccountType.Director)
             {
                 <th scope="col"></th>
@@ -35,6 +43,7 @@
                 <td>@fuel.Name</td>
                 <td>@fuel.Type.ToString()</td>
                 <td>@fuel.FuelWholesaler.Name</td>
+                <td>@Html.ActionLink("Vendre", "Sell", new { id = fuel.Reference })</td>
                 @if ((ViewBag.LoggedUser as Account).Type == AccountType.MaintainVehicleManager || (ViewBag.LoggedUser as Account).Type == AccountType.Director)
                 {
                     <td>@Html.ActionLink("Editer", "Edit", new { id = fuel.Reference })</td>

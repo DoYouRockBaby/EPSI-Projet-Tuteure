@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Carsale.DAO.Models
 {
@@ -35,5 +36,21 @@ namespace Carsale.DAO.Models
 
         [Display(Name = "Pièces")]
         public ICollection<Part> Parts { get; set; }
+
+        [NotMapped]
+        public double TotalPrice
+        {
+            get
+            {
+                var price = HourlyRate.Price * WorkingTime;
+
+                foreach(var part in Parts)
+                {
+                    price += part.Price;
+                }
+
+                return price;
+            }
+        }
     }
 }

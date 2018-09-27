@@ -20,7 +20,7 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.FuelSales.ToList();
+                return context.FuelSales.Include(e => e.Fuel).Include(e => e.Fuel.FuelWholesaler).Include(e => e.Vehicle).ToList();
             }
         }
 
@@ -28,7 +28,7 @@ namespace Carsale.DAO.Providers
         {
             using (var context = new CarsaleContext())
             {
-                return context.FuelSales.Find(id);
+                return context.FuelSales.Include(e => e.Fuel).Include(e => e.Fuel.FuelWholesaler).Include(e => e.Vehicle).Where(e => e.Id == id).FirstOrDefault();
             }
         }
 

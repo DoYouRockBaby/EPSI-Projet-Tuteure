@@ -21,5 +21,6 @@ namespace Carsale.DAO
         public DbSet<Fuel> Fuels { get; set; }
         public DbSet<FuelSale> FuelSales { get; set; }
         public DbSet<FuelWholesaler> FuelWholesalers { get; set; }
+        public DbSet<MaintenanceBill> MaintenanceBills { get; set; }
     }
 }

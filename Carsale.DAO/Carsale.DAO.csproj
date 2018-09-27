@@ -105,6 +105,22 @@
     <Compile Include="Migrations\201809261456095_Fuel2.Designer.cs">
       <DependentUpon>201809261456095_Fuel2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809270624297_Fuel3.cs" />
+    <Compile Include="Migrations\201809270624297_Fuel3.Designer.cs">
+      <DependentUpon>201809270624297_Fuel3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809270633272_Fuel31.cs" />
+    <Compile Include="Migrations\201809270633272_Fuel31.Designer.cs">
+      <DependentUpon>201809270633272_Fuel31.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809270639543_Fuel4.cs" />
+    <Compile Include="Migrations\201809270639543_Fuel4.Designer.cs">
+      <DependentUpon>201809270639543_Fuel4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809270731134_Bill.cs" />
+    <Compile Include="Migrations\201809270731134_Bill.Designer.cs">
+      <DependentUpon>201809270731134_Bill.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
@@ -116,6 +132,8 @@
     <Compile Include="Models\FuelWholesaler.cs" />
     <Compile Include="Models\HourlyRate.cs" />
     <Compile Include="Models\Maintenance.cs" />
+    <Compile Include="Models\MaintenanceBill.cs" />
+    <Compile Include="Models\MaintenanceBillStatus.cs" />
     <Compile Include="Models\MaintenanceType.cs" />
     <Compile Include="Models\Part.cs" />
     <Compile Include="Models\Sale.cs" />
@@ -123,6 +141,7 @@
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\MaintenanceBillProvider.cs" />
     <Compile Include="Providers\BrandProvider.cs" />
     <Compile Include="Providers\FuelProvider.cs" />
     <Compile Include="Providers\FuelSaleProvider.cs" />
@@ -175,6 +194,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809261456095_Fuel2.resx">
       <DependentUpon>201809261456095_Fuel2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809270624297_Fuel3.resx">
+      <DependentUpon>201809270624297_Fuel3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809270633272_Fuel31.resx">
+      <DependentUpon>201809270633272_Fuel31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809270639543_Fuel4.resx">
+      <DependentUpon>201809270639543_Fuel4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809270731134_Bill.resx">
+      <DependentUpon>201809270731134_Bill.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -206,6 +206,7 @@
     <Compile Include="ViewModels\FilterViewModel.cs" />
     <Compile Include="ViewModels\HourlyRateHistoryViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\SellFuelViewModel.cs" />
     <Compile Include="ViewModels\SellViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -331,6 +332,8 @@
     <Content Include="Views\Fuel\Delete.cshtml" />
     <Content Include="Views\Fuel\Edit.cshtml" />
     <Content Include="Views\Fuel\List.cshtml" />
+    <Content Include="Views\Fuel\Sell.cshtml" />
+    <Content Include="Views\Fuel\ListSales.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,15 +7,20 @@ using System.Web.Mvc;
 
 namespace Carsale.Controllers
 {
+    [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.MaintainVehicleManager, AccountType.MaintenanceAgent })]
     public class FuelController : AbstractController
     {
         FuelProvider fuelProvider;
         FuelWholesalerProvider fuelWholesalerProvider;
+        VechicleProvider vehicleProvider;
+        FuelSaleProvider fuelSaleProvider;
 
-        public FuelController(FuelProvider fuelProvider, FuelWholesalerProvider fuelWholesalerProvider)
+        public FuelController(FuelProvider fuelProvider, FuelWholesalerProvider fuelWholesalerProvider, VechicleProvider vehicleProvider, FuelSaleProvider fuelSaleProvider)
         {
             this.fuelProvider = fuelProvider;
             this.fuelWholesalerProvider = fuelWholesalerProvider;
+            this.vehicleProvider = vehicleProvider;
+            this.fuelSaleProvider = fuelSaleProvider;
         }
 
         // GET: FuelWholesaler
@@ -155,6 +160,50 @@ namespace Carsale.Controllers
 
             fuelProvider.Delete(id);
             return RedirectToAction("List");
+        }
+
+        // GET: FuelWholesaler
+        public ActionResult ListSales()
+        {
+            return View(fuelSaleProvider.FindAll());
+        }
+
+        // GET: FuelWholesaler/Create
+        [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.MaintainVehicleManager })]
+        public ActionResult Sell(string id)
+        {
+            var viewModel = new SellFuelViewModel()
+            {
+                Sale = new FuelSale(),
+                Vehicles = vehicleProvider.FindAll()
+            };
+
+            return View(viewModel);
+        }
+
+        // POST: FuelWholesaler/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [LoggedAuthorization(AllowedTypes = new AccountType[] { AccountType.Director, AccountType.MaintainVehicleManager })]
+        public ActionResult Sell(string id, SellFuelViewModel viewModel)
+        {
+            viewModel.Vehicles = vehicleProvider.FindAll();
+
+            if (viewModel.SelectedVehicleId != null && viewModel.SelectedVehicleId != "")
+            {
+                viewModel.Sale.VehicleMatriculation = viewModel.SelectedVehicleId;
+            }
+
+            viewModel.Sale.FuelReference = id;
+            viewModel.Sale.Date = DateTime.Now;
+
+            if (ModelState.IsValid)
+            {
+                fuelSaleProvider.Add(viewModel.Sale);
+                return RedirectToAction("List");
+            }
+
+            return View(viewModel);
         }
     }
 }
